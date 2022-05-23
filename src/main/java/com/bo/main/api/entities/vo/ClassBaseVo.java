@@ -14,7 +14,6 @@ import java.util.List;
 public class ClassBaseVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
-
     /**
      * 강의 순번
      */
@@ -56,7 +55,6 @@ public class ClassBaseVo implements Serializable {
     /**
      * 등록일시
      */
-
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime crtDtm;
 

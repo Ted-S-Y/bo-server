@@ -11,7 +11,6 @@ public class CommonVo {
     /**
      * 등록일시
      */
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime crtDtm;

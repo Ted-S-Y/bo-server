@@ -8,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 public class ReqClassBaseVo extends CommonVo {
 
