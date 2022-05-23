@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOGS" value="./log" />
+
+    <springProfile name="console-logging">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <Pattern>[%d{yyyy-mm-dd HH:mm:ss.SSS}] %magenta([%thread]) %highlight([%level]) [%logger{36}.%M:%L]- %msg%n</Pattern>
+            </layout>
+        </appender>
+    </springProfile>
+
+    <springProfile name="file-logging">
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <encoder>
+                <Pattern>[%d{yyyy-mm-dd HH:mm:ss.SSS}] [%thread] [%level] [%logger{36}.%M:%L]- %msg%n</Pattern>
+            </encoder>
+            <file>${LOGS}/msg_service.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOGS}/msg_service_%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>500MB</maxFileSize>
+                <maxHistory>1000</maxHistory>
+            </rollingPolicy>
+        </appender>
+    </springProfile>
+
+    <root level="info">
+        <springProfile name="console-logging">
+            <appender-ref ref="CONSOLE"/>
+        </springProfile>
+
+        <springProfile name="file-logging">
+            <appender-ref ref="FILE"/>
+        </springProfile>
+    </root>
+
+</configuration>

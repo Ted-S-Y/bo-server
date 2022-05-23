@@ -1,0 +1,16 @@
+db:
+  my:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/db?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 100
+      auto-commit: true
+      connection-timeout: 5000
+      idle-timeout: 600000
+      validation-timeout: 10000
+      max-lifetime: 1800000
+

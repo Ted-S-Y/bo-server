@@ -1,0 +1,136 @@
+/* 10-1. querydsl version 정보 추가 */
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0";
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.bo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+/* 10-3. querydsl */
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+ext {
+	set('springCloudVersion', "2021.0.1")
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	// JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// query dsl
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+	annotationProcessor(
+			'javax.persistence:javax.persistence-api:2.2',
+			'javax.annotation:javax.annotation-api:1.3.2',
+			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+	)
+
+	testImplementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	testAnnotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+//	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-jetty'
+
+	implementation 'org.springframework.session:spring-session-core'
+
+//	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	// dev
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// jdbc
+//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	// validation
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation('org.hibernate:hibernate-validator:7.0.4.Final')
+
+	// apache common lang3
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation "commons-codec:commons-codec:1.15"
+
+	// google guava
+	implementation("com.google.guava:guava:31.1-jre")
+
+
+	// annotationProcessor
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	// lombok
+	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor('org.projectlombok:lombok')
+	testCompileOnly('org.projectlombok:lombok')
+
+	// testImplementation
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
+	// mapstruct
+	compileOnly 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+	// swagger
+	implementation 'org.springdoc:springdoc-openapi-common:1.6.6'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
+
+	// retrofit
+	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+	implementation 'com.squareup.retrofit2:converter-simplexml:2.9.0'
+	implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+def queryDslOutput = file(new File(projectDir, '/src/main/generated/'))
+sourceSets {
+	main {
+		java {
+			srcDir queryDslOutput
+		}
+	}
+}
+
+compileJava {
+	options.compilerArgs << '-s'
+	options.compilerArgs << "$projectDir/src/main/generated/"
+
+	doFirst {
+		delete(files("${projectDir}/src/main/generated/"))
+		file(new File(projectDir, '/src/main/generated/')).mkdirs();
+	}
+}
+

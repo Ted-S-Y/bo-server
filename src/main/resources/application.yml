@@ -1,0 +1,115 @@
+###############################################################################
+## dev
+
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: true
+
+logging:
+  charset:
+    file: UTF-8
+  level:
+    root: DEBUG
+    test: INFO
+    org:
+      hibernate:
+        type:
+        descriptor:
+          sql:
+            BasicBinder: TRACE
+
+
+spring:
+
+  #  task:
+#    execution:
+#      pool:
+#        core-size: 50
+#        max-size: 200
+#        queue-capacity: 1000
+#      thread-name-prefix: task-
+#
+#    scheduling:
+#      pool:
+#        size: 5
+#      thread-name-prefix: scheduling-
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/local_db?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
+    hikari:
+      connection-timeout: 3000
+      max-lifetime: 50000
+      maximum-pool-size: 50
+      auto-commit: true
+#      connection-init-sql: SET NAMES utf8mb4
+  jpa:
+    database: mysql
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        order_inserts: true
+        order_updates: true
+        jdbc:
+#          batch_size: 20000
+        dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    config:
+      enabled: false
+    compatibility-verifier:
+      enabled: false
+      compatible-boot-versions: 2.5.8
+  gson:
+    serialize-nulls: false
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    converters:
+      preferred-json-mapper: jackson
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+        default-page-size: 20
+        max-page-size: 1000
+        page-parameter: page
+        size-parameter: size
+
+
+# actuator
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  info:
+#    git:
+#      mode: full
+
+###############################################################################
+## openAPI 3.0 - swagger
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+
+###############################################################################
+
+api:
+  base:
+    domain: http://localhost:8081
