@@ -1,9 +1,7 @@
 package com.bo.main.api.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -11,9 +9,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper=false)
 @Table(name = "CLASS_PACKAGE")
 public class ClassPackageEntity extends BaseTimeEntity implements Serializable {
 
@@ -63,13 +63,17 @@ public class ClassPackageEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "USE_YN")
     private String useYn;
 
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "PACK_SEQ")
-    @JsonBackReference
+    // 패키지상세
+    @OneToMany(mappedBy = "classPackageEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     @ToString.Exclude
-    private List<ClassPackageDetailEntity> classPackageDetailEntities;
+    private List<ClassPackageDetailEntity> classPackageDetailEntityList;
 
+    // 판매상품상세
+    @OneToMany(mappedBy = "classPackageEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<SalesProductDetailEntity> salesProductDetailEntityList;
 
     @Override
     public boolean equals(Object o) {

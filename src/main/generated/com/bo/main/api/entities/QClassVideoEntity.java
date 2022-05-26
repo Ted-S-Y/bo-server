@@ -26,8 +26,6 @@ public class QClassVideoEntity extends EntityPathBase<ClassVideoEntity> {
 
     public final QClassBaseEntity classBaseEntity;
 
-    public final NumberPath<Long> clssSeq = createNumber("clssSeq", Long.class);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> crtDtm = _super.crtDtm;
 

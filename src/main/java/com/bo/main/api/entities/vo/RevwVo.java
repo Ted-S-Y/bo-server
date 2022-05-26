@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -59,6 +60,8 @@ public class RevwVo implements Serializable {
     private String updtr;
 
 
-    RevwCnntsVo revwCnntsVo;
+    List<RevwCnntsVo> revwCnnts;
+
+    MemberVo memberVo;
 
 }

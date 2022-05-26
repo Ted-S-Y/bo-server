@@ -78,4 +78,6 @@ public class OrderInfoVo implements Serializable {
     private String cnclDtlList;
 
     private List<OrderDetailVo> details;
+
+    private CartVo cartVo;
 }

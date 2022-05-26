@@ -12,6 +12,12 @@ import java.time.LocalDateTime;
 public class ConponIssueHistoryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 쿠폰발급번호
+     */
+    @NotNull(message = "issueSeq can not null")
+    private Long issueSeq;
+
 
     /**
      * 회원 아이디
@@ -52,5 +58,9 @@ public class ConponIssueHistoryVo implements Serializable {
      * 중지사유
      */
     private String useSppdCd;
+
+    CouponInfoVo couponInfoVo;
+
+    MemberVo memberVo;
 
 }

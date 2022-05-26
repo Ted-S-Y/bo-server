@@ -28,15 +28,13 @@ public class QClassPackageDetailEntity extends EntityPathBase<ClassPackageDetail
 
     public final QClassPackageEntity classPackageEntity;
 
-    public final NumberPath<Long> clssSeq = createNumber("clssSeq", Long.class);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> crtDtm = _super.crtDtm;
 
     //inherited
     public final StringPath crtr = _super.crtr;
 
-    public final NumberPath<Long> packSeq = createNumber("packSeq", Long.class);
+    public final NumberPath<Long> mapSeq = createNumber("mapSeq", Long.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updDtm = _super.updDtm;

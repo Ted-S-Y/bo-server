@@ -1,13 +1,20 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "CART")
 public class CartEntity extends BaseTimeEntity implements Serializable {
@@ -23,12 +30,12 @@ public class CartEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "CART_NO", nullable = false)
     private Long cartNo;
 
-    /**
-     * 회원순번
-     */
-    @Schema(description="회원순번")
-    @Column(name = "MBR_SEQ", nullable = false)
-    private Long mbrSeq;
+//    /**
+//     * 회원순번
+//     */
+//    @Schema(description="회원순번")
+//    @Column(name = "MBR_SEQ", nullable = false)
+//    private Long mbrSeq;
 
     /**
      * 장바구니 상태(주문전/주문완료)
@@ -51,6 +58,37 @@ public class CartEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "ORDR_SUM_AMT")
     private Integer ordrSumAmt;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private CartDetailEntity cartDetailEntity;
+    // 장바구니 상세
+    @OneToMany(mappedBy = "cartEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<CartDetailEntity> cartDetailEntityList;
+
+    /**
+     * 회원순번
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MBR_SEQ", insertable = false, updatable = false)
+    @JsonBackReference
+    @ToString.Exclude
+    private MemberEntity memberEntity;
+
+    // 주문
+    @OneToOne(mappedBy = "cartEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private OrderInfoEntity orderInfoEntity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CartEntity that = (CartEntity) o;
+        return cartNo != null && Objects.equals(cartNo, that.cartNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

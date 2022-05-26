@@ -76,4 +76,8 @@ public class ClassBaseVo implements Serializable {
 
 
     private List<ClassVideoVo> videos;
+
+    private List<ClassPackageDetailVo> details;
+
+    private List<LecturerClassVo> lecturerClasses;
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.bo.main.api.entities.QCartEntity.cartEntity;
 import static com.bo.main.api.entities.QCartDetailEntity.cartDetailEntity;
 
 /**
@@ -31,7 +32,8 @@ public class QCartDetailRepository {
                 .fetch();
     }
 
-    public JPAQuery<CartDetailEntity> find() {
-        return queryFactory.select(cartDetailEntity);
+    public CartDetailEntity findOne() {
+        return queryFactory.selectFrom(cartDetailEntity).join(cartDetailEntity.cartEntity, cartEntity)
+                .fetchOne();
     }
 }

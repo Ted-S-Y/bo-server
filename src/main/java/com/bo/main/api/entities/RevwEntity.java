@@ -1,16 +1,23 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "REVW")
-public class RevwEntity implements Serializable {
+public class RevwEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,34 +42,33 @@ public class RevwEntity implements Serializable {
      */
     @Column(name = "REVW")
     @Schema(description="리뷰")
-    private String REVW;
+    private String revw;
 
     /**
-     * 등록일시
+     * 회원순번
      */
-    @Column(name = "CRT_DTM")
-    @Schema(description="등록일시")
-    private Date crtDtm;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MBR_SEQ", insertable = false, updatable = false)
+    @JsonBackReference
+    @ToString.Exclude
+    private MemberEntity memberEntity;
 
-    /**
-     * 등록자
-     */
-    @Column(name = "CRTR")
-    @Schema(description="등록자")
-    private String CRTR;
+    // 리뷰컨텐츠
+    @OneToMany(mappedBy = "revwEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<RevwCnntsEntity> revwCnntsEntityList;
 
-    /**
-     * 수정일시
-     */
-    @Column(name = "UPD_DTM")
-    @Schema(description="수정일시")
-    private Date updDtm;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        RevwEntity that = (RevwEntity) o;
+        return revwSeq != null && Objects.equals(revwSeq, that.revwSeq);
+    }
 
-    /**
-     * 수정자
-     */
-    @Column(name = "UPDTR")
-    @Schema(description="수정자")
-    private String UPDTR;
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

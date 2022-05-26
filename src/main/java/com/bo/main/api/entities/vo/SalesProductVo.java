@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -111,5 +112,7 @@ public class SalesProductVo implements Serializable {
      */
     private String updtr;
 
-    SalesProductDetailVo salesProductDetailVo;
+    List<SalesProductDetailVo> salesProductDetails;
+
+    List<CartDetailVo> cartDetails;
 }

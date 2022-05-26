@@ -1,9 +1,7 @@
 package com.bo.main.api.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -12,10 +10,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "MEMBER")
-@EqualsAndHashCode(callSuper=false)
 public class MemberEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -113,11 +113,35 @@ public class MemberEntity extends BaseTimeEntity implements Serializable {
     private String sspdCd;
 
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MBR_SEQ")
-    @JsonBackReference
+    // 사용자 기기
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
     @ToString.Exclude
     private List<MemberDeviceEntity> memberDeviceEntityList;
+
+    // 장바구니
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<CartEntity> cartEntityList;
+
+    // 쿠폰이력
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<ConponIssueHistoryEntity> conponIssueHistoryEntityList;
+
+    // 주문
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<RevwEntity> revwEntityList;
+
+    // 문의내역
+    @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<QuestionListEntity> questionListEntityList;
 
     @Override
     public boolean equals(Object o) {

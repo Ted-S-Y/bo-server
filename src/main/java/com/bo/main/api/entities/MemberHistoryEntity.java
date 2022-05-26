@@ -1,20 +1,32 @@
 package com.bo.main.api.entities;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "MEMBER_HISTORY")
-public class MemberHistoryEntity implements Serializable {
+public class MemberHistoryEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 이력 순번
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description="이력 순번")
+    @Column(name = "HIST_SEQ", nullable = false)
+    private Long histSeq;
 
     /**
      * 기준일자
@@ -36,34 +48,6 @@ public class MemberHistoryEntity implements Serializable {
     @Column(name = "MBR_SEQ")
     @Schema(description="회원순번")
     private Long mbrSeq;
-
-    /**
-     * 등록일시
-     */
-    @Column(name = "CRT_DTM")
-    @Schema(description="등록일시")
-    private Date crtDtm;
-
-    /**
-     * 등록자
-     */
-    @Column(name = "CRTR")
-    @Schema(description="등록자")
-    private String CRTR;
-
-    /**
-     * 수정일시
-     */
-    @Column(name = "UPD_DTM")
-    @Schema(description="수정일시")
-    private Date updDtm;
-
-    /**
-     * 수정자
-     */
-    @Column(name = "UPDTR")
-    @Schema(description="수정자")
-    private String UPDTR;
 
     /**
      * 회원 명
@@ -156,4 +140,16 @@ public class MemberHistoryEntity implements Serializable {
     @Schema(description="이용정지사유")
     private String sspdCd;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        MemberHistoryEntity that = (MemberHistoryEntity) o;
+        return histSeq != null && Objects.equals(histSeq, that.histSeq);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -22,7 +22,7 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
-    public final ListPath<ClassPackageDetailEntity, QClassPackageDetailEntity> classPackageDetailEntities = this.<ClassPackageDetailEntity, QClassPackageDetailEntity>createList("classPackageDetailEntities", ClassPackageDetailEntity.class, QClassPackageDetailEntity.class, PathInits.DIRECT2);
+    public final ListPath<ClassPackageDetailEntity, QClassPackageDetailEntity> classPackageDetailEntityList = this.<ClassPackageDetailEntity, QClassPackageDetailEntity>createList("classPackageDetailEntityList", ClassPackageDetailEntity.class, QClassPackageDetailEntity.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> crtDtm = _super.crtDtm;
@@ -41,6 +41,8 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
     public final StringPath packThnl = createString("packThnl");
 
     public final NumberPath<Integer> PRC = createNumber("PRC", Integer.class);
+
+    public final ListPath<SalesProductDetailEntity, QSalesProductDetailEntity> salesProductDetailEntityList = this.<SalesProductDetailEntity, QSalesProductDetailEntity>createList("salesProductDetailEntityList", SalesProductDetailEntity.class, QSalesProductDetailEntity.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updDtm = _super.updDtm;

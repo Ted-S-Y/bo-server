@@ -36,7 +36,7 @@ public class QOrderDetailEntity extends EntityPathBase<OrderDetailEntity> {
 
     public final StringPath ordrCls = createString("ordrCls");
 
-    public final NumberPath<Long> ordrNo = createNumber("ordrNo", Long.class);
+    public final NumberPath<Long> ordrDtlSeq = createNumber("ordrDtlSeq", Long.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updDtm = _super.updDtm;
@@ -62,7 +62,7 @@ public class QOrderDetailEntity extends EntityPathBase<OrderDetailEntity> {
 
     public QOrderDetailEntity(Class<? extends OrderDetailEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.orderInfoEntity = inits.isInitialized("orderInfoEntity") ? new QOrderInfoEntity(forProperty("orderInfoEntity")) : null;
+        this.orderInfoEntity = inits.isInitialized("orderInfoEntity") ? new QOrderInfoEntity(forProperty("orderInfoEntity"), inits.get("orderInfoEntity")) : null;
     }
 
 }

@@ -59,4 +59,6 @@ public class LecturerCareerVo implements Serializable {
      * 수정자
      */
     private String updtr;
+
+    private LecturerVo lecturerVo;
 }

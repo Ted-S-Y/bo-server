@@ -36,8 +36,6 @@ public class QLecturerCareerEntity extends EntityPathBase<LecturerCareerEntity> 
     //inherited
     public final StringPath crtr = _super.crtr;
 
-    public final NumberPath<Long> lctrSeq = createNumber("lctrSeq", Long.class);
-
     public final QLecturerEntity lecturerEntity;
 
     //inherited

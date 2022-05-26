@@ -26,7 +26,7 @@ public class BaseTimeEntity {
     /**
      * 등록자
      */
-    @Column(name = "crtr")
+    @Column(name = "CRTR")
     private String crtr;
 
     /**
@@ -39,6 +39,6 @@ public class BaseTimeEntity {
     /**
      * 수정자
      */
-    @Column(name = "updtr")
+    @Column(name = "UPDTR")
     private String updtr;
 }

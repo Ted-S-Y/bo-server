@@ -67,4 +67,5 @@ public class SalesProductDetailVo implements Serializable {
 
     SalesProductVo salesProductVo;
 
+    ClassBaseVo classBaseVo;
 }

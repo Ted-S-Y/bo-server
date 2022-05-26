@@ -1,13 +1,17 @@
 package com.bo.main.api.entities;
 
-import lombok.Data;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "ADMIN")
 public class AdminEntity extends BaseTimeEntity implements Serializable {
@@ -58,16 +62,4 @@ public class AdminEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "USE_YN")
     private String useYn;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        AdminEntity that = (AdminEntity) o;
-        return admSeq != null && Objects.equals(admSeq, that.admSeq);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

@@ -12,6 +12,11 @@ public class ClassPackageDetailVo  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 매핑 순번
+     */
+    private Long mapSeq;
+
+    /**
      * 패키지 순번
      */
     private Long packSeq;
@@ -21,9 +26,6 @@ public class ClassPackageDetailVo  implements Serializable {
      */
     private Long clssSeq;
 
-    private ClassBaseVo classBaseVo;
-
-    private ClassPackageVo classPackageVo;
 
     /**
      * 등록일시
@@ -48,4 +50,9 @@ public class ClassPackageDetailVo  implements Serializable {
      */
     private String updtr;
 
+
+    private ClassBaseVo classBaseVo;
+
+
+    private ClassPackageVo classPackageVo;
 }

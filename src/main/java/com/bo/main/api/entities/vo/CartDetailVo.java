@@ -73,4 +73,5 @@ public class CartDetailVo implements Serializable {
 
     CartVo cartVo;
 
+    SalesProductVo salesProductVo;
 }

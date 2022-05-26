@@ -79,6 +79,8 @@ public class LecturerVo implements Serializable {
      */
     private String updtr;
 
-    private List<LecturerCareerVo> lecturerCareerVos;
+    private List<LecturerCareerVo> lecturerCareers;
+
+    private List<LecturerClassVo> lecturerClasses;
 
 }

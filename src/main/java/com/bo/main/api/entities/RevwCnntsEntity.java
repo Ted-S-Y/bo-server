@@ -1,16 +1,21 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "REVW_CNNTS")
-public class RevwCnntsEntity implements Serializable {
+public class RevwCnntsEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,12 +28,12 @@ public class RevwCnntsEntity implements Serializable {
     @Column(name = "REVW_CNNTS_SEQ", nullable = false)
     private Long revwCnntsSeq;
 
-    /**
-     * 리뷰순번
-     */
-    @Schema(description="리뷰순번")
-    @Column(name = "REVW_SEQ", nullable = false)
-    private Long revwSeq;
+//    /**
+//     * 리뷰순번
+//     */
+//    @Schema(description="리뷰순번")
+//    @Column(name = "REVW_SEQ", nullable = false)
+//    private Long revwSeq;
 
     /**
      * 파일명
@@ -52,31 +57,24 @@ public class RevwCnntsEntity implements Serializable {
     private String delYn;
 
     /**
-     * 등록일시
+     * 리뷰순번
      */
-    @Column(name = "CRT_DTM")
-    @Schema(description="등록일시")
-    private Date crtDtm;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "REVW_SEQ", insertable = false, updatable = false, nullable = false)
+    @JsonBackReference
+    @ToString.Exclude
+    private RevwEntity revwEntity;
 
-    /**
-     * 등록자
-     */
-    @Column(name = "CRTR")
-    @Schema(description="등록자")
-    private String CRTR;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        RevwCnntsEntity that = (RevwCnntsEntity) o;
+        return revwCnntsSeq != null && Objects.equals(revwCnntsSeq, that.revwCnntsSeq);
+    }
 
-    /**
-     * 수정일시
-     */
-    @Column(name = "UPD_DTM")
-    @Schema(description="수정일시")
-    private Date updDtm;
-
-    /**
-     * 수정자
-     */
-    @Column(name = "UPDTR")
-    @Schema(description="수정자")
-    private String UPDTR;
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

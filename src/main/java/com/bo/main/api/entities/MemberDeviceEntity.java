@@ -1,16 +1,18 @@
 package com.bo.main.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper=false)
 @Table(name = "MEMBER_DEVICE")
 public class MemberDeviceEntity extends BaseTimeEntity implements Serializable {
 
@@ -24,11 +26,11 @@ public class MemberDeviceEntity extends BaseTimeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dvSeq;
 
-    /**
-     * 회원순번
-     */
-    @Column(name = "MBR_SEQ", nullable = false)
-    private Long mbrSeq;
+//    /**
+//     * 회원순번
+//     */
+//    @Column(name = "MBR_SEQ", nullable = false)
+//    private Long mbrSeq;
 
     /**
      * 기기명
@@ -54,11 +56,25 @@ public class MemberDeviceEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "DEL_YN")
     private String delYn;
 
-
+    /**
+     * 회원순번
+     */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MBR_SEQ", insertable = false, updatable = false)
+    @JoinColumn(name = "MBR_SEQ", insertable = false, updatable = false, nullable = false)
     @JsonBackReference
     @ToString.Exclude
     private MemberEntity memberEntity;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        MemberDeviceEntity that = (MemberDeviceEntity) o;
+        return dvSeq != null && Objects.equals(dvSeq, that.dvSeq);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

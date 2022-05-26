@@ -1,20 +1,19 @@
 package com.bo.main.api.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper=false)
 @Table(name = "LECTURER")
 public class LecturerEntity extends BaseTimeEntity implements Serializable {
 
@@ -65,12 +64,17 @@ public class LecturerEntity extends BaseTimeEntity implements Serializable {
     private String lctrImg;
 
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "LCTR_SEQ", insertable = false, updatable = false)
-    @JsonBackReference
+    // 강사경력관리
+    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
     @ToString.Exclude
     private List<LecturerCareerEntity> lecturerCareerEntityList;
 
+    // 강사경력관리
+    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<LecturerClassEntity> lecturerClassEntityList;
 
     @Override
     public boolean equals(Object o) {

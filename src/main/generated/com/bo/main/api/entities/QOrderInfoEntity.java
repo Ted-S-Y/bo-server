@@ -18,11 +18,13 @@ public class QOrderInfoEntity extends EntityPathBase<OrderInfoEntity> {
 
     private static final long serialVersionUID = 1105727527L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QOrderInfoEntity orderInfoEntity = new QOrderInfoEntity("orderInfoEntity");
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
-    public final NumberPath<Long> cartNo = createNumber("cartNo", Long.class);
+    public final QCartEntity cartEntity;
 
     public final StringPath cnclDt = createString("cnclDt");
 
@@ -36,7 +38,7 @@ public class QOrderInfoEntity extends EntityPathBase<OrderInfoEntity> {
     //inherited
     public final StringPath crtr = _super.crtr;
 
-    public final ListPath<OrderDetailEntity, QOrderDetailEntity> orderDetailEntityList = this.<OrderDetailEntity, QOrderDetailEntity>createList("orderDetailEntityList", OrderDetailEntity.class, QOrderDetailEntity.class, PathInits.DIRECT2);
+    public final QOrderDetailEntity orderDetailEntity;
 
     public final NumberPath<Integer> ordrAmt = createNumber("ordrAmt", Integer.class);
 
@@ -55,15 +57,25 @@ public class QOrderInfoEntity extends EntityPathBase<OrderInfoEntity> {
     public final StringPath updtr = _super.updtr;
 
     public QOrderInfoEntity(String variable) {
-        super(OrderInfoEntity.class, forVariable(variable));
+        this(OrderInfoEntity.class, forVariable(variable), INITS);
     }
 
     public QOrderInfoEntity(Path<? extends OrderInfoEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QOrderInfoEntity(PathMetadata metadata) {
-        super(OrderInfoEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QOrderInfoEntity(PathMetadata metadata, PathInits inits) {
+        this(OrderInfoEntity.class, metadata, inits);
+    }
+
+    public QOrderInfoEntity(Class<? extends OrderInfoEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.cartEntity = inits.isInitialized("cartEntity") ? new QCartEntity(forProperty("cartEntity"), inits.get("cartEntity")) : null;
+        this.orderDetailEntity = inits.isInitialized("orderDetailEntity") ? new QOrderDetailEntity(forProperty("orderDetailEntity"), inits.get("orderDetailEntity")) : null;
     }
 
 }

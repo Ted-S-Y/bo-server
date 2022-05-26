@@ -1,9 +1,7 @@
 package com.bo.main.api.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -11,10 +9,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "CLASS_BASE")
-@EqualsAndHashCode(callSuper=false)
 public class ClassBaseEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,11 +57,22 @@ public class ClassBaseEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "USE_YN")
     private String useYn;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLSS_SEQ")
-    @JsonBackReference
+    // 강의 비디오
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
     @ToString.Exclude
     private List<ClassVideoEntity> classVideoEntityList;
+
+    // 강의 강사 매핑
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<LecturerClassEntity> lecturerClassEntityList;
+
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<ClassPackageDetailEntity> classPackageDetailEntityList;
 
     @Override
     public boolean equals(Object o) {

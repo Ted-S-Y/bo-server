@@ -1,16 +1,20 @@
 package com.bo.main.api.entities;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "CATEGORY")
-public class CategoryEntity implements Serializable {
+public class CategoryEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,32 +69,16 @@ public class CategoryEntity implements Serializable {
     @Schema(description="삭제여부")
     private String delYn;
 
-    /**
-     * 등록일시
-     */
-    @Column(name = "CRT_DTM")
-    @Schema(description="등록일시")
-    private Date crtDtm;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CategoryEntity that = (CategoryEntity) o;
+        return ctgrId != null && Objects.equals(ctgrId, that.ctgrId);
+    }
 
-    /**
-     * 등록자
-     */
-    @Column(name = "CRTR")
-    @Schema(description="등록자")
-    private String CRTR;
-
-    /**
-     * 수정일시
-     */
-    @Column(name = "UPD_DTM")
-    @Schema(description="수정일시")
-    private Date updDtm;
-
-    /**
-     * 수정자
-     */
-    @Column(name = "UPDTR")
-    @Schema(description="수정자")
-    private String UPDTR;
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

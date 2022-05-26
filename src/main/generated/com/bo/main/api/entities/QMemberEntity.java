@@ -24,6 +24,10 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final StringPath ADDR = createString("ADDR");
 
+    public final ListPath<CartEntity, QCartEntity> cartEntityList = this.<CartEntity, QCartEntity>createList("cartEntityList", CartEntity.class, QCartEntity.class, PathInits.DIRECT2);
+
+    public final ListPath<ConponIssueHistoryEntity, QConponIssueHistoryEntity> conponIssueHistoryEntityList = this.<ConponIssueHistoryEntity, QConponIssueHistoryEntity>createList("conponIssueHistoryEntityList", ConponIssueHistoryEntity.class, QConponIssueHistoryEntity.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> crtDtm = _super.crtDtm;
 
@@ -51,6 +55,10 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
     public final StringPath mktYn = createString("mktYn");
 
     public final StringPath mobl = createString("mobl");
+
+    public final ListPath<QuestionListEntity, QQuestionListEntity> questionListEntityList = this.<QuestionListEntity, QQuestionListEntity>createList("questionListEntityList", QuestionListEntity.class, QQuestionListEntity.class, PathInits.DIRECT2);
+
+    public final ListPath<RevwEntity, QRevwEntity> revwEntityList = this.<RevwEntity, QRevwEntity>createList("revwEntityList", RevwEntity.class, QRevwEntity.class, PathInits.DIRECT2);
 
     public final StringPath SEX = createString("SEX");
 

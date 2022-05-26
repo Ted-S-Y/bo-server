@@ -56,8 +56,6 @@ public class MemberDeviceVo implements Serializable {
      */
     private String delYn;
 
-    private MemberVo memberVo;
-
 
     /**
      * 등록일시
@@ -81,4 +79,8 @@ public class MemberDeviceVo implements Serializable {
      * 수정자
      */
     private String updtr;
+
+
+    private MemberVo memberVo;
+
 }

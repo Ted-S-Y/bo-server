@@ -82,4 +82,6 @@ public class QuestionListVo implements Serializable {
      */
     private String updtr;
 
+    private MemberVo memberVo;
+
 }

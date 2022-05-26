@@ -1,18 +1,18 @@
 package com.bo.main.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper=false)
 @Table(name = "LECTURER_CAREER")
 public class LecturerCareerEntity extends BaseTimeEntity implements Serializable {
 
@@ -26,11 +26,11 @@ public class LecturerCareerEntity extends BaseTimeEntity implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long carrSeq;
 
-    /**
-     * 강사순번
-     */
-    @Column(name = "LCTR_SEQ", nullable = false)
-    private Long lctrSeq;
+//    /**
+//     * 강사순번
+//     */
+//    @Column(name = "LCTR_SEQ", nullable = false)
+//    private Long lctrSeq;
 
     /**
      * 경력 명
@@ -44,9 +44,11 @@ public class LecturerCareerEntity extends BaseTimeEntity implements Serializable
     @Column(name = "CARR_NO")
     private Integer carrNo;
 
-
+    /**
+     * 강사순번
+     */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "LCTR_SEQ", insertable = false, updatable = false)
+    @JoinColumn(name = "LCTR_SEQ", insertable = false, updatable = false, nullable = false)
     @JsonBackReference
     @ToString.Exclude
     private LecturerEntity lecturerEntity;

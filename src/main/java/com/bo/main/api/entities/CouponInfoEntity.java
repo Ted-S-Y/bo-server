@@ -1,16 +1,23 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "COUPON_INFO")
-public class CouponInfoEntity implements Serializable {
+public class CouponInfoEntity extends BaseTimeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,8 +33,6 @@ public class CouponInfoEntity implements Serializable {
     /**
      * 쿠폰발급번호
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description="쿠폰발급번호")
     @Column(name = "CPN_NO", nullable = false)
     private Long cpnNo;
@@ -95,32 +100,22 @@ public class CouponInfoEntity implements Serializable {
     @Column(name = "ISSUE_SPPD_YN")
     private String issueSppdYn;
 
-    /**
-     * 등록일시
-     */
-    @Column(name = "CRT_DTM")
-    @Schema(description="등록일시")
-    private Date crtDtm;
+    // 쿠폰발급이력
+    @OneToMany(mappedBy = "couponInfoEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<ConponIssueHistoryEntity> conponIssueHistoryEntityList;
 
-    /**
-     * 등록자
-     */
-    @Column(name = "CRTR")
-    @Schema(description="등록자")
-    private String CRTR;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CouponInfoEntity that = (CouponInfoEntity) o;
+        return cpnSeq != null && Objects.equals(cpnSeq, that.cpnSeq);
+    }
 
-    /**
-     * 수정일시
-     */
-    @Column(name = "UPD_DTM")
-    @Schema(description="수정일시")
-    private Date updDtm;
-
-    /**
-     * 수정자
-     */
-    @Column(name = "UPDTR")
-    @Schema(description="수정자")
-    private String UPDTR;
-
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -6,12 +6,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
 public class CouponInfoVo implements Serializable {
     private static final long serialVersionUID = 1L;
-
 
     /**
      * 쿠폰순번
@@ -108,4 +108,6 @@ public class CouponInfoVo implements Serializable {
      */
     private String updtr;
 
+
+    List<ConponIssueHistoryVo> conponIssueHistories;
 }

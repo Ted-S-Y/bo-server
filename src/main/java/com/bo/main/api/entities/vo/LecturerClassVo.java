@@ -48,4 +48,8 @@ public class LecturerClassVo implements Serializable {
      * 수정자
      */
     private String updtr;
+
+    private LecturerVo lecturerVo;
+
+    private ClassBaseVo classBaseVo;
 }

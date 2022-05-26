@@ -119,4 +119,12 @@ public class MemberVo implements Serializable {
     private String updtr;
 
     private List<MemberDeviceVo> devices;
+
+    private List<QuestionListVo> questionLists;
+
+    private List<CartVo> carts;
+
+    private List<RevwVo> revws;
+
+    private List<ConponIssueHistoryVo> conponIssueHistorys;
 }

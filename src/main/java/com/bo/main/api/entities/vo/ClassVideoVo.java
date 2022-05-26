@@ -47,8 +47,6 @@ public class ClassVideoVo implements Serializable {
     private String prvYn;
 
 
-    private ClassBaseVo classBaseVo;
-
     /**
      * 등록일시
      */
@@ -71,4 +69,7 @@ public class ClassVideoVo implements Serializable {
      * 수정자
      */
     private String updtr;
+
+
+    private ClassBaseVo classBaseVo;
 }

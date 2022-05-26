@@ -54,8 +54,6 @@ public class ClassPackageVo implements Serializable {
     private String useYn;
 
 
-    private List<ClassPackageDetailVo> classPackageDetailVoList;
-
     /**
      * 등록일시
      */
@@ -78,5 +76,11 @@ public class ClassPackageVo implements Serializable {
      * 수정자
      */
     private String updtr;
+
+
+
+    private List<ClassPackageDetailVo> classPackageDetails;
+
+    private List<SalesProductDetailVo> salesProductDetails;
 
 }

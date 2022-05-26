@@ -38,8 +38,6 @@ public class QMemberDeviceEntity extends EntityPathBase<MemberDeviceEntity> {
 
     public final StringPath dvTyp = createString("dvTyp");
 
-    public final NumberPath<Long> mbrSeq = createNumber("mbrSeq", Long.class);
-
     public final QMemberEntity memberEntity;
 
     public final StringPath OS = createString("OS");
@@ -68,7 +66,7 @@ public class QMemberDeviceEntity extends EntityPathBase<MemberDeviceEntity> {
 
     public QMemberDeviceEntity(Class<? extends MemberDeviceEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.memberEntity = inits.isInitialized("memberEntity") ? new QMemberEntity(forProperty("memberEntity")) : null;
+        this.memberEntity = inits.isInitialized("memberEntity") ? new QMemberEntity(forProperty("memberEntity"), inits.get("memberEntity")) : null;
     }
 
 }

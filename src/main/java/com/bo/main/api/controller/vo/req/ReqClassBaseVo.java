@@ -1,6 +1,9 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.ClassPackageDetailVo;
+import com.bo.main.api.entities.vo.ClassVideoVo;
+import com.bo.main.api.entities.vo.LecturerClassVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -46,4 +49,5 @@ public class ReqClassBaseVo extends CommonVo {
 
     @NotEmpty
     List<ReqClassVideoVo> videos;
+
 }

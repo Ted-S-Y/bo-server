@@ -1,15 +1,19 @@
 package com.bo.main.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "ORDER_INFO")
 public class OrderInfoEntity extends BaseTimeEntity implements Serializable {
@@ -28,9 +32,9 @@ public class OrderInfoEntity extends BaseTimeEntity implements Serializable {
     /**
      * 장바구니 번호
      */
-    @Schema(description="장바구니번호")
-    @Column(name = "CART_NO", nullable = false)
-    private Long cartNo;
+//    @Schema(description="장바구니번호")
+//    @Column(name = "CART_NO", nullable = false)
+//    private Long cartNo;
 
     /**
      * 주문금액
@@ -81,10 +85,32 @@ public class OrderInfoEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "CNCL_DTL_LIST")
     private String cnclDtlList;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDR_NO")
+    /**
+     * 장바구니 번호
+     */
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CART_NO", insertable = false, updatable = false)
     @JsonBackReference
     @ToString.Exclude
-    private List<OrderDetailEntity> orderDetailEntityList;
+    private CartEntity cartEntity;
 
+
+    // 주문상세
+    @OneToOne(mappedBy = "orderInfoEntity", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private OrderDetailEntity orderDetailEntity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        OrderInfoEntity that = (OrderInfoEntity) o;
+        return ordrNo != null && Objects.equals(ordrNo, that.ordrNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
