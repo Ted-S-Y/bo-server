@@ -4,8 +4,10 @@ import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
 import com.bo.main.api.controller.vo.req.ReqLecturerSearchVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -27,23 +29,27 @@ public class QClassBaseRepository {
 
     public Page<ClassBaseEntity> findList(ReqClassBaseSearchVo searchVo, Pageable pageable) {
 
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-//        if (searchVo.getLctrCd() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-//        }
-//
-//        if (searchVo.getLctrNm() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-//
-//        }
-
         List<ClassBaseEntity> content = queryFactory.selectFrom(classBaseEntity)
-                .where(booleanBuilder)
+                .where(eqClssCd(searchVo.getClssCd()),
+                        eqClssNm(searchVo.getClssNm()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         return new PageImpl<>(content, pageable, content.size());
+    }
+
+    private BooleanExpression eqClssCd(String clssCd) {
+        if (StringUtils.isEmpty(clssCd)) {
+            return null;
+        }
+        return classBaseEntity.clssCd.eq(clssCd);
+    }
+
+    private BooleanExpression eqClssNm(String clssNm) {
+        if (StringUtils.isEmpty(clssNm)) {
+            return null;
+        }
+        return classBaseEntity.clssNm.eq(clssNm);
     }
 }

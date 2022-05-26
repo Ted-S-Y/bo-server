@@ -83,4 +83,6 @@ public class ClassPackageVo implements Serializable {
 
     private List<SalesProductDetailVo> salesProductDetails;
 
+    private CategoryVo categoryVo;
+
 }

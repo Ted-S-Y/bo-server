@@ -14,8 +14,6 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "SALES PRODUCT")
 public class SalesProductEntity extends BaseTimeEntity implements Serializable {

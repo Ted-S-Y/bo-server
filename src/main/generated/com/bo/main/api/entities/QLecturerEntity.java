@@ -38,6 +38,8 @@ public class QLecturerEntity extends EntityPathBase<LecturerEntity> {
 
     public final ListPath<LecturerCareerEntity, QLecturerCareerEntity> lecturerCareerEntityList = this.<LecturerCareerEntity, QLecturerCareerEntity>createList("lecturerCareerEntityList", LecturerCareerEntity.class, QLecturerCareerEntity.class, PathInits.DIRECT2);
 
+    public final ListPath<LecturerClassEntity, QLecturerClassEntity> lecturerClassEntityList = this.<LecturerClassEntity, QLecturerClassEntity>createList("lecturerClassEntityList", LecturerClassEntity.class, QLecturerClassEntity.class, PathInits.DIRECT2);
+
     public final StringPath mail = createString("mail");
 
     public final StringPath mobl = createString("mobl");

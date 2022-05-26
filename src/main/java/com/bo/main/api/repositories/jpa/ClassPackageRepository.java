@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.Optional;
 
 public interface ClassPackageRepository extends JpaRepository<ClassPackageEntity, Long>, JpaSpecificationExecutor<ClassPackageEntity> {
-    Optional<ClassPackageEntity> findByPackSeq(long packSeq);
+
 }

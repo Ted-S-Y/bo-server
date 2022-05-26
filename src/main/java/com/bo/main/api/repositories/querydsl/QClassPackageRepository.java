@@ -5,8 +5,11 @@ import com.bo.main.api.controller.vo.req.ReqClassPackageSearchVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.ClassPackageEntity;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.mapstruct.ap.shaded.freemarker.template.utility.NumberUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.bo.main.api.entities.QClassBaseEntity.classBaseEntity;
 import static com.bo.main.api.entities.QClassPackageEntity.classPackageEntity;
 
 /**
@@ -38,26 +42,53 @@ public class QClassPackageRepository {
                 .fetch();
     }
 
-
     public Page<ClassPackageEntity> findList(ReqClassPackageSearchVo searchVo, Pageable pageable) {
 
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-//        if (searchVo.getLctrCd() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-//        }
-//
-//        if (searchVo.getLctrNm() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-//
-//        }
-
         List<ClassPackageEntity> content = queryFactory.selectFrom(classPackageEntity)
-                .where(booleanBuilder)
+                .where(eqPackNm(searchVo.getPackNm()),
+                        eqCtgrId(searchVo.getCtgrId()),
+                        eqPackSeq(searchVo.getPackSeq()),
+                        eqpackCd(searchVo.getPackCd()),
+                        eqUseYn(searchVo.getUseYn()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         return new PageImpl<>(content, pageable, content.size());
+    }
+
+    private BooleanExpression eqPackNm(String packNm) {
+        if (StringUtils.isEmpty(packNm)) {
+            return null;
+        }
+        return classPackageEntity.packNm.eq(packNm);
+    }
+
+    private BooleanExpression eqUseYn(String useYn) {
+        if (StringUtils.isEmpty(useYn)) {
+            return null;
+        }
+        return classPackageEntity.useYn.eq(useYn);
+    }
+
+    private BooleanExpression eqpackCd(String packCd) {
+        if (StringUtils.isEmpty(packCd)) {
+            return null;
+        }
+        return classPackageEntity.packCd.eq(packCd);
+    }
+
+    private BooleanExpression eqCtgrId(Long ctgrId) {
+        if (NumberUtil.isNaN(ctgrId)) {
+            return null;
+        }
+        return classPackageEntity.ctgrId.eq(ctgrId);
+    }
+
+    private BooleanExpression eqPackSeq(Long packSeq) {
+        if (NumberUtil.isNaN(packSeq)) {
+            return null;
+        }
+        return classPackageEntity.packSeq.eq(packSeq);
     }
 }

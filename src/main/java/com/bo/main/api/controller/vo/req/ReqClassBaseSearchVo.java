@@ -29,17 +29,6 @@ public class ReqClassBaseSearchVo {
     private String clssNm;
 
     /**
-     * 강의설명
-     */
-    @NotBlank
-    private String clssDesc;
-
-    /**
-     * 미리보기영상여부
-     */
-    private String prvYn;
-
-    /**
      * 사용여부
      */
     private String useYn;

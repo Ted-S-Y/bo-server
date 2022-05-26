@@ -52,4 +52,33 @@ public class QAdminRepository<QAdminEntity> {
 
         return new PageImpl<>(content, pageable, content.size());
     }
+
+
+//    private BooleanExpression eqAdmId(String admId) {
+//        if (StringUtils.isEmpty(admId)) {
+//            return null;
+//        }
+//        return adminEntity.admId.eq(admId);
+//    }
+//
+//    private BooleanExpression eqAdmNm(String admNm) {
+//        if (StringUtils.isEmpty(admNm)) {
+//            return null;
+//        }
+//        return adminEntity.admNm.eq(admNm);
+//    }
+//
+//    private BooleanExpression eqAdmMobl(String admMobl) {
+//        if (StringUtils.isEmpty(admMobl)) {
+//            return null;
+//        }
+//        return adminEntity.admMobl.eq(admMobl);
+//    }
+//
+//    private BooleanExpression eqAdmMail(String admMail) {
+//        if (StringUtils.isEmpty(admMail)) {
+//            return null;
+//        }
+//        return adminEntity.admMail.eq(admMail);
+//    }
 }

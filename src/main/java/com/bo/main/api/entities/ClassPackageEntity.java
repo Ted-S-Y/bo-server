@@ -1,5 +1,6 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -33,11 +34,11 @@ public class ClassPackageEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "PACK_CD")
     private String packCd;
 
-    /**
-     * 카테고리ID
-     */
-    @Column(name = "CTGR_ID")
-    private Long ctgrId;
+//    /**
+//     * 카테고리ID
+//     */
+//    @Column(name = "CTGR_ID")
+//    private Long ctgrId;
 
     /**
      * 패키지 썸네일
@@ -62,6 +63,15 @@ public class ClassPackageEntity extends BaseTimeEntity implements Serializable {
      */
     @Column(name = "USE_YN")
     private String useYn;
+
+    /**
+     * 카테고리ID
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CTGR_ID", insertable = false, updatable = false)
+    @JsonBackReference
+    @ToString.Exclude
+    private CategoryEntity categoryEntity;
 
     // 패키지상세
     @OneToMany(mappedBy = "classPackageEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

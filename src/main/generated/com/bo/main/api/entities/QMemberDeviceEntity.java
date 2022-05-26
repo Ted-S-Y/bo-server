@@ -66,7 +66,7 @@ public class QMemberDeviceEntity extends EntityPathBase<MemberDeviceEntity> {
 
     public QMemberDeviceEntity(Class<? extends MemberDeviceEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.memberEntity = inits.isInitialized("memberEntity") ? new QMemberEntity(forProperty("memberEntity"), inits.get("memberEntity")) : null;
+        this.memberEntity = inits.isInitialized("memberEntity") ? new QMemberEntity(forProperty("memberEntity")) : null;
     }
 
 }

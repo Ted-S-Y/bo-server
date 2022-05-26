@@ -18,26 +18,19 @@ import java.util.List;
 )
 public interface ClassPackageMapper extends GenericMapper<ClassPackageVo, ClassPackageEntity> {
 
-    @Mapping(target = "classPackageDetailVoList", source = "classPackageDetailEntities")
     @Override
+    @Mapping(target = "classPackageDetails", source = "classPackageDetailEntityList")
     ClassPackageVo toVo(ClassPackageEntity classPackageEntity);
 
-    @Mapping(target = "classPackageDetailEntities", source = "classPackageDetailVoList")
     @Override
+    @Mapping(target = "classPackageDetailEntityList", source = "classPackageDetails")
     ClassPackageEntity toEntity(ClassPackageVo classPackageVo);
-
-    @Override
-    List<ClassPackageVo> toVos(List<ClassPackageEntity> e);
-
-    @Override
-    List<ClassPackageEntity> toEntities(List<ClassPackageVo> d);
-
-
 
     ClassPackageVo toVo(ReqClassPackageVo reqClassPackageVo);
 
     ResClassPackageVo toVo(ClassPackageVo classPackageVo);
 
-    @Mapping(target = "classPackageDetailEntities", source = "classPackageDetailVoList")
+    @Override
+    @Mapping(target = "classPackageDetailEntityList", source = "classPackageDetails")
     void updateFromVo(ClassPackageVo dto, @MappingTarget ClassPackageEntity entity);
 }

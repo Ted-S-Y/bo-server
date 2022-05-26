@@ -4,15 +4,17 @@ import com.bo.main.api.controller.vo.req.ReqAdminVo;
 import com.bo.main.api.controller.vo.res.ResAdminVo;
 import com.bo.main.api.entities.AdminEntity;
 import com.bo.main.api.entities.vo.AdminVo;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+
+import java.util.List;
 
 @Mapper(
     componentModel = "spring"
 )
 public interface AdminMapper extends GenericMapper<AdminVo, AdminEntity> {
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateFromVo(AdminVo dto, @MappingTarget AdminEntity entity);
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    void updateFromVo(AdminVo dto, @MappingTarget AdminEntity entity);
 
     AdminVo toVo(ReqAdminVo reqAdminVo);
 

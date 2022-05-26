@@ -78,6 +78,11 @@ dependencies {
 	// annotationProcessor
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
+	// mapstruct
+	compileOnly 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
 	// lombok
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'
@@ -87,11 +92,6 @@ dependencies {
 	// testImplementation
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-
-	// mapstruct
-	compileOnly 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
 	// swagger
 	implementation 'org.springdoc:springdoc-openapi-common:1.6.6'

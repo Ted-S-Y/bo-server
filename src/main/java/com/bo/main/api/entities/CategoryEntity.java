@@ -1,11 +1,13 @@
 package com.bo.main.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -68,6 +70,14 @@ public class CategoryEntity extends BaseTimeEntity implements Serializable {
     @Column(name = "DEL_YN")
     @Schema(description="삭제여부")
     private String delYn;
+
+
+    // 패키지
+    @OneToMany(mappedBy = "categoryEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<ClassPackageEntity> classPackageEntityList;
+
 
     @Override
     public boolean equals(Object o) {

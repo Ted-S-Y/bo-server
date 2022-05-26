@@ -31,10 +31,22 @@ public class ClassVideoService {
         return classVideoRepository.findById(vdSeq);
     }
 
+    public Optional<ClassVideoEntity> findClassVideoByClssSeq(long clssSeq) {
+        return classVideoRepository.findByClssSeq(clssSeq);
+    }
+
+
     public ClassVideoVo findClassBaseByIdRetError(long vdSeq) throws Exception{
         Optional<ClassVideoEntity> opt = findClassVideoById(vdSeq);
         return classVideoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", vdSeq+""))));
     }
+
+    public ClassVideoVo findClassBaseByClssSeqRetError(long clssSeq) throws Exception{
+        Optional<ClassVideoEntity> opt = findClassVideoByClssSeq(clssSeq);
+        return classVideoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", clssSeq+""))));
+    }
+
+
 
     public ClassVideoVo update(ClassVideoVo classVideoVo) throws Exception {
 

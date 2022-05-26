@@ -18,25 +18,19 @@ import java.util.List;
 )
 public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEntity> {
 
-    @Mapping(target = "videos", source = "classVideoEntityList")
     @Override
+    @Mapping(target = "videos", source = "classVideoEntityList")
     ClassBaseVo toVo(ClassBaseEntity classBaseEntity);
 
+    @Override
     @Mapping(target = "classVideoEntityList", source = "videos")
-    @Override
     ClassBaseEntity toEntity(ClassBaseVo classBaseVo);
-
-    @Override
-    List<ClassBaseVo> toVos(List<ClassBaseEntity> e);
-
-    @Override
-    List<ClassBaseEntity> toEntities(List<ClassBaseVo> d);
-
 
     ClassBaseVo toVo(ReqClassBaseVo reqClassBaseVo);
 
     ResClassBaseVo toVo(ClassBaseVo classBaseVo);
 
+    @Override
     @Mapping(target = "classVideoEntityList", source = "videos")
     void updateFromVo(ClassBaseVo dto, @MappingTarget ClassBaseEntity entity);
 

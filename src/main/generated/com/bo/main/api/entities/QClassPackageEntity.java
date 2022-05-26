@@ -18,9 +18,13 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
 
     private static final long serialVersionUID = 1133807657L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QClassPackageEntity classPackageEntity = new QClassPackageEntity("classPackageEntity");
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
+
+    public final QCategoryEntity categoryEntity;
 
     public final ListPath<ClassPackageDetailEntity, QClassPackageDetailEntity> classPackageDetailEntityList = this.<ClassPackageDetailEntity, QClassPackageDetailEntity>createList("classPackageDetailEntityList", ClassPackageDetailEntity.class, QClassPackageDetailEntity.class, PathInits.DIRECT2);
 
@@ -29,8 +33,6 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
 
     //inherited
     public final StringPath crtr = _super.crtr;
-
-    public final NumberPath<Long> ctgrId = createNumber("ctgrId", Long.class);
 
     public final StringPath packCd = createString("packCd");
 
@@ -53,15 +55,24 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
     public final StringPath useYn = createString("useYn");
 
     public QClassPackageEntity(String variable) {
-        super(ClassPackageEntity.class, forVariable(variable));
+        this(ClassPackageEntity.class, forVariable(variable), INITS);
     }
 
     public QClassPackageEntity(Path<? extends ClassPackageEntity> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QClassPackageEntity(PathMetadata metadata) {
-        super(ClassPackageEntity.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QClassPackageEntity(PathMetadata metadata, PathInits inits) {
+        this(ClassPackageEntity.class, metadata, inits);
+    }
+
+    public QClassPackageEntity(Class<? extends ClassPackageEntity> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.categoryEntity = inits.isInitialized("categoryEntity") ? new QCategoryEntity(forProperty("categoryEntity")) : null;
     }
 
 }

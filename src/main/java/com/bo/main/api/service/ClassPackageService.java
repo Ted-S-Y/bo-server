@@ -28,11 +28,13 @@ public class ClassPackageService {
 
     private final ClassPackageMapper classPackageMapper;
 
+    private final ClassPackageDetailService classPackageDetailService;
+
     public Optional<ClassPackageEntity> findByPackSeq(long packSeq) {
         return classPackageRepository.findById(packSeq);
     }
 
-    public ClassPackageVo findClassBaseByIdRetError(long packSeq) throws Exception{
+    public ClassPackageVo findClassPackageByIdRetError(long packSeq) throws Exception{
         Optional<ClassPackageEntity> opt = findByPackSeq(packSeq);
         return classPackageMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 ClassPackage 정보({})가 없습니다.", packSeq+""))));
     }
@@ -49,18 +51,19 @@ public class ClassPackageService {
         ClassPackageEntity loadClassPackage = opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 ClassBase 정보({})가 없습니다.", updateClassPackageVo.getPackSeq()+ "")));
         classPackageMapper.updateFromVo(updateClassPackageVo, loadClassPackage);
 
-        ClassPackageVo ClassPackageVo = classPackageMapper.toVo(classPackageRepository.save(loadClassPackage));
+        ClassPackageVo classPackageVo = classPackageMapper.toVo(classPackageRepository.save(loadClassPackage));
+//        classPackageVo.setClassPackageDetails(classPackageDetailService.);
 
-        return ClassPackageVo;
+        return classPackageVo;
     }
 
     public ClassPackageVo add(ClassPackageVo newClassPackageVo) throws Exception {
 
-//        Optional<ClassPackageEntity> opt = findClassBaseById(ClassPackageVo.getClssSeq());
+        Optional<ClassPackageEntity> opt = findByPackSeq(newClassPackageVo.getPackSeq());
 
-//        if (opt.isPresent()) {
-//            throw new Exception(StringUtils.message("이미등록된 ClassBase({}) 입니다.",ClassPackageVo.getClssSeq() + ""));
-//        }
+        if (opt.isPresent()) {
+            throw new Exception(StringUtils.message("이미등록된 ClassPackage({}) 입니다.",newClassPackageVo.getPackSeq() + ""));
+        }
 
         ClassPackageEntity loadClassPackage = new ClassPackageEntity();
         classPackageMapper.updateFromVo(newClassPackageVo, loadClassPackage);

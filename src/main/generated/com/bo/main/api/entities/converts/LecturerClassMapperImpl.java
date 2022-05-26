@@ -9,11 +9,18 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-23T11:40:34+0900",
-    comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.jar, environment: Java 11.0.6 (Oracle Corporation)"
+    date = "2022-05-26T18:00:28+0900",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
 public class LecturerClassMapperImpl implements LecturerClassMapper {
+
+    @Override
+    public void updateFromVo(LecturerClassVo dto, LecturerClassEntity entity) {
+        if ( dto == null ) {
+            return;
+        }
+    }
 
     @Override
     public LecturerClassVo toVo(LecturerClassEntity lecturerClassEntity) {
@@ -22,13 +29,6 @@ public class LecturerClassMapperImpl implements LecturerClassMapper {
         }
 
         LecturerClassVo lecturerClassVo = new LecturerClassVo();
-
-        lecturerClassVo.setLctrSeq( lecturerClassEntity.getLctrSeq() );
-        lecturerClassVo.setClssSeq( lecturerClassEntity.getClssSeq() );
-        lecturerClassVo.setCrtDtm( lecturerClassEntity.getCrtDtm() );
-        lecturerClassVo.setCrtr( lecturerClassEntity.getCrtr() );
-        lecturerClassVo.setUpdDtm( lecturerClassEntity.getUpdDtm() );
-        lecturerClassVo.setUpdtr( lecturerClassEntity.getUpdtr() );
 
         return lecturerClassVo;
     }
@@ -40,9 +40,6 @@ public class LecturerClassMapperImpl implements LecturerClassMapper {
         }
 
         LecturerClassEntity lecturerClassEntity = new LecturerClassEntity();
-
-        lecturerClassEntity.setLctrSeq( lecturerClassVo.getLctrSeq() );
-        lecturerClassEntity.setClssSeq( lecturerClassVo.getClssSeq() );
 
         return lecturerClassEntity;
     }

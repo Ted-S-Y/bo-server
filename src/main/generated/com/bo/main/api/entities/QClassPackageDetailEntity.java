@@ -61,7 +61,7 @@ public class QClassPackageDetailEntity extends EntityPathBase<ClassPackageDetail
     public QClassPackageDetailEntity(Class<? extends ClassPackageDetailEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.classBaseEntity = inits.isInitialized("classBaseEntity") ? new QClassBaseEntity(forProperty("classBaseEntity")) : null;
-        this.classPackageEntity = inits.isInitialized("classPackageEntity") ? new QClassPackageEntity(forProperty("classPackageEntity")) : null;
+        this.classPackageEntity = inits.isInitialized("classPackageEntity") ? new QClassPackageEntity(forProperty("classPackageEntity"), inits.get("classPackageEntity")) : null;
     }
 
 }
