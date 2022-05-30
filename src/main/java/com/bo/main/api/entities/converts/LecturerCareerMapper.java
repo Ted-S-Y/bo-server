@@ -14,6 +14,7 @@ import org.mapstruct.Mapping;
 )
 public interface LecturerCareerMapper extends GenericMapper<LecturerCareerVo, LecturerCareerEntity> {
 
+    @Mapping(target = "lecturerVo", ignore = true)
     @Override
     LecturerCareerVo toVo(LecturerCareerEntity lecturerCareerEntity);
 

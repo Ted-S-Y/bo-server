@@ -65,31 +65,13 @@ public class OrderDetailService {
     }
 
     @Transactional
-    public List<OrderDetailVo> bulkAdds(OrderInfoVo orderInfoVo, List<OrderDetailVo> orderDetails) throws Exception {
-        List<OrderDetailVo> results = new ArrayList<>();
+    public OrderDetailVo bulkUpdates(OrderInfoVo orderInfoVo, OrderDetailVo orderDetailVo) throws Exception {
+        orderDetailVo.setOrdrNo(orderInfoVo.getOrdrNo());
 
-        for (OrderDetailVo orderDetailVo: orderDetails) {
-            orderDetailVo.setOrdrNo(orderInfoVo.getOrdrNo());
-            results.add(add(orderDetailVo));
+        if (orderDetailVo.getOrdrNo() != null) {
+            return update(orderDetailVo);
+        } else {
+            return add(orderDetailVo);
         }
-
-        return results;
-    }
-
-    @Transactional
-    public List<OrderDetailVo> bulkUpdates(OrderInfoVo orderInfoVo, List<OrderDetailVo> orderDetails) throws Exception {
-        List<OrderDetailVo> results = new ArrayList<>();
-
-        for (OrderDetailVo orderDetailVo: orderDetails) {
-            orderDetailVo.setOrdrNo(orderInfoVo.getOrdrNo());
-
-            if (orderDetailVo.getOrdrNo() != null) {
-                results.add(update(orderDetailVo));
-            } else {
-                results.add(add(orderDetailVo));
-            }
-        }
-
-        return results;
     }
 }

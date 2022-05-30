@@ -46,7 +46,6 @@ public class QClassPackageRepository {
 
         List<ClassPackageEntity> content = queryFactory.selectFrom(classPackageEntity)
                 .where(eqPackNm(searchVo.getPackNm()),
-                        eqCtgrId(searchVo.getCtgrId()),
                         eqPackSeq(searchVo.getPackSeq()),
                         eqpackCd(searchVo.getPackCd()),
                         eqUseYn(searchVo.getUseYn()))
@@ -76,13 +75,6 @@ public class QClassPackageRepository {
             return null;
         }
         return classPackageEntity.packCd.eq(packCd);
-    }
-
-    private BooleanExpression eqCtgrId(Long ctgrId) {
-        if (NumberUtil.isNaN(ctgrId)) {
-            return null;
-        }
-        return classPackageEntity.ctgrId.eq(ctgrId);
     }
 
     private BooleanExpression eqPackSeq(Long packSeq) {

@@ -31,21 +31,9 @@ public class ReqCategoryVo extends CommonVo {
 
 
     /**
-     * 노출여부
-     */
-    private String showYn = "Y";
-
-
-    /**
      * 카테고리 타입
      */
     private String ctgrTyp;
-
-
-    /**
-     * 카테고리명
-     */
-    private String ctgrNm;
 
 
     /**

@@ -66,4 +66,17 @@ public class LecturerService {
         return lecturerMapper.toVo(lecturerRepository.save(lecturerEntity));
     }
 
+    public LecturerVo delete(LecturerVo lecturerVo) throws Exception {
+
+        Optional<LecturerEntity> opt = findLecturerByLctrCd(lecturerVo.getLctrCd());
+
+        if (opt.isPresent()) {
+            throw new Exception(StringUtils.message("이미 등록된 Lecturer Id({}) 입니다.", lecturerVo.getLctrCd()));
+        }
+
+        LecturerEntity lecturerEntity = new LecturerEntity();
+
+        lecturerMapper.updateFromVo(lecturerVo, lecturerEntity);
+        return lecturerMapper.toVo(lecturerRepository.save(lecturerEntity));
+    }
 }

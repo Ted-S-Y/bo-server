@@ -18,12 +18,11 @@ import java.util.List;
 )
 public interface OrderInfoMapper extends GenericMapper<OrderInfoVo, OrderInfoEntity> {
 
-    @Mapping(target = "details", source = "orderDetailEntityList")
-    @Override
-    OrderInfoVo toVo(OrderInfoEntity classBaseEntity);
+    @Override @Mapping(target = "detail", source = "orderDetailEntity")
+    OrderInfoVo toVo(OrderInfoEntity orderInfoEntity);
 
-    @Mapping(target = "orderDetailEntityList", source = "details")
     @Override
+    @Mapping(target = "orderDetailEntity", source = "detail")
     OrderInfoEntity toEntity(OrderInfoVo orderInfoVO);
 
     @Override
@@ -37,7 +36,7 @@ public interface OrderInfoMapper extends GenericMapper<OrderInfoVo, OrderInfoEnt
 
     ResOrderInfoVo toVo(OrderInfoVo orderInfoVO);
 
-    @Mapping(target = "orderDetailEntityList", source = "details")
+    @Mapping(target = "orderDetailEntity", source = "detail")
     void updateFromVo(OrderInfoVo dto, @MappingTarget OrderInfoEntity entity);
 
 }

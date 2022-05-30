@@ -15,12 +15,12 @@ import java.util.List;
 )
 public interface OrderDetailMapper extends GenericMapper<OrderDetailVo, OrderDetailEntity> {
 
-    @Mapping(target = "orderInfoVo", ignore = true)
     @Override
+    @Mapping(target = "orderInfoVo", ignore = true)
     OrderDetailVo toVo(OrderDetailEntity OrderDetailEntity);
 
-    @Mapping(target = "orderInfoEntity", ignore = true)
     @Override
+    @Mapping(target = "orderInfoEntity", ignore = true)
     OrderDetailEntity toEntity(OrderDetailVo orderDetailVO);
 
     @Override
@@ -36,6 +36,4 @@ public interface OrderDetailMapper extends GenericMapper<OrderDetailVo, OrderDet
 
     @Mapping(target = "orderInfoEntity", ignore = true)
     void updateFromVo(OrderDetailVo dto, @MappingTarget OrderDetailEntity entity);
-
-
 }

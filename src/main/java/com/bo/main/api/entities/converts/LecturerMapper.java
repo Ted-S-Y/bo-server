@@ -12,22 +12,25 @@ import org.mapstruct.*;
 )
 public interface LecturerMapper extends GenericMapper<LecturerVo, LecturerEntity> {
 
-    @Mapping(target = "lecturerCareerEntityList", source = "lecturerCareerVos")
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateFromVo(LecturerVo dto, @MappingTarget LecturerEntity entity);
-
-    @Mapping(target = "lecturerCareerVos", source = "lecturerCareerEntityList")
     @Override
+    @Mapping(target = "lecturerCareers", source = "lecturerCareerEntityList")
+    @Mapping(target = "lecturerClasses", source = "lecturerClassEntityList")
     LecturerVo toVo(LecturerEntity lecturerEntity);
 
-    @Mapping(target = "lecturerCareerEntityList", source = "lecturerCareerVos")
     @Override
+    @Mapping(target = "lecturerCareerEntityList", source = "lecturerCareers")
+    @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses")
     LecturerEntity toEntity(LecturerVo lecturerVo);
 
-    @Mapping(target = "resLecturerCareerVos", source = "lecturerCareerVos")
+    @Mapping(target = "resLecturerCareerVos", source = "lecturerCareers")
     ResLecturerVo toVo(LecturerVo lecturerCareerVo);
 
     LecturerVo toVo(ReqLecturerVo reqLecturerVo);
 
+    @Override
+    @Mapping(target = "lecturerCareerEntityList", source = "lecturerCareers")
+    @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateFromVo(LecturerVo dto, @MappingTarget LecturerEntity entity);
 
 }

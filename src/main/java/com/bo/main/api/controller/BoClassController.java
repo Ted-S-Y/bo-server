@@ -73,10 +73,8 @@ public class BoClassController {
             @PageableDefault(page = 0, size = 10) Pageable pageable
     ) throws Exception {
 
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        ReqClassBaseSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqClassBaseSearchVo.class);
-
-        ReqClassBaseSearchVo searchVo = new ObjectMapper().convertValue(parameterMap, ReqClassBaseSearchVo.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReqClassBaseSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqClassBaseSearchVo.class);
 
         return new ResultResponse<>(classBaseService.search(searchVo, pageable));
     }
@@ -134,12 +132,12 @@ public class BoClassController {
      * @return the result response
      * @throws Exception the exception
      */
-    @GetMapping("/video/{clssSeq}")
+    @GetMapping("/video/{vdSeq}")
     public ResultResponse<?> searchVideo(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @NotNull(message = "clssSeq is required") @PathVariable(name = "clssSeq") long clssSeq
+            @Valid @NotNull(message = "clssSeq is required") @PathVariable(name = "vdSeq") long vdSeq
     ) throws Exception {
-        ClassVideoVo classVideoVo = classVideoService.findClassBaseByClssSeqRetError(clssSeq);
+        ClassVideoVo classVideoVo = classVideoService.findClassBaseByIdRetError(vdSeq);
         return new ResultResponse<>(classVideoMapper.toVo(classVideoVo));
     }
 }

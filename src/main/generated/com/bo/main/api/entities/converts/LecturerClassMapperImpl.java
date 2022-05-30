@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-26T18:00:28+0900",
+    date = "2022-05-30T17:14:54+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -29,6 +29,11 @@ public class LecturerClassMapperImpl implements LecturerClassMapper {
         }
 
         LecturerClassVo lecturerClassVo = new LecturerClassVo();
+
+        lecturerClassVo.setCrtDtm( lecturerClassEntity.getCrtDtm() );
+        lecturerClassVo.setCrtr( lecturerClassEntity.getCrtr() );
+        lecturerClassVo.setUpdDtm( lecturerClassEntity.getUpdDtm() );
+        lecturerClassVo.setUpdtr( lecturerClassEntity.getUpdtr() );
 
         return lecturerClassVo;
     }

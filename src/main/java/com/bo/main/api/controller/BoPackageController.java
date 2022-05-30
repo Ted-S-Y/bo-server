@@ -46,7 +46,7 @@ public class BoPackageController {
             @Valid @NotNull(message = "packSeq is required") @PathVariable(name = "packSeq") long packSeq
     ) throws Exception {
 
-        ClassPackageVo classPackageVo = classPackageService.findClassBaseByIdRetError(packSeq);
+        ClassPackageVo classPackageVo = classPackageService.findClassPackageByIdRetError(packSeq);
 
         return new ResultResponse<>(classPackageVo);
     }

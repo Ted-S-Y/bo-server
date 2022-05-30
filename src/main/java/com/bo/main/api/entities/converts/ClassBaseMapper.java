@@ -7,23 +7,34 @@ import com.bo.main.api.entities.vo.ClassBaseVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 
 import java.util.List;
 
 @Mapper(
         uses = {
-                ClassVideoMapper.class
+                ClassVideoMapper.class,
+                LecturerClassMapper.class,
+                ClassPackageDetailMapper.class
         },
         componentModel = "spring"
 )
 public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEntity> {
 
     @Override
-    @Mapping(target = "videos", source = "classVideoEntityList")
+    @Mappings({
+            @Mapping(target = "videos", source = "classVideoEntityList"),
+            @Mapping(target = "lecturerClasses", source = "lecturerClassEntityList"),
+            @Mapping(target = "details", source = "classPackageDetailEntityList")
+    })
     ClassBaseVo toVo(ClassBaseEntity classBaseEntity);
 
     @Override
-    @Mapping(target = "classVideoEntityList", source = "videos")
+    @Mappings({
+            @Mapping(target = "classVideoEntityList", source = "videos"),
+            @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses"),
+            @Mapping(target = "classPackageDetailEntityList", source = "details")
+    })
     ClassBaseEntity toEntity(ClassBaseVo classBaseVo);
 
     ClassBaseVo toVo(ReqClassBaseVo reqClassBaseVo);
@@ -31,7 +42,11 @@ public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEnt
     ResClassBaseVo toVo(ClassBaseVo classBaseVo);
 
     @Override
-    @Mapping(target = "classVideoEntityList", source = "videos")
+    @Mappings({
+            @Mapping(target = "classVideoEntityList", source = "videos"),
+            @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses"),
+            @Mapping(target = "classPackageDetailEntityList", source = "details")
+    })
     void updateFromVo(ClassBaseVo dto, @MappingTarget ClassBaseEntity entity);
 
 }

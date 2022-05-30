@@ -15,12 +15,12 @@ import java.util.List;
 )
 public interface MemberDeviceMapper extends GenericMapper<MemberDeviceVo, MemberDeviceEntity> {
 
-    @Mapping(target = "memberVo", ignore = true)
     @Override
+    @Mapping(target = "memberVo", ignore = true)
     MemberDeviceVo toVo(MemberDeviceEntity memberDeviceEntity);
 
-    @Mapping(target = "memberEntity", ignore = true)
     @Override
+    @Mapping(target = "memberEntity", ignore = true)
     MemberDeviceEntity toEntity(MemberDeviceVo memberDeviceVo);
 
     @Override

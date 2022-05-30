@@ -23,7 +23,8 @@ logging:
 
 
 spring:
-
+  main:
+    allow-circular-references: true
   #  task:
 #    execution:
 #      pool:

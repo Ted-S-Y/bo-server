@@ -1,6 +1,7 @@
 package com.bo.main.api.service;
 
 import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
+import com.bo.main.api.controller.vo.res.ResClassBaseVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.converts.ClassBaseMapper;
 import com.bo.main.api.entities.vo.ClassBaseVo;
@@ -31,7 +32,6 @@ public class ClassBaseService {
 
     private final ClassBaseMapper classBaseMapper;
 
-
     private final ClassVideoService classVideoService;
 
     /**
@@ -57,6 +57,7 @@ public class ClassBaseService {
         return classBaseMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 ClassBase 정보({})가 없습니다.", clssSeq+""))));
     }
 
+
     /**
      * Search page.
      *
@@ -65,9 +66,9 @@ public class ClassBaseService {
      * @return the page
      * @throws Exception the exception
      */
-    public Page<ClassBaseVo> search(ReqClassBaseSearchVo searchVo, Pageable pageable) throws Exception {
-        Page<ClassBaseEntity> classEntityPage = qClassBaseRepository.findList(searchVo, pageable);
-        return new PageImpl<>(classBaseMapper.toVos(classEntityPage.getContent()), pageable, classEntityPage.getTotalElements());
+    public Page<ResClassBaseVo> search(ReqClassBaseSearchVo searchVo, Pageable pageable) throws Exception {
+        Page<ResClassBaseVo> classBasePage = qClassBaseRepository.findList(searchVo, pageable);
+        return new PageImpl<>(classBasePage.getContent(), pageable, classBasePage.getTotalElements());
     }
 
     /**
@@ -100,11 +101,11 @@ public class ClassBaseService {
 //
     public ClassBaseVo add(ClassBaseVo newClassBaseVo) throws Exception {
 
-//        Optional<ClassBaseEntity> opt = findClassBaseById(classBaseVo.getClssSeq());
+        Optional<ClassBaseEntity> opt = findClassBaseById(newClassBaseVo.getClssSeq());
 
-//        if (opt.isPresent()) {
-//            throw new Exception(StringUtils.message("이미등록된 ClassBase({}) 입니다.",classBaseVo.getClssSeq() + ""));
-//        }
+        if (opt.isPresent()) {
+            throw new Exception(StringUtils.message("이미등록된 ClassBase({}) 입니다.",newClassBaseVo.getClssSeq() + ""));
+        }
 
         ClassBaseEntity loadClassBase = new ClassBaseEntity();
         classBaseMapper.updateFromVo(newClassBaseVo, loadClassBase);

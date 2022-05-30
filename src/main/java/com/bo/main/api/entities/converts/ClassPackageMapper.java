@@ -20,10 +20,12 @@ public interface ClassPackageMapper extends GenericMapper<ClassPackageVo, ClassP
 
     @Override
     @Mapping(target = "classPackageDetails", source = "classPackageDetailEntityList")
+    @Mapping(target = "salesProductDetails", source = "salesProductDetailEntityList")
     ClassPackageVo toVo(ClassPackageEntity classPackageEntity);
 
     @Override
     @Mapping(target = "classPackageDetailEntityList", source = "classPackageDetails")
+    @Mapping(target = "salesProductDetailEntityList", source = "salesProductDetails")
     ClassPackageEntity toEntity(ClassPackageVo classPackageVo);
 
     ClassPackageVo toVo(ReqClassPackageVo reqClassPackageVo);
@@ -32,5 +34,6 @@ public interface ClassPackageMapper extends GenericMapper<ClassPackageVo, ClassP
 
     @Override
     @Mapping(target = "classPackageDetailEntityList", source = "classPackageDetails")
+    @Mapping(target = "salesProductDetailEntityList", source = "salesProductDetails")
     void updateFromVo(ClassPackageVo dto, @MappingTarget ClassPackageEntity entity);
 }

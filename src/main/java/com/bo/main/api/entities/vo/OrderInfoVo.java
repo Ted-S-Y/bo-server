@@ -77,7 +77,7 @@ public class OrderInfoVo implements Serializable {
     @Schema(description="취소상세내역")
     private String cnclDtlList;
 
-    private List<OrderDetailVo> details;
+    private OrderDetailVo detail;
 
     private CartVo cartVo;
 }

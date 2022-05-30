@@ -64,7 +64,7 @@ public class OrderInfoService {
         orderInfoMapper.updateFromVo(updateOrderInfoVo, loadOrderInfo);
 
         OrderInfoVo orderInfoVo = orderInfoMapper.toVo(orderInfoRepository.save(loadOrderInfo));
-        orderInfoVo.setDetails(orderDetailService.bulkUpdates(orderInfoVo, updateOrderInfoVo.getDetails()));
+        orderInfoVo.setDetail(orderDetailService.bulkUpdates(orderInfoVo, updateOrderInfoVo.getDetail()));
 
         return orderInfoVo;
     }
