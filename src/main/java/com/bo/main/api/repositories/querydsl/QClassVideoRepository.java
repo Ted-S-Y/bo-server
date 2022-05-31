@@ -2,6 +2,7 @@ package com.bo.main.api.repositories.querydsl;
 
 import com.bo.main.api.controller.vo.req.ReqClassVideoSearchVo;
 import com.bo.main.api.entities.ClassVideoEntity;
+import com.bo.main.api.entities.vo.ClassVideoVo;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.NumberUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.bo.main.api.entities.QClassBaseEntity.classBaseEntity;
 import static com.bo.main.api.entities.QClassVideoEntity.classVideoEntity;
@@ -31,17 +33,6 @@ public class QClassVideoRepository {
 
     public Page<ClassVideoEntity> findList(ReqClassVideoSearchVo searchVo, Pageable pageable) {
 
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-//        if (searchVo.getLctrCd() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-//        }
-//
-//        if (searchVo.getLctrNm() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-//
-//        }
-
         List<ClassVideoEntity> content = queryFactory.selectFrom(classVideoEntity)
                 .where(eqClssSeq(searchVo.getClssSeq()))
                 .offset(pageable.getOffset())
@@ -49,6 +40,15 @@ public class QClassVideoRepository {
                 .fetch();
 
         return new PageImpl<>(content, pageable, content.size());
+    }
+
+    public Optional<List<ClassVideoEntity>> findByClssSeq(long clssSeq) {
+
+        List<ClassVideoEntity> content = queryFactory.selectFrom(classVideoEntity)
+                .where(eqClssSeq(clssSeq))
+                .fetch();
+
+        return Optional.ofNullable(content);
     }
 
     private BooleanExpression eqClssSeq(Long clssSeq) {

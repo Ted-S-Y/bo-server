@@ -4,16 +4,17 @@ import com.bo.main.api.controller.vo.common.CommonVo;
 import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.ClassVideoVo;
 import com.bo.main.api.entities.vo.LecturerClassVo;
+import com.bo.main.api.entities.vo.LecturerVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
 public class ReqClassBaseVo extends CommonVo {
-
     /**
      * 강의 순번
      */
@@ -22,7 +23,6 @@ public class ReqClassBaseVo extends CommonVo {
     /**
      * 강의코드
      */
-    @NotBlank
     private String clssCd;
 
     /**
@@ -48,6 +48,8 @@ public class ReqClassBaseVo extends CommonVo {
     private String useYn= "Y";
 
     @NotEmpty
-    List<ReqClassVideoVo> videos;
+    List<ClassVideoVo> videos;
 
+    @NotEmpty
+    LecturerClassVo lecturerClassVo;
 }

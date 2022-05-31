@@ -10,6 +10,7 @@ import org.mapstruct.ap.shaded.freemarker.template.utility.NumberUtil;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.bo.main.api.entities.QCategoryEntity.categoryEntity;
 
@@ -52,7 +53,7 @@ public class QCategoryRepository {
     }
 
     private BooleanExpression eqUpperCtgrId(Long upperCtgrId) {
-        if (NumberUtil.isNaN(upperCtgrId)) {
+        if (Objects.isNull(upperCtgrId)) {
             return null;
         }
         return categoryEntity.upperCtgrId.eq(upperCtgrId);

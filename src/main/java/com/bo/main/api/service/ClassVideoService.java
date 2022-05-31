@@ -1,6 +1,5 @@
 package com.bo.main.api.service;
 
-import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.ClassVideoEntity;
 import com.bo.main.api.entities.converts.ClassVideoMapper;
 import com.bo.main.api.entities.vo.ClassBaseVo;
@@ -23,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ClassVideoService {
 
-//    private final QClassVideoRepository qClassVideoRepository;
+    private final QClassVideoRepository qClassVideoRepository;
     private final ClassVideoRepository classVideoRepository;
 
     private final ClassVideoMapper classVideoMapper;
@@ -32,22 +31,15 @@ public class ClassVideoService {
         return classVideoRepository.findById(vdSeq);
     }
 
-//    public Optional<ClassVideoEntity> findClassVideoByClssSeq(ClassBaseEntity classBaseEntity) {
-//        return classVideoRepository.findByClssSeq(classBaseEntity);
-//    }
-
-
     public ClassVideoVo findClassBaseByIdRetError(long vdSeq) throws Exception{
         Optional<ClassVideoEntity> opt = findClassVideoById(vdSeq);
         return classVideoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", vdSeq+""))));
     }
 
-//    public ClassVideoVo findClassBaseByClssSeqRetError(ClassBaseEntity classBaseEntity) throws Exception{
-//        Optional<ClassVideoEntity> opt = findClassVideoByClssSeq(classBaseEntity);
-//        return classVideoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", classBaseEntity.getClssCd()+""))));
-//    }
-
-
+    public List<ClassVideoVo> findByClssSeqRetError(long clssSeq) throws Exception {
+        Optional<List<ClassVideoEntity>> opt = qClassVideoRepository.findByClssSeq(clssSeq);
+        return classVideoMapper.toVos(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", clssSeq+""))));
+    }
 
     public ClassVideoVo update(ClassVideoVo classVideoVo) throws Exception {
 

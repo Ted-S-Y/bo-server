@@ -58,18 +58,18 @@ public class ClassBaseEntity extends BaseTimeEntity implements Serializable {
     private String useYn;
 
     // 강의 비디오
-    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     @ToString.Exclude
     private List<ClassVideoEntity> classVideoEntityList;
 
     // 강의 강사 매핑
-    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     @ToString.Exclude
     private List<LecturerClassEntity> lecturerClassEntityList;
 
-    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "classBaseEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     @ToString.Exclude
     private List<ClassPackageDetailEntity> classPackageDetailEntityList;

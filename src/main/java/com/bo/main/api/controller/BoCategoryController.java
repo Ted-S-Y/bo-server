@@ -1,6 +1,7 @@
 package com.bo.main.api.controller;
 
 import com.bo.main.api.controller.vo.req.ReqCategoryVo;
+import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
 import com.bo.main.api.controller.vo.req.ReqClassPackageSearchVo;
 import com.bo.main.api.controller.vo.req.ReqClassPackageVo;
 import com.bo.main.api.entities.converts.CategoryMapper;
@@ -59,9 +60,12 @@ public class BoCategoryController {
     @GetMapping("/management/list")
     public ResultResponse<?> searchCategories(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @RequestBody ReqCategoryVo reqCategoryVo
+            @Valid @RequestParam Map<String, String> parameterMap
     ) throws Exception {
-        return new ResultResponse<>(categoryService.search(reqCategoryVo));
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReqCategoryVo searchVo = objectMapper.convertValue(parameterMap, ReqCategoryVo.class);
+
+        return new ResultResponse<>(categoryService.search(searchVo));
     }
 
     @PostMapping("/management")

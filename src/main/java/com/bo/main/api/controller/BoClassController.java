@@ -94,10 +94,7 @@ public class BoClassController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @RequestBody ReqClassBaseVo reqClassBaseVo
     ) throws Exception {
-
-        ClassBaseVo classBaseVo = classBaseMapper.toVo(reqClassBaseVo);
-        classBaseService.add(classBaseVo);
-
+        classBaseService.add(reqClassBaseVo);
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
@@ -115,12 +112,8 @@ public class BoClassController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @RequestBody ReqClassBaseVo reqClassBaseVo
     ) throws Exception {
-
-        ClassBaseVo classBaseVo = classBaseMapper.toVo(reqClassBaseVo);
-        classBaseService.update(classBaseVo);
-
+        classBaseService.update(reqClassBaseVo);
         return new ResultResponse<>(HttpStatus.CREATED);
-
     }
 
     /**
@@ -128,7 +121,7 @@ public class BoClassController {
      *
      * @param req     the req
      * @param resp    the resp
-     * @param clssSeq the clss seq
+     * @param vdSeq the vdSeq
      * @return the result response
      * @throws Exception the exception
      */

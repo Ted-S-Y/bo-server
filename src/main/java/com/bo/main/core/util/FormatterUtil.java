@@ -1,5 +1,7 @@
 package com.bo.main.core.util;
 
+import com.querydsl.core.types.dsl.StringTemplate;
+
 import java.util.regex.Pattern;
 
 /**

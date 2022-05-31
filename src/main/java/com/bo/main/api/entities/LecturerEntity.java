@@ -65,13 +65,13 @@ public class LecturerEntity extends BaseTimeEntity implements Serializable {
 
 
     // 강사경력관리
-    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     @ToString.Exclude
     private List<LecturerCareerEntity> lecturerCareerEntityList;
 
     // 강사경력관리
-    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lecturerEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonManagedReference
     @ToString.Exclude
     private List<LecturerClassEntity> lecturerClassEntityList;
