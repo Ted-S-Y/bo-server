@@ -56,7 +56,7 @@ public class ClassPackageEntity extends BaseTimeEntity implements Serializable {
      * 단가
      */
     @Column(name = "PRC")
-    private Integer PRC;
+    private Integer prc;
 
     /**
      * 사용여부

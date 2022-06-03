@@ -1,15 +1,13 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqClassBaseVo;
-import com.bo.main.api.controller.vo.res.ResClassBaseVo;
+import com.bo.main.api.controller.vo.req.ReqClassManageVo;
+import com.bo.main.api.controller.vo.res.ResClassManageVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.vo.ClassBaseVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
-
-import java.util.List;
 
 @Mapper(
         uses = {
@@ -37,9 +35,9 @@ public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEnt
     })
     ClassBaseEntity toEntity(ClassBaseVo classBaseVo);
 
-    ClassBaseVo toVo(ReqClassBaseVo reqClassBaseVo);
+    ClassBaseVo toVo(ReqClassManageVo reqClassManageVo);
 
-    ResClassBaseVo toVo(ClassBaseVo classBaseVo);
+    ResClassManageVo toVo(ClassBaseVo classBaseVo);
 
     @Override
     @Mappings({

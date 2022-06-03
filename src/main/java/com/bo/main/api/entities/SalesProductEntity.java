@@ -76,7 +76,7 @@ public class SalesProductEntity extends BaseTimeEntity implements Serializable {
      */
     @Column(name = "STOCK")
     @Schema(description="재고")
-    private Integer STOCK;
+    private Integer stock;
 
     /**
      * 판매상태(SALE, STOP, SOLD OUT, END)

@@ -32,7 +32,7 @@ public class MemberEntity extends BaseTimeEntity implements Serializable {
      * 회원 아이디
      */
     @Column(name = "MBR_ID", nullable = false)
-    private Long mbrId;
+    private String mbrId;
 
     /**
      * 회원 명
@@ -62,7 +62,7 @@ public class MemberEntity extends BaseTimeEntity implements Serializable {
      * 성별
      */
     @Column(name = "SEX", nullable = false)
-    private String SEX;
+    private String sex;
 
     /**
      * 마케팅 수신 동의
@@ -74,13 +74,13 @@ public class MemberEntity extends BaseTimeEntity implements Serializable {
      * 직업
      */
     @Column(name = "JOB")
-    private String JOB;
+    private String job;
 
     /**
      * 주소
      */
     @Column(name = "ADDR")
-    private String ADDR;
+    private String addr;
 
     /**
      * 회원가입일자

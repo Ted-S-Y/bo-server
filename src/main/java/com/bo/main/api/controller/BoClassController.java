@@ -1,14 +1,9 @@
 package com.bo.main.api.controller;
 
-import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
-import com.bo.main.api.controller.vo.req.ReqClassBaseVo;
-import com.bo.main.api.controller.vo.req.ReqClassVideoVo;
-import com.bo.main.api.entities.converts.ClassBaseMapper;
-import com.bo.main.api.entities.converts.ClassVideoMapper;
-import com.bo.main.api.entities.vo.ClassBaseVo;
-import com.bo.main.api.entities.vo.ClassVideoVo;
-import com.bo.main.api.service.ClassBaseService;
-import com.bo.main.api.service.ClassVideoService;
+import com.bo.main.api.controller.vo.req.ReqClassManageSearchVo;
+import com.bo.main.api.controller.vo.req.ReqClassManageVo;
+import com.bo.main.api.controller.vo.res.ResClassManageVo;
+import com.bo.main.api.service.ClassManageService;
 import com.bo.main.core.wapper.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BoClassController {
 
-    private final ClassBaseService classBaseService;
-    private final ClassVideoService classVideoService;
-
-    private final ClassBaseMapper classBaseMapper;
-    private final ClassVideoMapper classVideoMapper;
+    private final ClassManageService classManageService;
 
     /**
      * 강의 상세조회
@@ -51,8 +42,8 @@ public class BoClassController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "clssSeq is required") @PathVariable(name = "clssSeq") long clssSeq
     ) throws Exception {
-        ClassBaseVo classBaseVo = classBaseService.findClassBaseByIdRetError(clssSeq);
-        return new ResultResponse<>(classBaseMapper.toVo(classBaseVo));
+        ResClassManageVo resClassManageVo = classManageService.findClassOneRetError(clssSeq);
+        return new ResultResponse<>(resClassManageVo);
     }
 
 
@@ -74,9 +65,9 @@ public class BoClassController {
     ) throws Exception {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        ReqClassBaseSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqClassBaseSearchVo.class);
+        ReqClassManageSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqClassManageSearchVo.class);
 
-        return new ResultResponse<>(classBaseService.search(searchVo, pageable));
+        return new ResultResponse<>(classManageService.search(searchVo, pageable));
     }
 
 
@@ -85,16 +76,16 @@ public class BoClassController {
      *
      * @param req            the req
      * @param resp           the resp
-     * @param reqClassBaseVo the req class base vo
+     * @param reqClassManageVo the req class base vo
      * @return the result response
      * @throws Exception the exception
      */
     @PostMapping("/management")
     public ResultResponse<?> register(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @RequestBody ReqClassBaseVo reqClassBaseVo
+            @Valid @RequestBody ReqClassManageVo reqClassManageVo
     ) throws Exception {
-        classBaseService.add(reqClassBaseVo);
+        classManageService.add(reqClassManageVo);
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
@@ -103,35 +94,35 @@ public class BoClassController {
      *
      * @param req            the req
      * @param resp           the resp
-     * @param reqClassBaseVo the req class base vo
+     * @param reqClassManageVo the req class base vo
      * @return the result response
      * @throws Exception the exception
      */
     @PutMapping("/management")
     public ResultResponse<?> modify(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @RequestBody ReqClassBaseVo reqClassBaseVo
+            @Valid @RequestBody ReqClassManageVo reqClassManageVo
     ) throws Exception {
-        classBaseService.update(reqClassBaseVo);
+        classManageService.update(reqClassManageVo);
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
     /**
-     * 비디오 상세조회
+     * 강의 삭제
      *
-     * @param req     the req
-     * @param resp    the resp
-     * @param vdSeq the vdSeq
+     * @param req            the req
+     * @param resp           the resp
+     * @param clssSeq the clss seq
      * @return the result response
      * @throws Exception the exception
      */
-    @GetMapping("/video/{vdSeq}")
-    public ResultResponse<?> searchVideo(
+    @DeleteMapping("/{clssSeq}")
+    public ResultResponse<?> delete(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @NotNull(message = "clssSeq is required") @PathVariable(name = "vdSeq") long vdSeq
+            @Valid @NotNull(message = "clssSeq is required") @PathVariable(name = "clssSeq") long clssSeq
     ) throws Exception {
-        ClassVideoVo classVideoVo = classVideoService.findClassBaseByIdRetError(vdSeq);
-        return new ResultResponse<>(classVideoMapper.toVo(classVideoVo));
+        classManageService.delete(clssSeq);
+        return new ResultResponse<>(HttpStatus.OK);
     }
 }
 

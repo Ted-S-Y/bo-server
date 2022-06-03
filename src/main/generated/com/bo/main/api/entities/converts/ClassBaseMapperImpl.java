@@ -1,14 +1,15 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqClassBaseVo;
-import com.bo.main.api.controller.vo.req.ReqClassVideoVo;
-import com.bo.main.api.controller.vo.res.ResClassBaseVo;
+import com.bo.main.api.controller.vo.req.ReqClassManageVo;
+import com.bo.main.api.controller.vo.res.ResClassManageVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.ClassPackageDetailEntity;
 import com.bo.main.api.entities.ClassVideoEntity;
 import com.bo.main.api.entities.LecturerClassEntity;
 import com.bo.main.api.entities.vo.ClassBaseVo;
+import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.ClassVideoVo;
+import com.bo.main.api.entities.vo.LecturerClassVo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:15:05+0900",
+    date = "2022-06-02T17:31:06+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -105,48 +106,63 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
     }
 
     @Override
-    public ClassBaseVo toVo(ReqClassBaseVo reqClassBaseVo) {
-        if ( reqClassBaseVo == null ) {
+    public ClassBaseVo toVo(ReqClassManageVo reqClassManageVo) {
+        if ( reqClassManageVo == null ) {
             return null;
         }
 
         ClassBaseVo classBaseVo = new ClassBaseVo();
 
-        classBaseVo.setClssSeq( reqClassBaseVo.getClssSeq() );
-        classBaseVo.setClssCd( reqClassBaseVo.getClssCd() );
-        classBaseVo.setClssNm( reqClassBaseVo.getClssNm() );
-        classBaseVo.setClssDesc( reqClassBaseVo.getClssDesc() );
-        classBaseVo.setPrvYn( reqClassBaseVo.getPrvYn() );
-        classBaseVo.setUseYn( reqClassBaseVo.getUseYn() );
-        classBaseVo.setCrtDtm( reqClassBaseVo.getCrtDtm() );
-        classBaseVo.setCrtr( reqClassBaseVo.getCrtr() );
-        classBaseVo.setUpdDtm( reqClassBaseVo.getUpdDtm() );
-        classBaseVo.setUpdtr( reqClassBaseVo.getUpdtr() );
-        classBaseVo.setVideos( reqClassVideoVoListToClassVideoVoList( reqClassBaseVo.getVideos() ) );
+        classBaseVo.setClssSeq( reqClassManageVo.getClssSeq() );
+        classBaseVo.setClssCd( reqClassManageVo.getClssCd() );
+        classBaseVo.setClssNm( reqClassManageVo.getClssNm() );
+        classBaseVo.setClssDesc( reqClassManageVo.getClssDesc() );
+        classBaseVo.setPrvYn( reqClassManageVo.getPrvYn() );
+        classBaseVo.setUseYn( reqClassManageVo.getUseYn() );
+        classBaseVo.setCrtDtm( reqClassManageVo.getCrtDtm() );
+        classBaseVo.setCrtr( reqClassManageVo.getCrtr() );
+        classBaseVo.setUpdDtm( reqClassManageVo.getUpdDtm() );
+        classBaseVo.setUpdtr( reqClassManageVo.getUpdtr() );
+        List<ClassVideoVo> list = reqClassManageVo.getVideos();
+        if ( list != null ) {
+            classBaseVo.setVideos( new ArrayList<ClassVideoVo>( list ) );
+        }
 
         return classBaseVo;
     }
 
     @Override
-    public ResClassBaseVo toVo(ClassBaseVo classBaseVo) {
+    public ResClassManageVo toVo(ClassBaseVo classBaseVo) {
         if ( classBaseVo == null ) {
             return null;
         }
 
-        ResClassBaseVo resClassBaseVo = new ResClassBaseVo();
+        ResClassManageVo resClassManageVo = new ResClassManageVo();
 
-        resClassBaseVo.setCrtDtm( classBaseVo.getCrtDtm() );
-        resClassBaseVo.setCrtr( classBaseVo.getCrtr() );
-        resClassBaseVo.setUpdDtm( classBaseVo.getUpdDtm() );
-        resClassBaseVo.setUpdtr( classBaseVo.getUpdtr() );
-        resClassBaseVo.setClssSeq( classBaseVo.getClssSeq() );
-        resClassBaseVo.setClssCd( classBaseVo.getClssCd() );
-        resClassBaseVo.setClssNm( classBaseVo.getClssNm() );
-        resClassBaseVo.setClssDesc( classBaseVo.getClssDesc() );
-        resClassBaseVo.setPrvYn( classBaseVo.getPrvYn() );
-        resClassBaseVo.setUseYn( classBaseVo.getUseYn() );
+        resClassManageVo.setCrtDtm( classBaseVo.getCrtDtm() );
+        resClassManageVo.setCrtr( classBaseVo.getCrtr() );
+        resClassManageVo.setUpdDtm( classBaseVo.getUpdDtm() );
+        resClassManageVo.setUpdtr( classBaseVo.getUpdtr() );
+        resClassManageVo.setClssSeq( classBaseVo.getClssSeq() );
+        resClassManageVo.setClssCd( classBaseVo.getClssCd() );
+        resClassManageVo.setClssNm( classBaseVo.getClssNm() );
+        resClassManageVo.setClssDesc( classBaseVo.getClssDesc() );
+        resClassManageVo.setPrvYn( classBaseVo.getPrvYn() );
+        resClassManageVo.setUseYn( classBaseVo.getUseYn() );
+        List<ClassVideoVo> list = classBaseVo.getVideos();
+        if ( list != null ) {
+            resClassManageVo.setVideos( new ArrayList<ClassVideoVo>( list ) );
+        }
+        List<ClassPackageDetailVo> list1 = classBaseVo.getDetails();
+        if ( list1 != null ) {
+            resClassManageVo.setDetails( new ArrayList<ClassPackageDetailVo>( list1 ) );
+        }
+        List<LecturerClassVo> list2 = classBaseVo.getLecturerClasses();
+        if ( list2 != null ) {
+            resClassManageVo.setLecturerClasses( new ArrayList<LecturerClassVo>( list2 ) );
+        }
 
-        return resClassBaseVo;
+        return resClassManageVo;
     }
 
     @Override
@@ -209,18 +225,5 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
         entity.setClssDesc( dto.getClssDesc() );
         entity.setPrvYn( dto.getPrvYn() );
         entity.setUseYn( dto.getUseYn() );
-    }
-
-    protected List<ClassVideoVo> reqClassVideoVoListToClassVideoVoList(List<ReqClassVideoVo> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ClassVideoVo> list1 = new ArrayList<ClassVideoVo>( list.size() );
-        for ( ReqClassVideoVo reqClassVideoVo : list ) {
-            list1.add( classVideoMapper.toVo( reqClassVideoVo ) );
-        }
-
-        return list1;
     }
 }

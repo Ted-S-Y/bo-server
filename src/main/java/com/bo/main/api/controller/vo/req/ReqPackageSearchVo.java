@@ -1,15 +1,15 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 
 @Data
-public class ReqClassBaseSearchVo extends CommonVo {
+public class ReqPackageSearchVo extends CommonVo {
+
+    /**
+     * 패키지 순번
+     */
+    private Long packSeq;
 
     /**
      * 강의 순번
@@ -17,19 +17,19 @@ public class ReqClassBaseSearchVo extends CommonVo {
     private Long clssSeq;
 
     /**
-     * 강의코드
+     * 패키지 코드
      */
-    private String clssCd;
+    private String packCd;
 
     /**
-     * 강의명
+     * 카테고리ID
      */
-    private String clssNm;
+    private Long ctgrId;
 
     /**
-     * 강사명
+     * 강의 패키지 명
      */
-    private String lctrNm;
+    private String packNm;
 
     /**
      * 사용여부
@@ -45,4 +45,5 @@ public class ReqClassBaseSearchVo extends CommonVo {
      * 검색종료일자
      */
     private String edDt;
+
 }

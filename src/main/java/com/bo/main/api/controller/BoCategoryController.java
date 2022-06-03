@@ -1,22 +1,12 @@
 package com.bo.main.api.controller;
 
 import com.bo.main.api.controller.vo.req.ReqCategoryVo;
-import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
-import com.bo.main.api.controller.vo.req.ReqClassPackageSearchVo;
-import com.bo.main.api.controller.vo.req.ReqClassPackageVo;
 import com.bo.main.api.entities.converts.CategoryMapper;
-import com.bo.main.api.entities.converts.ClassBaseMapper;
-import com.bo.main.api.entities.converts.ClassVideoMapper;
 import com.bo.main.api.entities.vo.CategoryVo;
-import com.bo.main.api.entities.vo.ClassPackageVo;
 import com.bo.main.api.service.CategoryService;
-import com.bo.main.api.service.ClassBaseService;
-import com.bo.main.api.service.ClassVideoService;
 import com.bo.main.core.wapper.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +36,7 @@ public class BoCategoryController {
 
     private final CategoryMapper categoryMapper;
 
-    @GetMapping("/management/{ctgrId}")
+    @GetMapping("/{ctgrId}")
     public ResultResponse<?> searchCategory(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "ctgrId is required") @PathVariable(name = "ctgrId") long ctgrId
@@ -93,7 +83,7 @@ public class BoCategoryController {
 
     }
 
-    @DeleteMapping("/management/{ctgrId}")
+    @DeleteMapping("/{ctgrId}")
     public ResultResponse<?> delete(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "ctgrId is required") @PathVariable(name = "ctgrId") long ctgrId

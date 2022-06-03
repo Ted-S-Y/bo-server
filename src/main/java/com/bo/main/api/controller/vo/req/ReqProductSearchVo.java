@@ -1,10 +1,11 @@
 package com.bo.main.api.controller.vo.req;
 
+import com.bo.main.api.controller.vo.common.CommonVo;
 import lombok.Data;
 
 
 @Data
-public class ReqSalesProductSearchVo {
+public class ReqProductSearchVo extends CommonVo {
 
 
     /**
@@ -38,14 +39,13 @@ public class ReqSalesProductSearchVo {
 
 
     /**
-     * 삭제여부
+     * 검색시작일자
      */
-    private String delYn;
-
+    private String stDt;
 
     /**
-     * 상품 설명
+     * 검색종료일자
      */
-    private String prdtDesc;
+    private String edDt;
 
 }

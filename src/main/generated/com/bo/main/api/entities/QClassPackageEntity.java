@@ -42,7 +42,7 @@ public class QClassPackageEntity extends EntityPathBase<ClassPackageEntity> {
 
     public final StringPath packThnl = createString("packThnl");
 
-    public final NumberPath<Integer> PRC = createNumber("PRC", Integer.class);
+    public final NumberPath<Integer> prc = createNumber("prc", Integer.class);
 
     public final ListPath<SalesProductDetailEntity, QSalesProductDetailEntity> salesProductDetailEntityList = this.<SalesProductDetailEntity, QSalesProductDetailEntity>createList("salesProductDetailEntityList", SalesProductDetailEntity.class, QSalesProductDetailEntity.class, PathInits.DIRECT2);
 

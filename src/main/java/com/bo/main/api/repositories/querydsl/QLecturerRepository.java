@@ -1,12 +1,11 @@
 package com.bo.main.api.repositories.querydsl;
 
-import com.bo.main.api.controller.vo.req.ReqAdminSearchVo;
 import com.bo.main.api.controller.vo.req.ReqLecturerSearchVo;
-import com.bo.main.api.entities.AdminEntity;
 import com.bo.main.api.entities.LecturerEntity;
-import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -27,24 +26,27 @@ public class QLecturerRepository {
     }
 
     public Page<LecturerEntity> findList(ReqLecturerSearchVo searchVo, Pageable pageable) {
-
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-        if (searchVo.getLctrCd() != null) {
-            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-        }
-
-        if (searchVo.getLctrNm() != null) {
-            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-
-        }
-
         List<LecturerEntity> content = queryFactory.selectFrom(lecturerEntity)
-                .where(booleanBuilder)
+                .where(likeLctrCd(searchVo.getLctrCd()),
+                        likeLctrNm(searchVo.getLctrNm()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         return new PageImpl<>(content, pageable, content.size());
+    }
+
+    private BooleanExpression likeLctrCd(String lctrCd) {
+        if (StringUtils.isEmpty(lctrCd)) {
+            return null;
+        }
+        return lecturerEntity.lctrCd.contains(lctrCd);
+    }
+
+    private BooleanExpression likeLctrNm(String lctrNm) {
+        if (StringUtils.isEmpty(lctrNm)) {
+            return null;
+        }
+        return lecturerEntity.lctrNm.contains(lctrNm);
     }
 }

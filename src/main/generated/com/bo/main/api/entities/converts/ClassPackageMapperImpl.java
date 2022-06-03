@@ -1,7 +1,7 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqClassPackageVo;
-import com.bo.main.api.controller.vo.res.ResClassPackageVo;
+import com.bo.main.api.controller.vo.req.ReqPackageVo;
+import com.bo.main.api.controller.vo.res.ResPackageVo;
 import com.bo.main.api.entities.ClassPackageDetailEntity;
 import com.bo.main.api.entities.ClassPackageEntity;
 import com.bo.main.api.entities.SalesProductDetailEntity;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:15:06+0900",
+    date = "2022-06-03T13:40:58+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -66,7 +66,6 @@ public class ClassPackageMapperImpl implements ClassPackageMapper {
         classPackageVo.setPackCd( classPackageEntity.getPackCd() );
         classPackageVo.setPackThnl( classPackageEntity.getPackThnl() );
         classPackageVo.setPackNm( classPackageEntity.getPackNm() );
-        classPackageVo.setPRC( classPackageEntity.getPRC() );
         classPackageVo.setUseYn( classPackageEntity.getUseYn() );
         classPackageVo.setCrtDtm( classPackageEntity.getCrtDtm() );
         classPackageVo.setCrtr( classPackageEntity.getCrtr() );
@@ -90,56 +89,53 @@ public class ClassPackageMapperImpl implements ClassPackageMapper {
         classPackageEntity.setPackCd( classPackageVo.getPackCd() );
         classPackageEntity.setPackThnl( classPackageVo.getPackThnl() );
         classPackageEntity.setPackNm( classPackageVo.getPackNm() );
-        classPackageEntity.setPRC( classPackageVo.getPRC() );
         classPackageEntity.setUseYn( classPackageVo.getUseYn() );
 
         return classPackageEntity;
     }
 
     @Override
-    public ClassPackageVo toVo(ReqClassPackageVo reqClassPackageVo) {
-        if ( reqClassPackageVo == null ) {
+    public ClassPackageVo toVo(ReqPackageVo reqPackageVo) {
+        if ( reqPackageVo == null ) {
             return null;
         }
 
         ClassPackageVo classPackageVo = new ClassPackageVo();
 
-        classPackageVo.setPackSeq( reqClassPackageVo.getPackSeq() );
-        classPackageVo.setPackCd( reqClassPackageVo.getPackCd() );
-        classPackageVo.setCtgrId( reqClassPackageVo.getCtgrId() );
-        classPackageVo.setPackThnl( reqClassPackageVo.getPackThnl() );
-        classPackageVo.setPackNm( reqClassPackageVo.getPackNm() );
-        classPackageVo.setPRC( reqClassPackageVo.getPRC() );
-        classPackageVo.setUseYn( reqClassPackageVo.getUseYn() );
-        classPackageVo.setCrtDtm( reqClassPackageVo.getCrtDtm() );
-        classPackageVo.setCrtr( reqClassPackageVo.getCrtr() );
-        classPackageVo.setUpdDtm( reqClassPackageVo.getUpdDtm() );
-        classPackageVo.setUpdtr( reqClassPackageVo.getUpdtr() );
+        classPackageVo.setPackSeq( reqPackageVo.getPackSeq() );
+        classPackageVo.setPackCd( reqPackageVo.getPackCd() );
+        classPackageVo.setCtgrId( reqPackageVo.getCtgrId() );
+        classPackageVo.setPackThnl( reqPackageVo.getPackThnl() );
+        classPackageVo.setPackNm( reqPackageVo.getPackNm() );
+        classPackageVo.setUseYn( reqPackageVo.getUseYn() );
+        classPackageVo.setCrtDtm( reqPackageVo.getCrtDtm() );
+        classPackageVo.setCrtr( reqPackageVo.getCrtr() );
+        classPackageVo.setUpdDtm( reqPackageVo.getUpdDtm() );
+        classPackageVo.setUpdtr( reqPackageVo.getUpdtr() );
 
         return classPackageVo;
     }
 
     @Override
-    public ResClassPackageVo toVo(ClassPackageVo classPackageVo) {
+    public ResPackageVo toVo(ClassPackageVo classPackageVo) {
         if ( classPackageVo == null ) {
             return null;
         }
 
-        ResClassPackageVo resClassPackageVo = new ResClassPackageVo();
+        ResPackageVo resPackageVo = new ResPackageVo();
 
-        resClassPackageVo.setCrtDtm( classPackageVo.getCrtDtm() );
-        resClassPackageVo.setCrtr( classPackageVo.getCrtr() );
-        resClassPackageVo.setUpdDtm( classPackageVo.getUpdDtm() );
-        resClassPackageVo.setUpdtr( classPackageVo.getUpdtr() );
-        resClassPackageVo.setPackSeq( classPackageVo.getPackSeq() );
-        resClassPackageVo.setPackCd( classPackageVo.getPackCd() );
-        resClassPackageVo.setCtgrId( classPackageVo.getCtgrId() );
-        resClassPackageVo.setPackThnl( classPackageVo.getPackThnl() );
-        resClassPackageVo.setPackNm( classPackageVo.getPackNm() );
-        resClassPackageVo.setPRC( classPackageVo.getPRC() );
-        resClassPackageVo.setUseYn( classPackageVo.getUseYn() );
+        resPackageVo.setCrtDtm( classPackageVo.getCrtDtm() );
+        resPackageVo.setCrtr( classPackageVo.getCrtr() );
+        resPackageVo.setUpdDtm( classPackageVo.getUpdDtm() );
+        resPackageVo.setUpdtr( classPackageVo.getUpdtr() );
+        resPackageVo.setPackSeq( classPackageVo.getPackSeq() );
+        resPackageVo.setPackCd( classPackageVo.getPackCd() );
+        resPackageVo.setCtgrId( classPackageVo.getCtgrId() );
+        resPackageVo.setPackThnl( classPackageVo.getPackThnl() );
+        resPackageVo.setPackNm( classPackageVo.getPackNm() );
+        resPackageVo.setUseYn( classPackageVo.getUseYn() );
 
-        return resClassPackageVo;
+        return resPackageVo;
     }
 
     @Override
@@ -184,7 +180,6 @@ public class ClassPackageMapperImpl implements ClassPackageMapper {
         entity.setPackCd( dto.getPackCd() );
         entity.setPackThnl( dto.getPackThnl() );
         entity.setPackNm( dto.getPackNm() );
-        entity.setPRC( dto.getPRC() );
         entity.setUseYn( dto.getUseYn() );
     }
 

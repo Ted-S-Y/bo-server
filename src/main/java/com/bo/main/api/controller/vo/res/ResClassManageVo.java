@@ -1,21 +1,20 @@
 package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
-import com.bo.main.api.controller.vo.req.ReqClassVideoVo;
 import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.ClassVideoVo;
 import com.bo.main.api.entities.vo.LecturerClassVo;
+import com.bo.main.api.entities.vo.LecturerVo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResClassBaseVo extends CommonVo {
+public class ResClassManageVo extends CommonVo {
     /**
      * 강의 순번
      */
@@ -61,4 +60,7 @@ public class ResClassBaseVo extends CommonVo {
     private List<ClassPackageDetailVo> details;
 
     private List<LecturerClassVo> lecturerClasses;
+
+    private LecturerVo lecturerVo;
+
 }

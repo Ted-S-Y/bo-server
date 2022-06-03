@@ -1,5 +1,6 @@
 package com.bo.main.api.service;
 
+import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.ClassVideoEntity;
 import com.bo.main.api.entities.converts.ClassVideoMapper;
 import com.bo.main.api.entities.vo.ClassBaseVo;
@@ -31,11 +32,6 @@ public class ClassVideoService {
         return classVideoRepository.findById(vdSeq);
     }
 
-    public ClassVideoVo findClassBaseByIdRetError(long vdSeq) throws Exception{
-        Optional<ClassVideoEntity> opt = findClassVideoById(vdSeq);
-        return classVideoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", vdSeq+""))));
-    }
-
     public List<ClassVideoVo> findByClssSeqRetError(long clssSeq) throws Exception {
         Optional<List<ClassVideoEntity>> opt = qClassVideoRepository.findByClssSeq(clssSeq);
         return classVideoMapper.toVos(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", clssSeq+""))));
@@ -57,6 +53,15 @@ public class ClassVideoService {
         classVideoMapper.updateFromVo(classVideoVo, loadClassVideo);
 
         return classVideoMapper.toVo(classVideoRepository.save(loadClassVideo));
+    }
+
+    public void delete(ClassVideoVo classVideoVo) throws Exception {
+        Optional<ClassVideoEntity> opt = findClassVideoById(classVideoVo.getVdSeq());
+
+        ClassVideoEntity loadClassVideo = opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Class Video 정보({})가 없습니다.", classVideoVo.getVdSeq()+"")));
+        classVideoMapper.updateFromVo(classVideoVo, loadClassVideo);
+
+        classVideoRepository.delete(loadClassVideo);
     }
 
     @Transactional

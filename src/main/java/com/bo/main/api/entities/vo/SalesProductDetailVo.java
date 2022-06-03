@@ -14,6 +14,12 @@ public class SalesProductDetailVo implements Serializable {
 
 
     /**
+     * 판매상품상세순번
+     */
+    @NotNull(message = "slsPrdtDtlSeq can not null")
+    private Long slsPrdtDtlSeq;
+
+    /**
      * 판매상품 순번
      */
     @NotNull(message = "slsPrdtSeq can not null")

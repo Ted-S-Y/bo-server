@@ -1,20 +1,18 @@
-package com.bo.main.api.controller.vo.req;
+package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.ClassBaseVo;
+import com.bo.main.api.entities.vo.LecturerClassVo;
+import com.bo.main.api.entities.vo.LecturerVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ReqClassPackageVo extends CommonVo {
+public class ResPackageVo extends CommonVo {
 
     /**
      * 패키지 순번
@@ -53,12 +51,28 @@ public class ReqClassPackageVo extends CommonVo {
     /**
      * 단가
      */
-    @NotBlank
-    private Integer PRC;
+    private Integer prc;
 
     /**
      * 사용여부
      */
-    private String useYn= "Y";
+    private String useYn;
+
+    /**
+     * 강의 수
+     */
+    private Long clssCnt;
+
+    /**
+     * 카테고리타입
+     */
+    private String ctgrTyp;
+
+    /**
+     * 카테고리명
+     */
+    private String ctgrNm;
+
+    private List<ClassBaseVo> classBases;
 
 }

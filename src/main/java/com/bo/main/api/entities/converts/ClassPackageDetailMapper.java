@@ -24,9 +24,6 @@ public interface ClassPackageDetailMapper extends GenericMapper<ClassPackageDeta
     @Override
     ClassPackageDetailEntity toEntity(ClassPackageDetailVo classPackageDetailVo);
 
-    @Override
-    List<ClassPackageDetailVo> toVos(List<ClassPackageDetailEntity> e);
+    ClassPackageDetailVo toVo(ClassPackageVo classPackageVo);
 
-    @Override
-    List<ClassPackageDetailEntity> toEntities(List<ClassPackageDetailVo> d);
 }

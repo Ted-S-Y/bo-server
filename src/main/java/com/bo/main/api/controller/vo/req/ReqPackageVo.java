@@ -1,14 +1,16 @@
-package com.bo.main.api.controller.vo.res;
+package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ResClassPackageVo extends CommonVo {
+public class ReqPackageVo extends CommonVo {
 
     /**
      * 패키지 순번
@@ -48,11 +50,13 @@ public class ResClassPackageVo extends CommonVo {
      * 단가
      */
     @NotBlank
-    private Integer PRC;
+    private Integer prc;
 
     /**
      * 사용여부
      */
     private String useYn;
+
+    List<ClassPackageDetailVo> details;
 
 }

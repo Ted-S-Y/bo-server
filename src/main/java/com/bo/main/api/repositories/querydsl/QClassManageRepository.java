@@ -1,11 +1,9 @@
 package com.bo.main.api.repositories.querydsl;
 
-import com.bo.main.api.controller.vo.req.ReqClassBaseSearchVo;
-import com.bo.main.api.controller.vo.req.ReqClassBaseVo;
-import com.bo.main.api.controller.vo.req.ReqLecturerSearchVo;
-import com.bo.main.api.controller.vo.res.ResClassBaseVo;
+import com.bo.main.api.controller.vo.req.ReqClassManageSearchVo;
+import com.bo.main.api.controller.vo.req.ReqClassManageVo;
+import com.bo.main.api.controller.vo.res.ResClassManageVo;
 import com.bo.main.api.entities.ClassBaseEntity;
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ConstantImpl;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
@@ -34,7 +32,7 @@ import static com.querydsl.core.types.ExpressionUtils.count;
 
 @RequiredArgsConstructor
 @Repository
-public class QClassBaseRepository {
+public class QClassManageRepository {
     private final JPAQueryFactory queryFactory;
 
     public List<ClassBaseEntity> findAll() {
@@ -42,9 +40,9 @@ public class QClassBaseRepository {
                 .fetch();
     }
 
-    public Page<ResClassBaseVo> findList(ReqClassBaseSearchVo searchVo, Pageable pageable) {
-        List<ResClassBaseVo> content = queryFactory
-                .select(Projections.fields(ResClassBaseVo.class,
+    public Page<ResClassManageVo> findList(ReqClassManageSearchVo searchVo, Pageable pageable) {
+        List<ResClassManageVo> content = queryFactory
+                .select(Projections.fields(ResClassManageVo.class,
                         classBaseEntity.clssCd,
                         classBaseEntity.clssSeq,
                         classBaseEntity.prvYn,
@@ -72,9 +70,9 @@ public class QClassBaseRepository {
         return new PageImpl<>(content, pageable, content.size());
     }
 
-    public Optional<ResClassBaseVo> findOne(ReqClassBaseVo reqClassBaseVo) {
-        ResClassBaseVo content = queryFactory
-                .select(Projections.fields(ResClassBaseVo.class,
+    public Optional<ResClassManageVo> findOne(ReqClassManageVo reqClassManageVo) {
+        ResClassManageVo content = queryFactory
+                .select(Projections.fields(ResClassManageVo.class,
                         classBaseEntity.clssCd,
                         classBaseEntity.clssSeq,
                         classBaseEntity.clssDesc,
@@ -83,7 +81,7 @@ public class QClassBaseRepository {
                         classBaseEntity.useYn
                 ))
                 .from(classBaseEntity)
-                .where(eqClssSeq(reqClassBaseVo.getClssSeq())
+                .where(eqClssSeq(reqClassManageVo.getClssSeq())
                 )
                 .fetchOne();
 

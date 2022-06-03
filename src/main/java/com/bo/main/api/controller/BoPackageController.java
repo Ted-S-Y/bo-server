@@ -1,10 +1,9 @@
 package com.bo.main.api.controller;
 
-import com.bo.main.api.controller.vo.req.ReqClassPackageSearchVo;
-import com.bo.main.api.controller.vo.req.ReqClassPackageVo;
-import com.bo.main.api.entities.converts.ClassPackageMapper;
-import com.bo.main.api.entities.vo.ClassPackageVo;
-import com.bo.main.api.service.ClassPackageService;
+import com.bo.main.api.controller.vo.req.ReqPackageSearchVo;
+import com.bo.main.api.controller.vo.req.ReqPackageVo;
+import com.bo.main.api.controller.vo.res.ResPackageVo;
+import com.bo.main.api.service.PackageService;
 import com.bo.main.core.wapper.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BoPackageController {
 
-    private final ClassPackageService classPackageService;
-
-    private final ClassPackageMapper classPackageMapper;
+    private final PackageService packageService;
 
     /**
      * 강의 패키지 상세 조회
@@ -40,15 +37,14 @@ public class BoPackageController {
      * @return the result response
      * @throws Exception the exception
      */
-    @GetMapping("/management/{packSeq}")
+    @GetMapping("/{packSeq}")
     public ResultResponse<?> searchPackage(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "packSeq is required") @PathVariable(name = "packSeq") long packSeq
     ) throws Exception {
+        ResPackageVo resPackageVo = packageService.findPackageOneRetError(packSeq);
 
-        ClassPackageVo classPackageVo = classPackageService.findClassPackageByIdRetError(packSeq);
-
-        return new ResultResponse<>(classPackageVo);
+        return new ResultResponse<>(resPackageVo);
     }
 
     /**
@@ -67,10 +63,9 @@ public class BoPackageController {
             @Valid @RequestParam Map<String, String> parameterMap,
             @PageableDefault(page = 0, size = 10) Pageable pageable
     ) throws Exception {
-
         ObjectMapper objectMapper = new ObjectMapper();
-        ReqClassPackageSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqClassPackageSearchVo.class);
-        return new ResultResponse<>(classPackageService.search(searchVo, pageable));
+        ReqPackageSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqPackageSearchVo.class);
+        return new ResultResponse<>(packageService.search(searchVo, pageable));
     }
 
     /**
@@ -78,19 +73,16 @@ public class BoPackageController {
      *
      * @param req            the req
      * @param resp           the resp
-     * @param reqClassPackageVo the req class package vo
+     * @param reqPackageVo the req class package vo
      * @return the result response
      * @throws Exception the exception
      */
     @PostMapping("/management")
     public ResultResponse<?> register(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @RequestBody ReqClassPackageVo reqClassPackageVo
+            @Valid @RequestBody ReqPackageVo reqPackageVo
     ) throws Exception {
-
-        ClassPackageVo classPackageVo = classPackageMapper.toVo(reqClassPackageVo);
-        classPackageService.add(classPackageVo);
-
+        packageService.add(reqPackageVo);
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
@@ -99,21 +91,27 @@ public class BoPackageController {
      *
      * @param req            the req
      * @param resp           the resp
-     * @param reqClassPackageVo the req class package vo
+     * @param reqPackageVo the req class package vo
      * @return the result response
      * @throws Exception the exception
      */
     @PutMapping("/management")
     public ResultResponse<?> modify(
             HttpServletRequest req, HttpServletResponse resp,
-            @Valid @RequestBody ReqClassPackageVo reqClassPackageVo
+            @Valid @RequestBody ReqPackageVo reqPackageVo
     ) throws Exception {
-
-        ClassPackageVo classPackageVo = classPackageMapper.toVo(reqClassPackageVo);
-        classPackageService.update(classPackageVo);
-
+        packageService.update(reqPackageVo);
         return new ResultResponse<>(HttpStatus.CREATED);
 
+    }
+
+    @DeleteMapping("/{packSeq}")
+    public ResultResponse<?> delete(
+            HttpServletRequest req, HttpServletResponse resp,
+            @Valid @NotNull(message = "packSeq is required") @PathVariable(name = "packSeq") long packSeq
+    ) throws Exception {
+        packageService.delete(packSeq);
+        return new ResultResponse<>(HttpStatus.OK);
     }
 }
 

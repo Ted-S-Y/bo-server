@@ -2,6 +2,7 @@ package com.bo.main.api.entities.converts;
 
 import com.bo.main.api.entities.ClassPackageDetailEntity;
 import com.bo.main.api.entities.vo.ClassPackageDetailVo;
+import com.bo.main.api.entities.vo.ClassPackageVo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:14:54+0900",
+    date = "2022-06-02T17:31:05+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -20,13 +21,41 @@ public class ClassPackageDetailMapperImpl implements ClassPackageDetailMapper {
     private ClassBaseMapper classBaseMapper;
 
     @Override
-    public void updateFromVo(ClassPackageDetailVo dto, ClassPackageDetailEntity entity) {
-        if ( dto == null ) {
+    public List<ClassPackageDetailVo> toVos(List<ClassPackageDetailEntity> arg0) {
+        if ( arg0 == null ) {
+            return null;
+        }
+
+        List<ClassPackageDetailVo> list = new ArrayList<ClassPackageDetailVo>( arg0.size() );
+        for ( ClassPackageDetailEntity classPackageDetailEntity : arg0 ) {
+            list.add( toVo( classPackageDetailEntity ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<ClassPackageDetailEntity> toEntities(List<ClassPackageDetailVo> arg0) {
+        if ( arg0 == null ) {
+            return null;
+        }
+
+        List<ClassPackageDetailEntity> list = new ArrayList<ClassPackageDetailEntity>( arg0.size() );
+        for ( ClassPackageDetailVo classPackageDetailVo : arg0 ) {
+            list.add( toEntity( classPackageDetailVo ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public void updateFromVo(ClassPackageDetailVo arg0, ClassPackageDetailEntity arg1) {
+        if ( arg0 == null ) {
             return;
         }
 
-        if ( dto.getMapSeq() != null ) {
-            entity.setMapSeq( dto.getMapSeq() );
+        if ( arg0.getMapSeq() != null ) {
+            arg1.setMapSeq( arg0.getMapSeq() );
         }
     }
 
@@ -63,30 +92,19 @@ public class ClassPackageDetailMapperImpl implements ClassPackageDetailMapper {
     }
 
     @Override
-    public List<ClassPackageDetailVo> toVos(List<ClassPackageDetailEntity> e) {
-        if ( e == null ) {
+    public ClassPackageDetailVo toVo(ClassPackageVo classPackageVo) {
+        if ( classPackageVo == null ) {
             return null;
         }
 
-        List<ClassPackageDetailVo> list = new ArrayList<ClassPackageDetailVo>( e.size() );
-        for ( ClassPackageDetailEntity classPackageDetailEntity : e ) {
-            list.add( toVo( classPackageDetailEntity ) );
-        }
+        ClassPackageDetailVo classPackageDetailVo = new ClassPackageDetailVo();
 
-        return list;
-    }
+        classPackageDetailVo.setPackSeq( classPackageVo.getPackSeq() );
+        classPackageDetailVo.setCrtDtm( classPackageVo.getCrtDtm() );
+        classPackageDetailVo.setCrtr( classPackageVo.getCrtr() );
+        classPackageDetailVo.setUpdDtm( classPackageVo.getUpdDtm() );
+        classPackageDetailVo.setUpdtr( classPackageVo.getUpdtr() );
 
-    @Override
-    public List<ClassPackageDetailEntity> toEntities(List<ClassPackageDetailVo> d) {
-        if ( d == null ) {
-            return null;
-        }
-
-        List<ClassPackageDetailEntity> list = new ArrayList<ClassPackageDetailEntity>( d.size() );
-        for ( ClassPackageDetailVo classPackageDetailVo : d ) {
-            list.add( toEntity( classPackageDetailVo ) );
-        }
-
-        return list;
+        return classPackageDetailVo;
     }
 }

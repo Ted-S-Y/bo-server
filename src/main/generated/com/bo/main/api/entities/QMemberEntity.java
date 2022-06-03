@@ -42,7 +42,7 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final StringPath mail = createString("mail");
 
-    public final NumberPath<Long> mbrId = createNumber("mbrId", Long.class);
+    public final StringPath mbrId = createString("mbrId");
 
     public final StringPath mbrNm = createString("mbrNm");
 

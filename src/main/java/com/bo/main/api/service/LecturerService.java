@@ -32,9 +32,14 @@ public class LecturerService {
         return lecturerRepository.findByLctrCd(lctrCd);
     }
 
-    public LecturerVo findLecturerByIdRetError(String lctrCd) throws Exception{
+    public LecturerVo findLecturerByIdRetError(long lctrSeq) throws Exception{
+        Optional<LecturerEntity> opt = lecturerRepository.findById(lctrSeq);
+        return lecturerMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Lecturer 정보({})가 없습니다.", String.valueOf(lctrSeq)))));
+    }
+
+    public LecturerVo findLecturerByLctrCdRetError(String lctrCd) throws Exception{
         Optional<LecturerEntity> opt = findLecturerByLctrCd(lctrCd);
-        return lecturerMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Lecturer 정보({})가 없습니다.", String.valueOf(lctrCd)))));
+        return lecturerMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Lecturer 정보({})가 없습니다.", lctrCd))));
     }
 
     public Page<LecturerVo> search(ReqLecturerSearchVo searchVo, Pageable pageable) throws Exception {

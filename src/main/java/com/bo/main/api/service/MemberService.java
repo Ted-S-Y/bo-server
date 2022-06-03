@@ -48,10 +48,9 @@ public class MemberService {
         return memberRepository.findByMbrId(mbrId);
     }
 
-    
     public MemberVo findByMbrIdRetError(String mbrId) throws Exception{
         Optional<MemberEntity> opt = findByMbrId(mbrId);
-        return memberMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Admin 정보({})가 없습니다.", mbrId))));
+        return memberMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Member 정보({})가 없습니다.", mbrId))));
     }
     
     public Page<MemberVo> search(ReqMemberSearchVo searchVo, Pageable pageable) throws Exception {
@@ -71,18 +70,4 @@ public class MemberService {
 
         return memberVo;
     }
-    
-//    public MemberVo add(MemberVo memberVo) throws Exception {
-//        Optional<MemberEntity> opt = findByMbrId(memberVo.getMbrId());
-//
-//        if (opt.isPresent()) {
-//            throw new Exception(StringUtils.message("이미등록된 Admin({}) 입니다.", memberVo.getMbrId()));
-//        }
-//
-//        MemberEntity newMember = new MemberEntity();
-//
-//        memberMapper.updateFromVo(memberVo, newMember);
-//        return memberMapper.toVo(memberRepository.save(newMember));
-//    }
-
 }

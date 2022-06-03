@@ -1,16 +1,21 @@
-package com.bo.main.api.controller.vo.req;
+package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-
+/**
+ * packageName : com.bo.main.api.controller.vo.res
+ * fileName : ResProductVo
+ * author : sbyoon
+ * date : 2022-06-03
+ * description :
+ * ===========================================================
+ * DATE AUTHOR  NOTE
+ * -----------------------------------------------------------
+ * 2022-06-03  sbyoon 최초 생성
+ */
 @Data
-public class ReqSalesProductVo extends CommonVo {
+public class ResProductVo extends CommonVo {
 
 
     /**
@@ -70,7 +75,7 @@ public class ReqSalesProductVo extends CommonVo {
     /**
      * 삭제여부
      */
-    private String delYn = "N";
+    private String delYn;
 
 
     /**
@@ -84,5 +89,5 @@ public class ReqSalesProductVo extends CommonVo {
      */
     private String prdtDesc;
 
-    ReqSalesProductDetailVo salesProductDetailVo;
+    ResSalesProductDetailVo salesProductDetailVo;
 }

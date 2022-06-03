@@ -1,5 +1,6 @@
 package com.bo.main.api.service;
 
+import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.LecturerClassEntity;
 import com.bo.main.api.entities.converts.LecturerClassMapper;
 import com.bo.main.api.entities.vo.ClassBaseVo;
@@ -44,19 +45,24 @@ public class LecturerClassMappingService {
         LecturerClassEntity loadLecturerClass = opt.orElseGet(LecturerClassEntity::new);
         lecturerClassMapper.updateFromVo(lecturerClassVo, loadLecturerClass);
 
+        delete(lecturerClassVo);
+
         return lecturerClassMapper.toVo(lecturerClassMappingRepository.save(loadLecturerClass));
     }
 
     public void delete(LecturerClassVo lecturerClassVo) throws Exception {
+        Optional<List<LecturerClassEntity>> opt = qLecturerClassRepository.findList(lecturerClassVo);
 
-        LecturerClassEntity loadLecturerClass = new LecturerClassEntity();
-        lecturerClassMapper.updateFromVo(lecturerClassVo, loadLecturerClass);
+        List<LecturerClassEntity> loadLecturerClassEntityList = opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Lecturer Class 정보({})가 없습니다.", lecturerClassVo.getClssSeq()+"")));
 
-        lecturerClassMappingRepository.delete(loadLecturerClass);
+        for (LecturerClassEntity tempEntity : loadLecturerClassEntityList) {
+            lecturerClassMapper.updateFromVo(lecturerClassVo, tempEntity);
+            lecturerClassMappingRepository.delete(tempEntity);
+        }
     }
 
     @Transactional
-    public List<LecturerClassVo> bulkMerges(ClassBaseVo classBaseVo, List<LecturerClassVo> lecturerClasses) throws Exception {
+    public List<LecturerClassVo> bulkMerges(List<LecturerClassVo> lecturerClasses) throws Exception {
         List<LecturerClassVo> results = new ArrayList<>();
 
         for (LecturerClassVo lecturerClassVo: lecturerClasses) {

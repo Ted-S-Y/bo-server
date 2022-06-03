@@ -70,7 +70,7 @@ public class SalesProductDetailEntity extends BaseTimeEntity implements Serializ
      * 패키지 순번
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SHIP_PRDT_SEQ", insertable = false, updatable = false)
+    @JoinColumn(name = "PACK_SEQ", insertable = false, updatable = false)
     @ToString.Exclude
     private ClassPackageEntity classPackageEntity;
 

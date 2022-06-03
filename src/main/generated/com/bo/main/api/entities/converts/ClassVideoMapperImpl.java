@@ -1,8 +1,8 @@
 package com.bo.main.api.entities.converts;
 
 import com.bo.main.api.controller.vo.req.ReqClassVideoVo;
-import com.bo.main.api.controller.vo.res.ResClassVideoVo;
 import com.bo.main.api.entities.ClassVideoEntity;
+import com.bo.main.api.entities.vo.ClassBaseVo;
 import com.bo.main.api.entities.vo.ClassVideoVo;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,58 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:15:06+0900",
+    date = "2022-06-02T17:31:06+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
 public class ClassVideoMapperImpl implements ClassVideoMapper {
 
     @Override
-    public ClassVideoVo toVo(ClassVideoEntity classBaseEntity) {
-        if ( classBaseEntity == null ) {
+    public List<ClassVideoVo> toVos(List<ClassVideoEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        ClassVideoVo classVideoVo = new ClassVideoVo();
-
-        classVideoVo.setVdSeq( classBaseEntity.getVdSeq() );
-        classVideoVo.setVdTtl( classBaseEntity.getVdTtl() );
-        classVideoVo.setVdUrl( classBaseEntity.getVdUrl() );
-        classVideoVo.setDelYn( classBaseEntity.getDelYn() );
-        classVideoVo.setPrvYn( classBaseEntity.getPrvYn() );
-        classVideoVo.setCrtDtm( classBaseEntity.getCrtDtm() );
-        classVideoVo.setCrtr( classBaseEntity.getCrtr() );
-        classVideoVo.setUpdDtm( classBaseEntity.getUpdDtm() );
-        classVideoVo.setUpdtr( classBaseEntity.getUpdtr() );
-
-        return classVideoVo;
-    }
-
-    @Override
-    public ClassVideoEntity toEntity(ClassVideoVo classBaseVo) {
-        if ( classBaseVo == null ) {
-            return null;
-        }
-
-        ClassVideoEntity classVideoEntity = new ClassVideoEntity();
-
-        classVideoEntity.setVdSeq( classBaseVo.getVdSeq() );
-        classVideoEntity.setVdTtl( classBaseVo.getVdTtl() );
-        classVideoEntity.setVdUrl( classBaseVo.getVdUrl() );
-        classVideoEntity.setDelYn( classBaseVo.getDelYn() );
-        classVideoEntity.setPrvYn( classBaseVo.getPrvYn() );
-
-        return classVideoEntity;
-    }
-
-    @Override
-    public List<ClassVideoVo> toVos(List<ClassVideoEntity> e) {
-        if ( e == null ) {
-            return null;
-        }
-
-        List<ClassVideoVo> list = new ArrayList<ClassVideoVo>( e.size() );
-        for ( ClassVideoEntity classVideoEntity : e ) {
+        List<ClassVideoVo> list = new ArrayList<ClassVideoVo>( arg0.size() );
+        for ( ClassVideoEntity classVideoEntity : arg0 ) {
             list.add( toVo( classVideoEntity ) );
         }
 
@@ -70,17 +32,73 @@ public class ClassVideoMapperImpl implements ClassVideoMapper {
     }
 
     @Override
-    public List<ClassVideoEntity> toEntities(List<ClassVideoVo> d) {
-        if ( d == null ) {
+    public List<ClassVideoEntity> toEntities(List<ClassVideoVo> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<ClassVideoEntity> list = new ArrayList<ClassVideoEntity>( d.size() );
-        for ( ClassVideoVo classVideoVo : d ) {
+        List<ClassVideoEntity> list = new ArrayList<ClassVideoEntity>( arg0.size() );
+        for ( ClassVideoVo classVideoVo : arg0 ) {
             list.add( toEntity( classVideoVo ) );
         }
 
         return list;
+    }
+
+    @Override
+    public ClassVideoVo toVo(ClassVideoEntity classVideoEntity) {
+        if ( classVideoEntity == null ) {
+            return null;
+        }
+
+        ClassVideoVo classVideoVo = new ClassVideoVo();
+
+        classVideoVo.setVdSeq( classVideoEntity.getVdSeq() );
+        classVideoVo.setVdTtl( classVideoEntity.getVdTtl() );
+        classVideoVo.setVdUrl( classVideoEntity.getVdUrl() );
+        classVideoVo.setDelYn( classVideoEntity.getDelYn() );
+        classVideoVo.setPrvYn( classVideoEntity.getPrvYn() );
+        classVideoVo.setCrtDtm( classVideoEntity.getCrtDtm() );
+        classVideoVo.setCrtr( classVideoEntity.getCrtr() );
+        classVideoVo.setUpdDtm( classVideoEntity.getUpdDtm() );
+        classVideoVo.setUpdtr( classVideoEntity.getUpdtr() );
+
+        return classVideoVo;
+    }
+
+    @Override
+    public ClassVideoEntity toEntity(ClassVideoVo classVideoVo) {
+        if ( classVideoVo == null ) {
+            return null;
+        }
+
+        ClassVideoEntity classVideoEntity = new ClassVideoEntity();
+
+        classVideoEntity.setVdSeq( classVideoVo.getVdSeq() );
+        classVideoEntity.setVdTtl( classVideoVo.getVdTtl() );
+        classVideoEntity.setVdUrl( classVideoVo.getVdUrl() );
+        classVideoEntity.setDelYn( classVideoVo.getDelYn() );
+        classVideoEntity.setPrvYn( classVideoVo.getPrvYn() );
+
+        return classVideoEntity;
+    }
+
+    @Override
+    public ClassVideoVo toVo(ClassBaseVo classBaseVo) {
+        if ( classBaseVo == null ) {
+            return null;
+        }
+
+        ClassVideoVo classVideoVo = new ClassVideoVo();
+
+        classVideoVo.setClssSeq( classBaseVo.getClssSeq() );
+        classVideoVo.setPrvYn( classBaseVo.getPrvYn() );
+        classVideoVo.setCrtDtm( classBaseVo.getCrtDtm() );
+        classVideoVo.setCrtr( classBaseVo.getCrtr() );
+        classVideoVo.setUpdDtm( classBaseVo.getUpdDtm() );
+        classVideoVo.setUpdtr( classBaseVo.getUpdtr() );
+
+        return classVideoVo;
     }
 
     @Override
@@ -103,28 +121,6 @@ public class ClassVideoMapperImpl implements ClassVideoMapper {
         classVideoVo.setUpdtr( reqClassBaseVo.getUpdtr() );
 
         return classVideoVo;
-    }
-
-    @Override
-    public ResClassVideoVo toVo(ClassVideoVo classBaseVo) {
-        if ( classBaseVo == null ) {
-            return null;
-        }
-
-        ResClassVideoVo resClassVideoVo = new ResClassVideoVo();
-
-        resClassVideoVo.setCrtDtm( classBaseVo.getCrtDtm() );
-        resClassVideoVo.setCrtr( classBaseVo.getCrtr() );
-        resClassVideoVo.setUpdDtm( classBaseVo.getUpdDtm() );
-        resClassVideoVo.setUpdtr( classBaseVo.getUpdtr() );
-        resClassVideoVo.setVdSeq( classBaseVo.getVdSeq() );
-        resClassVideoVo.setClssSeq( classBaseVo.getClssSeq() );
-        resClassVideoVo.setVdTtl( classBaseVo.getVdTtl() );
-        resClassVideoVo.setVdUrl( classBaseVo.getVdUrl() );
-        resClassVideoVo.setDelYn( classBaseVo.getDelYn() );
-        resClassVideoVo.setPrvYn( classBaseVo.getPrvYn() );
-
-        return resClassVideoVo;
     }
 
     @Override

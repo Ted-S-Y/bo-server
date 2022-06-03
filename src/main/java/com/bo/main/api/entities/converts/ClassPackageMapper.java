@@ -1,14 +1,12 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqClassPackageVo;
-import com.bo.main.api.controller.vo.res.ResClassPackageVo;
+import com.bo.main.api.controller.vo.req.ReqPackageVo;
+import com.bo.main.api.controller.vo.res.ResPackageVo;
 import com.bo.main.api.entities.ClassPackageEntity;
 import com.bo.main.api.entities.vo.ClassPackageVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-
-import java.util.List;
 
 @Mapper(
         uses = {
@@ -28,9 +26,9 @@ public interface ClassPackageMapper extends GenericMapper<ClassPackageVo, ClassP
     @Mapping(target = "salesProductDetailEntityList", source = "salesProductDetails")
     ClassPackageEntity toEntity(ClassPackageVo classPackageVo);
 
-    ClassPackageVo toVo(ReqClassPackageVo reqClassPackageVo);
+    ClassPackageVo toVo(ReqPackageVo reqPackageVo);
 
-    ResClassPackageVo toVo(ClassPackageVo classPackageVo);
+    ResPackageVo toVo(ClassPackageVo classPackageVo);
 
     @Override
     @Mapping(target = "classPackageDetailEntityList", source = "classPackageDetails")

@@ -22,7 +22,7 @@ public class MemberHistoryVo implements Serializable {
     /**
      * 회원 아이디
      */
-    private Long mbrId;
+    private String mbrId;
 
 
     /**

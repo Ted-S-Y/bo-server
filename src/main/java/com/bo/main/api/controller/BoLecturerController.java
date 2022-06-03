@@ -34,7 +34,7 @@ public class BoLecturerController {
             @Valid @NotNull(message = "lctrSeq is required") @PathVariable(name = "lctrCd") String lctrCd
     ) throws Exception {
 
-        LecturerVo lecturerVo = lecturerService.findLecturerByIdRetError(lctrCd);
+        LecturerVo lecturerVo = lecturerService.findLecturerByLctrCdRetError(lctrCd);
 
         return new ResultResponse<>(lecturerVo);
     }

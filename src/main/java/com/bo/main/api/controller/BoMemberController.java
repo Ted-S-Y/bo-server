@@ -38,7 +38,7 @@ public class BoMemberController {
 
     private final MemberMapper memberMapper;
 
-    @GetMapping("/management/{memberId}")
+    @GetMapping("/{memberId}")
     public ResultResponse<?> searchMember(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "memberId is required") @PathVariable(name = "memberId") String memberId

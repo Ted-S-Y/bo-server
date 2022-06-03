@@ -26,22 +26,6 @@ import static com.bo.main.api.entities.QClassVideoEntity.classVideoEntity;
 public class QClassVideoRepository {
     private final JPAQueryFactory queryFactory;
 
-    public List<ClassVideoEntity> findAll() {
-        return queryFactory.selectFrom(classVideoEntity)
-                .fetch();
-    }
-
-    public Page<ClassVideoEntity> findList(ReqClassVideoSearchVo searchVo, Pageable pageable) {
-
-        List<ClassVideoEntity> content = queryFactory.selectFrom(classVideoEntity)
-                .where(eqClssSeq(searchVo.getClssSeq()))
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        return new PageImpl<>(content, pageable, content.size());
-    }
-
     public Optional<List<ClassVideoEntity>> findByClssSeq(long clssSeq) {
 
         List<ClassVideoEntity> content = queryFactory.selectFrom(classVideoEntity)
