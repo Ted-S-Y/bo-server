@@ -11,62 +11,62 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:14:55+0900",
+    date = "2022-06-07T17:57:26+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
 public class CategoryMapperImpl implements CategoryMapper {
 
     @Override
-    public CategoryVo toVo(CategoryEntity e) {
-        if ( e == null ) {
+    public CategoryVo toVo(CategoryEntity arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         CategoryVo categoryVo = new CategoryVo();
 
-        categoryVo.setCtgrId( e.getCtgrId() );
-        categoryVo.setUpperCtgrYn( e.getUpperCtgrYn() );
-        categoryVo.setUpperCtgrId( e.getUpperCtgrId() );
-        categoryVo.setShowYn( e.getShowYn() );
-        categoryVo.setCtgrTyp( e.getCtgrTyp() );
-        categoryVo.setCtgrNm( e.getCtgrNm() );
-        categoryVo.setDelYn( e.getDelYn() );
-        categoryVo.setCrtDtm( e.getCrtDtm() );
-        categoryVo.setCrtr( e.getCrtr() );
-        categoryVo.setUpdDtm( e.getUpdDtm() );
-        categoryVo.setUpdtr( e.getUpdtr() );
+        categoryVo.setCtgrId( arg0.getCtgrId() );
+        categoryVo.setUpperCtgrYn( arg0.getUpperCtgrYn() );
+        categoryVo.setUpperCtgrId( arg0.getUpperCtgrId() );
+        categoryVo.setShowYn( arg0.getShowYn() );
+        categoryVo.setCtgrTyp( arg0.getCtgrTyp() );
+        categoryVo.setCtgrNm( arg0.getCtgrNm() );
+        categoryVo.setDelYn( arg0.getDelYn() );
+        categoryVo.setCrtDtm( arg0.getCrtDtm() );
+        categoryVo.setCrtr( arg0.getCrtr() );
+        categoryVo.setUpdDtm( arg0.getUpdDtm() );
+        categoryVo.setUpdtr( arg0.getUpdtr() );
 
         return categoryVo;
     }
 
     @Override
-    public CategoryEntity toEntity(CategoryVo d) {
-        if ( d == null ) {
+    public CategoryEntity toEntity(CategoryVo arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
         CategoryEntity categoryEntity = new CategoryEntity();
 
-        categoryEntity.setCtgrId( d.getCtgrId() );
-        categoryEntity.setUpperCtgrYn( d.getUpperCtgrYn() );
-        categoryEntity.setUpperCtgrId( d.getUpperCtgrId() );
-        categoryEntity.setShowYn( d.getShowYn() );
-        categoryEntity.setCtgrTyp( d.getCtgrTyp() );
-        categoryEntity.setCtgrNm( d.getCtgrNm() );
-        categoryEntity.setDelYn( d.getDelYn() );
+        categoryEntity.setCtgrId( arg0.getCtgrId() );
+        categoryEntity.setUpperCtgrYn( arg0.getUpperCtgrYn() );
+        categoryEntity.setUpperCtgrId( arg0.getUpperCtgrId() );
+        categoryEntity.setShowYn( arg0.getShowYn() );
+        categoryEntity.setCtgrTyp( arg0.getCtgrTyp() );
+        categoryEntity.setCtgrNm( arg0.getCtgrNm() );
+        categoryEntity.setDelYn( arg0.getDelYn() );
 
         return categoryEntity;
     }
 
     @Override
-    public List<CategoryVo> toVos(List<CategoryEntity> entityList) {
-        if ( entityList == null ) {
+    public List<CategoryVo> toVos(List<CategoryEntity> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<CategoryVo> list = new ArrayList<CategoryVo>( entityList.size() );
-        for ( CategoryEntity categoryEntity : entityList ) {
+        List<CategoryVo> list = new ArrayList<CategoryVo>( arg0.size() );
+        for ( CategoryEntity categoryEntity : arg0 ) {
             list.add( toVo( categoryEntity ) );
         }
 
@@ -74,13 +74,13 @@ public class CategoryMapperImpl implements CategoryMapper {
     }
 
     @Override
-    public List<CategoryEntity> toEntities(List<CategoryVo> dtoList) {
-        if ( dtoList == null ) {
+    public List<CategoryEntity> toEntities(List<CategoryVo> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<CategoryEntity> list = new ArrayList<CategoryEntity>( dtoList.size() );
-        for ( CategoryVo categoryVo : dtoList ) {
+        List<CategoryEntity> list = new ArrayList<CategoryEntity>( arg0.size() );
+        for ( CategoryVo categoryVo : arg0 ) {
             list.add( toEntity( categoryVo ) );
         }
 
@@ -88,31 +88,31 @@ public class CategoryMapperImpl implements CategoryMapper {
     }
 
     @Override
-    public void updateFromVo(CategoryVo dto, CategoryEntity entity) {
-        if ( dto == null ) {
+    public void updateFromVo(CategoryVo arg0, CategoryEntity arg1) {
+        if ( arg0 == null ) {
             return;
         }
 
-        if ( dto.getCtgrId() != null ) {
-            entity.setCtgrId( dto.getCtgrId() );
+        if ( arg0.getCtgrId() != null ) {
+            arg1.setCtgrId( arg0.getCtgrId() );
         }
-        if ( dto.getUpperCtgrYn() != null ) {
-            entity.setUpperCtgrYn( dto.getUpperCtgrYn() );
+        if ( arg0.getUpperCtgrYn() != null ) {
+            arg1.setUpperCtgrYn( arg0.getUpperCtgrYn() );
         }
-        if ( dto.getUpperCtgrId() != null ) {
-            entity.setUpperCtgrId( dto.getUpperCtgrId() );
+        if ( arg0.getUpperCtgrId() != null ) {
+            arg1.setUpperCtgrId( arg0.getUpperCtgrId() );
         }
-        if ( dto.getShowYn() != null ) {
-            entity.setShowYn( dto.getShowYn() );
+        if ( arg0.getShowYn() != null ) {
+            arg1.setShowYn( arg0.getShowYn() );
         }
-        if ( dto.getCtgrTyp() != null ) {
-            entity.setCtgrTyp( dto.getCtgrTyp() );
+        if ( arg0.getCtgrTyp() != null ) {
+            arg1.setCtgrTyp( arg0.getCtgrTyp() );
         }
-        if ( dto.getCtgrNm() != null ) {
-            entity.setCtgrNm( dto.getCtgrNm() );
+        if ( arg0.getCtgrNm() != null ) {
+            arg1.setCtgrNm( arg0.getCtgrNm() );
         }
-        if ( dto.getDelYn() != null ) {
-            entity.setDelYn( dto.getDelYn() );
+        if ( arg0.getDelYn() != null ) {
+            arg1.setDelYn( arg0.getDelYn() );
         }
     }
 

@@ -22,7 +22,6 @@ public interface LecturerMapper extends GenericMapper<LecturerVo, LecturerEntity
     @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses")
     LecturerEntity toEntity(LecturerVo lecturerVo);
 
-    @Mapping(target = "resLecturerCareerVos", source = "lecturerCareers")
     ResLecturerVo toVo(LecturerVo lecturerCareerVo);
 
     LecturerVo toVo(ReqLecturerVo reqLecturerVo);

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-03T13:40:58+0900",
+    date = "2022-06-07T17:57:26+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -190,6 +190,7 @@ public class ClassPackageMapperImpl implements ClassPackageMapper {
 
         SalesProductDetailVo salesProductDetailVo = new SalesProductDetailVo();
 
+        salesProductDetailVo.setSlsPrdtDtlSeq( salesProductDetailEntity.getSlsPrdtDtlSeq() );
         salesProductDetailVo.setShipPrdtSeq( salesProductDetailEntity.getShipPrdtSeq() );
         salesProductDetailVo.setShipPrdtYn( salesProductDetailEntity.getShipPrdtYn() );
         salesProductDetailVo.setCrtDtm( salesProductDetailEntity.getCrtDtm() );
@@ -220,6 +221,7 @@ public class ClassPackageMapperImpl implements ClassPackageMapper {
 
         SalesProductDetailEntity salesProductDetailEntity = new SalesProductDetailEntity();
 
+        salesProductDetailEntity.setSlsPrdtDtlSeq( salesProductDetailVo.getSlsPrdtDtlSeq() );
         salesProductDetailEntity.setShipPrdtSeq( salesProductDetailVo.getShipPrdtSeq() );
         salesProductDetailEntity.setShipPrdtYn( salesProductDetailVo.getShipPrdtYn() );
 

@@ -26,12 +26,12 @@ import org.mapstruct.Mapping;
 )
 public interface SalesProductDetailMapper extends GenericMapper<SalesProductDetailVo, SalesProductDetailEntity> {
     @Mapping(target = "salesProductVo", ignore = true)
-    @Mapping(target = "classBaseVo", source = "classBaseEntity")
+    @Mapping(target = "classPackageVo", source = "classPackageEntity")
     @Override
     SalesProductDetailVo toVo(SalesProductDetailEntity salesProductDetailEntity);
 
     @Mapping(target = "salesProductEntity", ignore = true)
-    @Mapping(target = "classBaseEntity", source = "classBaseVo")
+    @Mapping(target = "classPackageEntity", source = "classPackageVo")
     @Override
     SalesProductDetailEntity toEntity(SalesProductDetailVo salesProductDetailVo);
 
