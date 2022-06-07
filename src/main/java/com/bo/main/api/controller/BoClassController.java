@@ -25,7 +25,6 @@ import java.util.Map;
 @RequestMapping("/bo/admin/classbase")
 @RequiredArgsConstructor
 public class BoClassController {
-
     private final ClassManageService classManageService;
 
     /**

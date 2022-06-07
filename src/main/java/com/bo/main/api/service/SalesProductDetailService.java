@@ -2,6 +2,7 @@ package com.bo.main.api.service;
 
 import com.bo.main.api.entities.SalesProductDetailEntity;
 import com.bo.main.api.entities.converts.SalesProductDetailMapper;
+import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.SalesProductDetailVo;
 import com.bo.main.api.repositories.jpa.SalesProductDetailRepository;
 import com.bo.main.api.repositories.querydsl.QSalaesProductDetailRepository;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,5 +71,18 @@ public class SalesProductDetailService {
             salesProductDetailMapper.updateFromVo(salesProductDetailVo, tempEntity);
             salesProductDetailRepository.delete(tempEntity);
         }
+    }
+
+
+    @Transactional
+    public List<SalesProductDetailVo> bulkMerges(List<SalesProductDetailVo> salesProductDetailVoList) throws Exception {
+        List<SalesProductDetailVo> results = new ArrayList<>();
+
+        for (SalesProductDetailVo tempVo: salesProductDetailVoList) {
+            delete(tempVo);
+            results.add(merge(tempVo));
+        }
+
+        return results;
     }
 }

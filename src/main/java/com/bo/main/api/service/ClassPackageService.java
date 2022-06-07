@@ -31,7 +31,6 @@ public class ClassPackageService {
         return classPackageMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 ClassPackage 정보({})가 없습니다.", packSeq+""))));
     }
 
-
     public ClassPackageVo update(ClassPackageVo updateClassPackageVo) throws Exception {
 
         Optional<ClassPackageEntity> opt = findByPackSeq(updateClassPackageVo.getPackSeq());

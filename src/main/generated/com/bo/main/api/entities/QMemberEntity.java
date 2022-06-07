@@ -22,7 +22,7 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
-    public final StringPath ADDR = createString("ADDR");
+    public final StringPath addr = createString("addr");
 
     public final ListPath<CartEntity, QCartEntity> cartEntityList = this.<CartEntity, QCartEntity>createList("cartEntityList", CartEntity.class, QCartEntity.class, PathInits.DIRECT2);
 
@@ -34,7 +34,7 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
     //inherited
     public final StringPath crtr = _super.crtr;
 
-    public final StringPath JOB = createString("JOB");
+    public final StringPath job = createString("job");
 
     public final StringPath joinDt = createString("joinDt");
 
@@ -60,7 +60,7 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final ListPath<RevwEntity, QRevwEntity> revwEntityList = this.<RevwEntity, QRevwEntity>createList("revwEntityList", RevwEntity.class, QRevwEntity.class, PathInits.DIRECT2);
 
-    public final StringPath SEX = createString("SEX");
+    public final StringPath sex = createString("sex");
 
     public final StringPath slprYn = createString("slprYn");
 

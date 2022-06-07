@@ -1,6 +1,7 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.MemberDeviceVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -118,6 +119,6 @@ public class ReqMemberVo extends CommonVo {
 
 
     @NotEmpty
-    List<ReqMemberDeviceVo> devices;
+    List<MemberDeviceVo> devices;
 
 }

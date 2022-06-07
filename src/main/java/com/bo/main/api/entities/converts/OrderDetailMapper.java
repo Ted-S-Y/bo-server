@@ -1,6 +1,5 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqOrderDetailVo;
 import com.bo.main.api.controller.vo.res.ResOrderDetailVo;
 import com.bo.main.api.entities.OrderDetailEntity;
 import com.bo.main.api.entities.vo.OrderDetailVo;
@@ -28,9 +27,6 @@ public interface OrderDetailMapper extends GenericMapper<OrderDetailVo, OrderDet
 
     @Override
     List<OrderDetailEntity> toEntities(List<OrderDetailVo> d);
-
-    @Mapping(target = "orderInfoVo", ignore = true)
-    OrderDetailVo toVo(ReqOrderDetailVo reqOrderDetailVO);
 
     ResOrderDetailVo toVo(OrderDetailVo orderDetailVO);
 

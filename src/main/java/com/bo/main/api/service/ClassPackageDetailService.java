@@ -67,7 +67,6 @@ public class ClassPackageDetailService {
         List<ClassPackageDetailVo> results = new ArrayList<>();
 
         for (ClassPackageDetailVo tempVo: classPackageDetailVoList) {
-            delete(tempVo);
             results.add(merge(tempVo));
         }
 

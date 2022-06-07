@@ -36,7 +36,7 @@ public class SalesProductService {
         return salesProductRepository.findById(slsPrdtSeq);
     }
 
-    public SalesProductVo findClassPackageByIdRetError(long slsPrdtSeq) throws Exception{
+    public SalesProductVo findSalesProductByIdRetError(long slsPrdtSeq) throws Exception{
         Optional<SalesProductEntity> opt = findBySlsPrdtSeq(slsPrdtSeq);
         return salesProductMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Sales Product 정보({})가 없습니다.", slsPrdtSeq+""))));
     }

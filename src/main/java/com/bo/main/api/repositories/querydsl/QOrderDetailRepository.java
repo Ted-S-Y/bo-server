@@ -1,6 +1,5 @@
 package com.bo.main.api.repositories.querydsl;
 
-import com.bo.main.api.controller.vo.req.ReqOrderDetailVo;
 import com.bo.main.api.entities.OrderDetailEntity;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -35,25 +34,4 @@ public class QOrderDetailRepository {
                 .fetch();
     }
 
-    public Page<OrderDetailEntity> findList(ReqOrderDetailVo searchVo, Pageable pageable) {
-
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-//        if (searchVo.getLctrCd() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-//        }
-//
-//        if (searchVo.getLctrNm() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-//
-//        }
-
-        List<OrderDetailEntity> content = queryFactory.selectFrom(orderDetailEntity)
-                .where(booleanBuilder)
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        return new PageImpl<>(content, pageable, content.size());
-    }
 }

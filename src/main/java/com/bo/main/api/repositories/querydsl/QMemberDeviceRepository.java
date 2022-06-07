@@ -1,9 +1,6 @@
 package com.bo.main.api.repositories.querydsl;
 
-import com.bo.main.api.controller.vo.req.ReqMemberDeviceSearchVo;
-import com.bo.main.api.controller.vo.req.ReqMemberSearchVo;
 import com.bo.main.api.entities.MemberDeviceEntity;
-import com.bo.main.api.entities.MemberEntity;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -35,27 +32,5 @@ public class QMemberDeviceRepository {
     public List<MemberDeviceEntity> findAll() {
         return queryFactory.selectFrom(memberDeviceEntity)
                 .fetch();
-    }
-
-    public Page<MemberDeviceEntity> findList(ReqMemberDeviceSearchVo searchVo, Pageable pageable) {
-
-        BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-//        if (searchVo.getLctrCd() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrCd.like(searchVo.getLctrCd()));
-//        }
-//
-//        if (searchVo.getLctrNm() != null) {
-//            booleanBuilder.and(lecturerEntity.lctrNm.like(searchVo.getLctrNm()));
-//
-//        }
-
-        List<MemberDeviceEntity> content = queryFactory.selectFrom(memberDeviceEntity)
-                .where(booleanBuilder)
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        return new PageImpl<>(content, pageable, content.size());
     }
 }

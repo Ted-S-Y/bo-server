@@ -27,4 +27,14 @@ public class ReqLecturerSearchVo extends CommonVo {
      */
     private String lctrNm;
 
+    /**
+     * 검색시작일자
+     */
+    private String stDt;
+
+    /**
+     * 검색종료일자
+     */
+    private String edDt;
+
 }

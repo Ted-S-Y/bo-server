@@ -1,6 +1,7 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.CartDetailVo;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -41,5 +42,5 @@ public class ReqCartVo extends CommonVo {
      */
     private Integer ordrSumAmt;
 
-    ReqCartDetailVo cartDetailVo;
+    CartDetailVo cartDetailVo;
 }

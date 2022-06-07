@@ -1,13 +1,10 @@
 package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
-import com.bo.main.api.controller.vo.req.ReqLecturerCareerVo;
+import com.bo.main.api.entities.vo.LecturerCareerVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
-import java.util.Date;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -50,5 +47,5 @@ public class ResLecturerVo extends CommonVo {
     private String lctrImg;
 
 
-    private List<ResLecturerCareerVo> resLecturerCareerVos;
+    List<LecturerCareerVo> lecturerCareers;
 }

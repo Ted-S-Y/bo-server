@@ -1,6 +1,7 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.OrderDetailVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -66,5 +67,5 @@ public class ReqOrderInfoVo extends CommonVo {
     private String cnclDtlList;
 
     @NotEmpty
-    private List<ReqOrderDetailVo> details;
+    private List<OrderDetailVo> details;
 }

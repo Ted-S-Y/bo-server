@@ -1,19 +1,11 @@
 package com.bo.main.api.repositories.querydsl;
 
-import com.bo.main.api.controller.vo.req.ReqClassVideoSearchVo;
 import com.bo.main.api.entities.ClassVideoEntity;
-import com.bo.main.api.entities.vo.ClassVideoVo;
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.ap.shaded.freemarker.template.utility.NumberUtil;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.NumberUtils;
 
 import java.util.List;
 import java.util.Optional;

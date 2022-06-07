@@ -1,7 +1,10 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.SalesProductDetailVo;
 import lombok.Data;
+
+import java.util.List;
 
 
 @Data
@@ -79,5 +82,5 @@ public class ReqProductVo extends CommonVo {
      */
     private String prdtDesc;
 
-    ReqSalesProductDetailVo salesProductDetailVo;
+    List<SalesProductDetailVo> details;
 }

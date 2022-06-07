@@ -1,14 +1,13 @@
 package com.bo.main.api.service;
 
-import com.bo.main.api.controller.vo.req.ReqPackageSearchVo;
-import com.bo.main.api.controller.vo.req.ReqPackageVo;
 import com.bo.main.api.controller.vo.req.ReqProductSearchVo;
 import com.bo.main.api.controller.vo.req.ReqProductVo;
 import com.bo.main.api.controller.vo.res.ResProductVo;
 import com.bo.main.api.entities.converts.SalesProductDetailMapper;
 import com.bo.main.api.entities.converts.SalesProductMapper;
-import com.bo.main.api.entities.vo.ClassBaseVo;
-import com.bo.main.api.entities.vo.ClassPackageDetailVo;
+import com.bo.main.api.entities.vo.ClassPackageVo;
+import com.bo.main.api.entities.vo.SalesProductDetailVo;
+import com.bo.main.api.entities.vo.SalesProductVo;
 import com.bo.main.api.repositories.querydsl.QProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,30 +38,28 @@ import java.util.List;
 public class ProductService {
     private final SalesProductService salesProductService;
     private final SalesProductMapper salesProductMapper;
-
-    private final QProductRepository qProductRepository;
-
     private final SalesProductDetailService salesProductDetailService;
     private final SalesProductDetailMapper salesProductDetailMapper;
 
-    private final ClassBaseService classBaseService;
 
+    private final QProductRepository qProductRepository;
 
-    public ResProductVo findProductOneRetError(long packSeq) throws Exception{
-        ResProductVo resProductVo = salesProductMapper.toVo(salesProductService.findClassPackageByIdRetError(packSeq));
+    private final ClassPackageService classPackageService;
 
-        ClassPackageDetailVo classPackageDetailVo = new ClassPackageDetailVo();
-        classPackageDetailVo.setPackSeq(packSeq);
-        List<ClassPackageDetailVo> classPackageDetailVoList = salesProductDetailService.findList(classPackageDetailVo);
+    public ResProductVo findProductOneRetError(long slsPrdtSeq) throws Exception{
+        ResProductVo resProductVo = salesProductMapper.toVo(salesProductService.findSalesProductByIdRetError(slsPrdtSeq));
 
-        List<ClassBaseVo> results = new ArrayList<>();
+        List<ClassPackageVo> classPackageVoList = new ArrayList<>();
 
-        for (ClassPackageDetailVo tempVo : classPackageDetailVoList) {
-            ClassBaseVo classBaseVo = classBaseService.findClassBaseByIdRetError(tempVo.getClssSeq());
-            results.add(classBaseVo);
+        SalesProductDetailVo salesProductDetailVo = new SalesProductDetailVo();
+        salesProductDetailVo.setSlsPrdtSeq(slsPrdtSeq);
+        List<SalesProductDetailVo> salesProductDetailVoList = salesProductDetailService.findList(salesProductDetailVo);
+
+        for (SalesProductDetailVo tempVo : salesProductDetailVoList) {
+            classPackageVoList.add(classPackageService.findClassPackageByIdRetError(tempVo.getPackSeq()));
         }
 
-        resProductVo.setClassBases(results);
+        resProductVo.setClassPackages(classPackageVoList);
 
         return resProductVo;
     }
@@ -73,7 +70,6 @@ public class ProductService {
     }
 
     public void add(ReqProductVo reqProductVo) throws Exception {
-
         salesProductService.add(salesProductMapper.toVo(reqProductVo));
         salesProductDetailService.bulkMerges(reqProductVo.getDetails());
     }
@@ -83,4 +79,10 @@ public class ProductService {
         salesProductDetailService.bulkMerges(reqProductVo.getDetails());
     }
 
+    public void delete(long slsPrdtSeq) throws Exception {
+        SalesProductVo salesProductVo = salesProductService.findSalesProductByIdRetError(slsPrdtSeq);
+
+        salesProductDetailService.delete(salesProductDetailMapper.toVo(salesProductVo));
+        salesProductService.delete(salesProductVo);
+    }
 }

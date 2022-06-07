@@ -1,7 +1,12 @@
 package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.ClassPackageVo;
+import com.bo.main.api.entities.vo.LecturerVo;
+import com.bo.main.api.entities.vo.SalesProductDetailVo;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * packageName : com.bo.main.api.controller.vo.res
@@ -16,7 +21,6 @@ import lombok.Data;
  */
 @Data
 public class ResProductVo extends CommonVo {
-
 
     /**
      * 판매상품 순번
@@ -89,5 +93,6 @@ public class ResProductVo extends CommonVo {
      */
     private String prdtDesc;
 
-    ResSalesProductDetailVo salesProductDetailVo;
+    List<ClassPackageVo> classPackages;
+
 }

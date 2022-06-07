@@ -1,6 +1,5 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqClassVideoVo;
 import com.bo.main.api.entities.ClassVideoEntity;
 import com.bo.main.api.entities.vo.ClassBaseVo;
 import com.bo.main.api.entities.vo.ClassVideoVo;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-02T17:31:06+0900",
+    date = "2022-06-07T17:39:51+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -97,28 +96,6 @@ public class ClassVideoMapperImpl implements ClassVideoMapper {
         classVideoVo.setCrtr( classBaseVo.getCrtr() );
         classVideoVo.setUpdDtm( classBaseVo.getUpdDtm() );
         classVideoVo.setUpdtr( classBaseVo.getUpdtr() );
-
-        return classVideoVo;
-    }
-
-    @Override
-    public ClassVideoVo toVo(ReqClassVideoVo reqClassBaseVo) {
-        if ( reqClassBaseVo == null ) {
-            return null;
-        }
-
-        ClassVideoVo classVideoVo = new ClassVideoVo();
-
-        classVideoVo.setVdSeq( reqClassBaseVo.getVdSeq() );
-        classVideoVo.setClssSeq( reqClassBaseVo.getClssSeq() );
-        classVideoVo.setVdTtl( reqClassBaseVo.getVdTtl() );
-        classVideoVo.setVdUrl( reqClassBaseVo.getVdUrl() );
-        classVideoVo.setDelYn( reqClassBaseVo.getDelYn() );
-        classVideoVo.setPrvYn( reqClassBaseVo.getPrvYn() );
-        classVideoVo.setCrtDtm( reqClassBaseVo.getCrtDtm() );
-        classVideoVo.setCrtr( reqClassBaseVo.getCrtr() );
-        classVideoVo.setUpdDtm( reqClassBaseVo.getUpdDtm() );
-        classVideoVo.setUpdtr( reqClassBaseVo.getUpdtr() );
 
         return classVideoVo;
     }

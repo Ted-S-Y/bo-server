@@ -1,6 +1,7 @@
 package com.bo.main.api.controller.vo.req;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.RevwCnntsVo;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,6 +32,6 @@ public class ReqRevwVo extends CommonVo {
     private String revw;
 
 
-    ReqRevwCnntsVo revwCnntsVo;
+    RevwCnntsVo revwCnntsVo;
 
 }

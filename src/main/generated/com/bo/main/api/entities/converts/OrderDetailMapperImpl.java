@@ -1,6 +1,5 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.req.ReqOrderDetailVo;
 import com.bo.main.api.controller.vo.res.ResOrderDetailVo;
 import com.bo.main.api.entities.OrderDetailEntity;
 import com.bo.main.api.entities.vo.OrderDetailVo;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-30T17:15:06+0900",
+    date = "2022-06-07T17:39:50+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -71,21 +70,6 @@ public class OrderDetailMapperImpl implements OrderDetailMapper {
         }
 
         return list;
-    }
-
-    @Override
-    public OrderDetailVo toVo(ReqOrderDetailVo reqOrderDetailVO) {
-        if ( reqOrderDetailVO == null ) {
-            return null;
-        }
-
-        OrderDetailVo orderDetailVo = new OrderDetailVo();
-
-        orderDetailVo.setOrdrNo( reqOrderDetailVO.getOrdrNo() );
-        orderDetailVo.setOrdrCls( reqOrderDetailVO.getOrdrCls() );
-        orderDetailVo.setOrdrAmt( reqOrderDetailVO.getOrdrAmt() );
-
-        return orderDetailVo;
     }
 
     @Override

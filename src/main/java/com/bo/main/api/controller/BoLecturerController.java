@@ -2,8 +2,10 @@ package com.bo.main.api.controller;
 
 import com.bo.main.api.controller.vo.req.ReqLecturerSearchVo;
 import com.bo.main.api.controller.vo.req.ReqLecturerVo;
+import com.bo.main.api.entities.converts.LecturerClassMapper;
 import com.bo.main.api.entities.converts.LecturerMapper;
 import com.bo.main.api.entities.vo.LecturerVo;
+import com.bo.main.api.service.LecturerClassMappingService;
 import com.bo.main.api.service.LecturerService;
 import com.bo.main.core.wapper.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,18 +27,17 @@ import java.util.Map;
 public class BoLecturerController {
 
     private final LecturerService lecturerService;
-
     private final LecturerMapper lecturerMapper;
 
-    @GetMapping("/management/{lctrCd}")
+    private final LecturerClassMappingService lecturerClassMappingService;
+    private final LecturerClassMapper lecturerClassMapper;
+
+    @GetMapping("/{lctrCd}")
     public ResultResponse<?> searchLecturer(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "lctrSeq is required") @PathVariable(name = "lctrCd") String lctrCd
     ) throws Exception {
-
-        LecturerVo lecturerVo = lecturerService.findLecturerByLctrCdRetError(lctrCd);
-
-        return new ResultResponse<>(lecturerVo);
+        return new ResultResponse<>(lecturerService.findLecturerRetError(lctrCd));
     }
 
     @GetMapping("/management/list")
@@ -56,9 +57,7 @@ public class BoLecturerController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @RequestBody ReqLecturerVo reqLecturerVo
     ) throws Exception {
-        LecturerVo lecturerVo = lecturerMapper.toVo(reqLecturerVo);
-        lecturerService.add(lecturerVo);
-
+        lecturerService.add(reqLecturerVo);
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
@@ -67,11 +66,18 @@ public class BoLecturerController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @RequestBody ReqLecturerVo reqLecturerVo
     ) throws Exception {
-        LecturerVo lecturerVo = lecturerMapper.toVo(reqLecturerVo);
-        lecturerService.update(lecturerVo);
-
+        lecturerService.update(reqLecturerVo);
         return new ResultResponse<>(HttpStatus.CREATED);
 
+    }
+
+    @DeleteMapping("/{lctrCd}")
+    public ResultResponse<?> delete(
+            HttpServletRequest req, HttpServletResponse resp,
+            @Valid @NotNull(message = "lctrSeq is required") @PathVariable(name = "lctrCd") String lctrCd
+    ) throws Exception {
+        lecturerService.delete(lctrCd);
+        return new ResultResponse<>(HttpStatus.OK);
     }
 }
 
