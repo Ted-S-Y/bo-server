@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-07T17:57:26+0900",
+    date = "2022-06-08T11:19:02+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -24,30 +24,30 @@ public class MemberMapperImpl implements MemberMapper {
     private MemberDeviceMapper memberDeviceMapper;
 
     @Override
-    public MemberVo toVo(MemberEntity classBaseEntity) {
-        if ( classBaseEntity == null ) {
+    public MemberVo toVo(MemberEntity memberEntity) {
+        if ( memberEntity == null ) {
             return null;
         }
 
         MemberVo memberVo = new MemberVo();
 
-        memberVo.setDevices( memberDeviceMapper.toVos( classBaseEntity.getMemberDeviceEntityList() ) );
-        memberVo.setMbrSeq( classBaseEntity.getMbrSeq() );
-        memberVo.setMbrId( classBaseEntity.getMbrId() );
-        memberVo.setMbrNm( classBaseEntity.getMbrNm() );
-        memberVo.setMbrPwd( classBaseEntity.getMbrPwd() );
-        memberVo.setMobl( classBaseEntity.getMobl() );
-        memberVo.setMail( classBaseEntity.getMail() );
-        memberVo.setMktYn( classBaseEntity.getMktYn() );
-        memberVo.setJoinDt( classBaseEntity.getJoinDt() );
-        memberVo.setLgnDtm( classBaseEntity.getLgnDtm() );
-        memberVo.setSlprYn( classBaseEntity.getSlprYn() );
-        memberVo.setSspdYn( classBaseEntity.getSspdYn() );
-        memberVo.setSspdCd( classBaseEntity.getSspdCd() );
-        memberVo.setCrtDtm( classBaseEntity.getCrtDtm() );
-        memberVo.setCrtr( classBaseEntity.getCrtr() );
-        memberVo.setUpdDtm( classBaseEntity.getUpdDtm() );
-        memberVo.setUpdtr( classBaseEntity.getUpdtr() );
+        memberVo.setDevices( memberDeviceMapper.toVos( memberEntity.getMemberDeviceEntityList() ) );
+        memberVo.setMbrSeq( memberEntity.getMbrSeq() );
+        memberVo.setMbrId( memberEntity.getMbrId() );
+        memberVo.setMbrNm( memberEntity.getMbrNm() );
+        memberVo.setMbrPwd( memberEntity.getMbrPwd() );
+        memberVo.setMobl( memberEntity.getMobl() );
+        memberVo.setMail( memberEntity.getMail() );
+        memberVo.setMktYn( memberEntity.getMktYn() );
+        memberVo.setJoinDt( memberEntity.getJoinDt() );
+        memberVo.setLgnDtm( memberEntity.getLgnDtm() );
+        memberVo.setSlprYn( memberEntity.getSlprYn() );
+        memberVo.setSspdYn( memberEntity.getSspdYn() );
+        memberVo.setSspdCd( memberEntity.getSspdCd() );
+        memberVo.setCrtDtm( memberEntity.getCrtDtm() );
+        memberVo.setCrtr( memberEntity.getCrtr() );
+        memberVo.setUpdDtm( memberEntity.getUpdDtm() );
+        memberVo.setUpdtr( memberEntity.getUpdtr() );
 
         return memberVo;
     }
@@ -167,6 +167,10 @@ public class MemberMapperImpl implements MemberMapper {
         resMemberVo.setSlprYn( memberVo.getSlprYn() );
         resMemberVo.setSspdYn( memberVo.getSspdYn() );
         resMemberVo.setSspdCd( memberVo.getSspdCd() );
+        List<MemberDeviceVo> list = memberVo.getDevices();
+        if ( list != null ) {
+            resMemberVo.setDevices( new ArrayList<MemberDeviceVo>( list ) );
+        }
 
         return resMemberVo;
     }

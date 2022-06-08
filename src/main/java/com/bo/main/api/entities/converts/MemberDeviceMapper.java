@@ -1,9 +1,7 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.res.ResMemberDeviceVo;
 import com.bo.main.api.entities.MemberDeviceEntity;
 import com.bo.main.api.entities.vo.MemberDeviceVo;
-import com.bo.main.api.entities.vo.MemberVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -29,7 +27,7 @@ public interface MemberDeviceMapper extends GenericMapper<MemberDeviceVo, Member
     @Override
     List<MemberDeviceEntity> toEntities(List<MemberDeviceVo> d);
 
-    ResMemberDeviceVo toVo(MemberDeviceVo memberDeviceVo);
+//    ResMemberDeviceVo toVo(MemberDeviceVo memberDeviceVo);
 
     @Mapping(target = "memberEntity", ignore = true)
     void updateFromVo(MemberDeviceVo dto, @MappingTarget MemberDeviceEntity entity);

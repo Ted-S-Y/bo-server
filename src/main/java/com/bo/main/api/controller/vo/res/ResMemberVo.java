@@ -1,10 +1,12 @@
 package com.bo.main.api.controller.vo.res;
 
 import com.bo.main.api.controller.vo.common.CommonVo;
+import com.bo.main.api.entities.vo.MemberDeviceVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * packageName : com.bo.main.api.controller.vo.res
@@ -94,4 +96,6 @@ public class ResMemberVo extends CommonVo {
      * 이용정지사유
      */
     private String sspdCd;
+
+    List<MemberDeviceVo> devices;
 }

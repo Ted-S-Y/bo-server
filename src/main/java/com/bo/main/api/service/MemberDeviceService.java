@@ -1,7 +1,9 @@
 package com.bo.main.api.service;
 
+import com.bo.main.api.entities.ClassPackageDetailEntity;
 import com.bo.main.api.entities.MemberDeviceEntity;
 import com.bo.main.api.entities.converts.MemberDeviceMapper;
+import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.MemberDeviceVo;
 import com.bo.main.api.entities.vo.MemberVo;
 import com.bo.main.api.repositories.jpa.MemberDeviceRepository;
@@ -46,50 +48,58 @@ public class MemberDeviceService {
         return memberDeviceMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Device 정보({})가 없습니다.", dvSeq+""))));
     }
 
-    public MemberDeviceVo update(MemberDeviceVo memberDeviceVo) throws Exception {
+    public List<MemberDeviceVo> findList(MemberDeviceVo memberDeviceVo) throws Exception {
 
-        Optional<MemberDeviceEntity> opt = findMemberDeviceById(memberDeviceVo.getDvSeq());
+        Optional<List<MemberDeviceEntity>> opt = qMemberDeviceRepository.findList(memberDeviceVo);
 
-        MemberDeviceEntity loadMemberDevice = opt.orElseGet(MemberDeviceEntity::new);
-        memberDeviceMapper.updateFromVo(memberDeviceVo, loadMemberDevice);
-
-        return memberDeviceMapper.toVo(memberDeviceRepository.save(loadMemberDevice));
+        return memberDeviceMapper.toVos(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Device 정보({})가 없습니다.", memberDeviceVo.getDvSeq()+""))));
     }
 
-    public MemberDeviceVo add(MemberDeviceVo memberDeviceVo) throws Exception {
-
-        MemberDeviceEntity loadMemberDevice = new MemberDeviceEntity();
-        memberDeviceMapper.updateFromVo(memberDeviceVo, loadMemberDevice);
-
-        return memberDeviceMapper.toVo(memberDeviceRepository.save(loadMemberDevice));
-    }
-
-    @Transactional
-    public List<MemberDeviceVo> bulkAdds(MemberVo memberVo, List<MemberDeviceVo> memberDevices) throws Exception {
-        List<MemberDeviceVo> results = new ArrayList<>();
-
-        for (MemberDeviceVo memberDeviceVo: memberDevices) {
-            memberDeviceVo.setMbrSeq(memberVo.getMbrSeq());
-            results.add(add(memberDeviceVo));
-        }
-
-        return results;
-    }
-
-    @Transactional
-    public List<MemberDeviceVo> bulkUpdates(MemberVo memberVo, List<MemberDeviceVo> memberDevices) throws Exception {
-        List<MemberDeviceVo> results = new ArrayList<>();
-
-        for (MemberDeviceVo memberDeviceVo: memberDevices) {
-            memberDeviceVo.setMbrSeq(memberVo.getMbrSeq());
-
-            if (memberDeviceVo.getMbrSeq() != null) {
-                results.add(update(memberDeviceVo));
-            } else {
-                results.add(add(memberDeviceVo));
-            }
-        }
-
-        return results;
-    }
+//    public MemberDeviceVo update(MemberDeviceVo memberDeviceVo) throws Exception {
+//
+//        Optional<MemberDeviceEntity> opt = findMemberDeviceById(memberDeviceVo.getDvSeq());
+//
+//        MemberDeviceEntity loadMemberDevice = opt.orElseGet(MemberDeviceEntity::new);
+//        memberDeviceMapper.updateFromVo(memberDeviceVo, loadMemberDevice);
+//
+//        return memberDeviceMapper.toVo(memberDeviceRepository.save(loadMemberDevice));
+//    }
+//
+//
+//    public MemberDeviceVo add(MemberDeviceVo memberDeviceVo) throws Exception {
+//
+//        MemberDeviceEntity loadMemberDevice = new MemberDeviceEntity();
+//        memberDeviceMapper.updateFromVo(memberDeviceVo, loadMemberDevice);
+//
+//        return memberDeviceMapper.toVo(memberDeviceRepository.save(loadMemberDevice));
+//    }
+//
+//    @Transactional
+//    public List<MemberDeviceVo> bulkAdds(MemberVo memberVo, List<MemberDeviceVo> memberDevices) throws Exception {
+//        List<MemberDeviceVo> results = new ArrayList<>();
+//
+//        for (MemberDeviceVo memberDeviceVo: memberDevices) {
+//            memberDeviceVo.setMbrSeq(memberVo.getMbrSeq());
+//            results.add(add(memberDeviceVo));
+//        }
+//
+//        return results;
+//    }
+//
+//    @Transactional
+//    public List<MemberDeviceVo> bulkUpdates(MemberVo memberVo, List<MemberDeviceVo> memberDevices) throws Exception {
+//        List<MemberDeviceVo> results = new ArrayList<>();
+//
+//        for (MemberDeviceVo memberDeviceVo: memberDevices) {
+//            memberDeviceVo.setMbrSeq(memberVo.getMbrSeq());
+//
+//            if (memberDeviceVo.getMbrSeq() != null) {
+//                results.add(update(memberDeviceVo));
+//            } else {
+//                results.add(add(memberDeviceVo));
+//            }
+//        }
+//
+//        return results;
+//    }
 }

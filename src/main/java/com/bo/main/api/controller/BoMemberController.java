@@ -43,8 +43,7 @@ public class BoMemberController {
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "memberId is required") @PathVariable(name = "memberId") String memberId
     ) throws Exception {
-        MemberVo memberVo = memberService.findByMbrIdRetError(memberId);
-        return new ResultResponse<>(memberMapper.toVo(memberVo));
+        return new ResultResponse<>(memberService.findMbrOneRetError(memberId));
     }
 
     @GetMapping("/management/list")
@@ -53,23 +52,10 @@ public class BoMemberController {
             @Valid @RequestParam Map<String, String> parameterMap,
             @PageableDefault(page = 0, size = 10) Pageable pageable
     ) throws Exception {
-
         ObjectMapper objectMapper = new ObjectMapper();
         ReqMemberSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqMemberSearchVo.class);
         return new ResultResponse<>(memberService.search(searchVo, pageable));
     }
-
-//    @PostMapping("/management")
-//    public ResultResponse<?> register(
-//            HttpServletRequest req, HttpServletResponse resp,
-//            @Valid @RequestBody ReqMemberVo reqMemberVo
-//    ) throws Exception {
-//
-//        MemberVo memberVo = memberMapper.toVo(reqMemberVo);
-//        memberService.add(memberVo);
-//
-//        return new ResultResponse<>(HttpStatus.CREATED);
-//    }
 
     @PutMapping("/management")
     public ResultResponse<?> modify(

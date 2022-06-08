@@ -1,6 +1,5 @@
 package com.bo.main.api.entities.converts;
 
-import com.bo.main.api.controller.vo.res.ResMemberDeviceVo;
 import com.bo.main.api.entities.MemberDeviceEntity;
 import com.bo.main.api.entities.vo.MemberDeviceVo;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-07T17:57:27+0900",
+    date = "2022-06-08T11:19:03+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -80,28 +79,6 @@ public class MemberDeviceMapperImpl implements MemberDeviceMapper {
         }
 
         return list;
-    }
-
-    @Override
-    public ResMemberDeviceVo toVo(MemberDeviceVo memberDeviceVo) {
-        if ( memberDeviceVo == null ) {
-            return null;
-        }
-
-        ResMemberDeviceVo resMemberDeviceVo = new ResMemberDeviceVo();
-
-        resMemberDeviceVo.setCrtDtm( memberDeviceVo.getCrtDtm() );
-        resMemberDeviceVo.setCrtr( memberDeviceVo.getCrtr() );
-        resMemberDeviceVo.setUpdDtm( memberDeviceVo.getUpdDtm() );
-        resMemberDeviceVo.setUpdtr( memberDeviceVo.getUpdtr() );
-        resMemberDeviceVo.setDvSeq( memberDeviceVo.getDvSeq() );
-        resMemberDeviceVo.setMbrSeq( memberDeviceVo.getMbrSeq() );
-        resMemberDeviceVo.setDvNm( memberDeviceVo.getDvNm() );
-        resMemberDeviceVo.setOS( memberDeviceVo.getOS() );
-        resMemberDeviceVo.setDvTyp( memberDeviceVo.getDvTyp() );
-        resMemberDeviceVo.setDelYn( memberDeviceVo.getDelYn() );
-
-        return resMemberDeviceVo;
     }
 
     @Override

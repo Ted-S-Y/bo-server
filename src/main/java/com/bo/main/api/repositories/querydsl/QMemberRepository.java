@@ -1,9 +1,15 @@
 package com.bo.main.api.repositories.querydsl;
 
 import com.bo.main.api.controller.vo.req.ReqMemberSearchVo;
+import com.bo.main.api.controller.vo.res.ResMemberVo;
+import com.bo.main.api.controller.vo.res.ResPackageVo;
 import com.bo.main.api.entities.MemberEntity;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.ConstantImpl;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.bo.main.api.entities.QClassBaseEntity.classBaseEntity;
 import static com.bo.main.api.entities.QLecturerEntity.lecturerEntity;
 import static com.bo.main.api.entities.QMemberEntity.memberEntity;
 
@@ -40,11 +47,22 @@ public class QMemberRepository {
 
     public Page<MemberEntity> findList(ReqMemberSearchVo searchVo, Pageable pageable) {
 
-        List<MemberEntity> content = queryFactory.selectFrom(memberEntity)
+        List<MemberEntity> content = queryFactory
+                .select(Projections.fields(MemberEntity.class,
+                        memberEntity.mbrId,
+                        memberEntity.mbrNm,
+                        memberEntity.joinDt,
+                        memberEntity.mail,
+                        memberEntity.slprYn
+                        )).
+                from(memberEntity)
                 .where(likeMbrId(searchVo.getMbrId()),
                         eqMail(searchVo.getMail()),
                         eqMobl(searchVo.getMobl()),
-                        likeMbrNm(searchVo.getMbrNm())
+                        likeMbrNm(searchVo.getMbrNm()),
+                        eqSspdYn(searchVo.getSspdYn()),
+                        eqSlprYn(searchVo.getSlprYn()),
+                        betweenJoinDt(searchVo.getStDt(), searchVo.getEdDt())
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -93,5 +111,13 @@ public class QMemberRepository {
             return null;
         }
         return memberEntity.sspdYn.contains(slprYn);
+    }
+
+    private BooleanExpression betweenJoinDt(String stDt, String edDt) {
+        if (StringUtils.isEmpty(stDt) || StringUtils.isEmpty(edDt) ) {
+            return null;
+        }
+
+        return memberEntity.joinDt.between(stDt, edDt);
     }
 }

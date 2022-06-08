@@ -19,8 +19,9 @@ import java.util.List;
 public interface MemberMapper extends GenericMapper<MemberVo, MemberEntity> {
 
     @Mapping(target = "devices", source = "memberDeviceEntityList")
+
     @Override
-    MemberVo toVo(MemberEntity classBaseEntity);
+    MemberVo toVo(MemberEntity memberEntity);
 
     @Mapping(target = "memberDeviceEntityList", source = "devices")
     @Override
@@ -36,6 +37,7 @@ public interface MemberMapper extends GenericMapper<MemberVo, MemberEntity> {
     MemberVo toVo(ReqMemberVo reqMemberVo);
 
     ResMemberVo toVo(MemberVo memberVo);
+
 
     @Mapping(target = "memberDeviceEntityList", source = "devices")
     void updateFromVo(MemberVo dto, @MappingTarget MemberEntity entity);

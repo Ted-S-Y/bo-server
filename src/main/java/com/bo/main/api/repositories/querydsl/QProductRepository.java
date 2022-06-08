@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.bo.main.api.entities.QSalesProductEntity.salesProductEntity;
 
@@ -85,14 +86,14 @@ public class QProductRepository {
     }
 
     private BooleanExpression eqSlsPrdtSeq(Long slsPrdtSeq) {
-        if (NumberUtil.isNaN(slsPrdtSeq)) {
+        if (Objects.isNull(slsPrdtSeq)) {
             return null;
         }
         return salesProductEntity.slsPrdtSeq.eq(slsPrdtSeq);
     }
     
     private BooleanExpression eqCtgrId(Long ctgrId) {
-        if (NumberUtil.isNaN(ctgrId)) {
+        if (Objects.isNull(ctgrId)) {
             return null;
         }
         return salesProductEntity.ctgrId.eq(ctgrId);
