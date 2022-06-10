@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class ResCouponInfoVo extends CommonVo {
+public class ResCouponVo extends CommonVo {
 
 
     /**

@@ -38,4 +38,24 @@ public class ReqMemberSearchVo extends CommonVo {
      */
    private String mail;
 
+    /**
+     * 휴면여부
+     */
+    private String slprYn;
+
+    /**
+     * 이용정지여부
+     */
+    private String sspdYn;
+
+    /**
+     * 검색시작일자
+     */
+    private String stDt;
+
+    /**
+     * 검색종료일자
+     */
+    private String edDt;
 }
+

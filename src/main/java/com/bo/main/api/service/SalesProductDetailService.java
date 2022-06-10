@@ -2,10 +2,9 @@ package com.bo.main.api.service;
 
 import com.bo.main.api.entities.SalesProductDetailEntity;
 import com.bo.main.api.entities.converts.SalesProductDetailMapper;
-import com.bo.main.api.entities.vo.ClassPackageDetailVo;
 import com.bo.main.api.entities.vo.SalesProductDetailVo;
 import com.bo.main.api.repositories.jpa.SalesProductDetailRepository;
-import com.bo.main.api.repositories.querydsl.QSalaesProductDetailRepository;
+import com.bo.main.api.repositories.querydsl.QSalesProductDetailRepository;
 import com.bo.main.core.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SalesProductDetailService {
 
-    private final QSalaesProductDetailRepository qSalaesProductDetailRepository;
+    private final QSalesProductDetailRepository qSalesProductDetailRepository;
     private final SalesProductDetailMapper salesProductDetailMapper;
     private final SalesProductDetailRepository salesProductDetailRepository;
 
@@ -44,7 +43,7 @@ public class SalesProductDetailService {
 
     public List<SalesProductDetailVo> findList(SalesProductDetailVo salesProductDetailVo) throws Exception {
 
-        Optional<List<SalesProductDetailEntity>> opt = qSalaesProductDetailRepository.findList(salesProductDetailVo);
+        Optional<List<SalesProductDetailEntity>> opt = qSalesProductDetailRepository.findList(salesProductDetailVo);
 
         return salesProductDetailMapper.toVos(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Sales Product 정보({})가 없습니다.", salesProductDetailVo.getSlsPrdtDtlSeq()+""))));
     }
@@ -63,7 +62,7 @@ public class SalesProductDetailService {
     }
 
     public void delete(SalesProductDetailVo salesProductDetailVo) throws Exception {
-        Optional<List<SalesProductDetailEntity>> opt = qSalaesProductDetailRepository.findList(salesProductDetailVo);
+        Optional<List<SalesProductDetailEntity>> opt = qSalesProductDetailRepository.findList(salesProductDetailVo);
 
         List<SalesProductDetailEntity> loadSalesProductDetailEntityList = opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 Sales Product 정보({})가 없습니다.", salesProductDetailVo.getSlsPrdtDtlSeq()+"")));
 

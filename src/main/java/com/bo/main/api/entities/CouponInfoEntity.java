@@ -104,7 +104,7 @@ public class CouponInfoEntity extends BaseTimeEntity implements Serializable {
     @OneToMany(mappedBy = "couponInfoEntity", fetch = FetchType.LAZY)
     @JsonManagedReference
     @ToString.Exclude
-    private List<ConponIssueHistoryEntity> conponIssueHistoryEntityList;
+    private List<CouponIssueHistoryEntity> couponIssueHistoryEntityList;
 
     @Override
     public boolean equals(Object o) {

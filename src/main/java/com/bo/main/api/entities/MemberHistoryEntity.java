@@ -40,7 +40,7 @@ public class MemberHistoryEntity extends BaseTimeEntity implements Serializable 
      */
     @Column(name = "MBR_ID")
     @Schema(description="회원 아이디")
-    private Long mbrId;
+    private String mbrId;
 
     /**
      * 회원순번

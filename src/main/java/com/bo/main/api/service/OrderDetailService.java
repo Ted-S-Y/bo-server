@@ -5,15 +5,12 @@ import com.bo.main.api.entities.converts.OrderDetailMapper;
 import com.bo.main.api.entities.vo.OrderDetailVo;
 import com.bo.main.api.entities.vo.OrderInfoVo;
 import com.bo.main.api.repositories.jpa.OrderDetailRepository;
-import com.bo.main.api.repositories.querydsl.QOrderDetailRepository;
 import com.bo.main.core.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -32,7 +29,6 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class OrderDetailService {
-    private final QOrderDetailRepository qOrderDetailRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final OrderDetailMapper orderDetailMapper;
 

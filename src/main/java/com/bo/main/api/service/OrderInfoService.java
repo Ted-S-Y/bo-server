@@ -1,6 +1,7 @@
 package com.bo.main.api.service;
 
 import com.bo.main.api.controller.vo.req.ReqOrderInfoSearchVo;
+import com.bo.main.api.controller.vo.res.ResOrderInfoVo;
 import com.bo.main.api.entities.OrderInfoEntity;
 import com.bo.main.api.entities.converts.OrderInfoMapper;
 import com.bo.main.api.entities.vo.OrderInfoVo;
@@ -51,9 +52,9 @@ public class OrderInfoService {
         return orderInfoMapper.toVo(opt.orElseThrow(() -> new Exception(StringUtils.message("등록된 ordrNo 정보({})가 없습니다.", ordrNo+""))));
     }
     
-    public Page<OrderInfoVo> search(ReqOrderInfoSearchVo searchVo, Pageable pageable) throws Exception {
-        Page<OrderInfoEntity> orderInfoEntityPage = qOrderInfoRepository.findList(searchVo, pageable);
-        return new PageImpl<>(orderInfoMapper.toVos(orderInfoEntityPage.getContent()), pageable, orderInfoEntityPage.getTotalElements());
+    public Page<ResOrderInfoVo> search(ReqOrderInfoSearchVo searchVo, Pageable pageable) throws Exception {
+        Page<ResOrderInfoVo> orderInfoEntityPage = qOrderInfoRepository.findList(searchVo, pageable);
+        return new PageImpl<>(orderInfoEntityPage.getContent(), pageable, orderInfoEntityPage.getTotalElements());
     }
     
     public OrderInfoVo update(OrderInfoVo updateOrderInfoVo) throws Exception {

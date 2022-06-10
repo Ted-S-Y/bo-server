@@ -1,14 +1,16 @@
 package com.bo.main.api.controller.vo.req;
 
+import com.bo.main.api.controller.vo.common.CommonVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 
 @Data
-public class ReqCouponInfoSearchVo {
+public class ReqCouponVo extends CommonVo {
 
 
     /**
@@ -36,6 +38,11 @@ public class ReqCouponInfoSearchVo {
 
 
     /**
+     * 회원 아이디
+     */
+    private String mbrId;
+
+    /**
      * 발급가능 시작일시
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -52,14 +59,8 @@ public class ReqCouponInfoSearchVo {
 
 
     /**
-     * 발급후 사용 가능 일자
-     */
-    private String issueUseDt;
-
-
-    /**
      * 발급중단여부
      */
-    private String issueSppdYn;
+    private String issueSppdYn = "N";
 
 }

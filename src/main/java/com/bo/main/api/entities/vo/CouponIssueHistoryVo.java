@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class ConponIssueHistoryVo implements Serializable {
+public class CouponIssueHistoryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -23,7 +23,7 @@ public class ConponIssueHistoryVo implements Serializable {
      * 회원 아이디
      */
     @NotNull(message = "mbrId can not null")
-    private Long mbrId;
+    private String mbrId;
 
 
     /**

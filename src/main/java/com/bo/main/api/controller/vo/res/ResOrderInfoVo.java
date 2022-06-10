@@ -65,6 +65,10 @@ public class ResOrderInfoVo extends CommonVo {
      */
     private String cnclDtlList;
 
-    @NotEmpty
-    private List<ResOrderDetailVo> details;
+
+    /**
+     * 주문구분(주문/취소/반품/교환)
+     */
+    private String ordrCls;
+
 }

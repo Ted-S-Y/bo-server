@@ -8,6 +8,7 @@ import org.mapstruct.ap.shaded.freemarker.template.utility.NumberUtil;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.bo.main.api.entities.QClassBaseEntity.classBaseEntity;
@@ -28,7 +29,7 @@ public class QClassVideoRepository {
     }
 
     private BooleanExpression eqClssSeq(Long clssSeq) {
-        if (NumberUtil.isNaN(clssSeq)) {
+        if (Objects.isNull(clssSeq)) {
             return null;
         }
         return classBaseEntity.clssSeq.eq(clssSeq);

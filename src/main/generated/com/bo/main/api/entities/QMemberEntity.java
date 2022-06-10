@@ -26,7 +26,7 @@ public class QMemberEntity extends EntityPathBase<MemberEntity> {
 
     public final ListPath<CartEntity, QCartEntity> cartEntityList = this.<CartEntity, QCartEntity>createList("cartEntityList", CartEntity.class, QCartEntity.class, PathInits.DIRECT2);
 
-    public final ListPath<ConponIssueHistoryEntity, QConponIssueHistoryEntity> conponIssueHistoryEntityList = this.<ConponIssueHistoryEntity, QConponIssueHistoryEntity>createList("conponIssueHistoryEntityList", ConponIssueHistoryEntity.class, QConponIssueHistoryEntity.class, PathInits.DIRECT2);
+    public final ListPath<CouponIssueHistoryEntity, QCouponIssueHistoryEntity> couponIssueHistoryEntityList = this.<CouponIssueHistoryEntity, QCouponIssueHistoryEntity>createList("couponIssueHistoryEntityList", CouponIssueHistoryEntity.class, QCouponIssueHistoryEntity.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> crtDtm = _super.crtDtm;

@@ -109,5 +109,5 @@ public class CouponInfoVo implements Serializable {
     private String updtr;
 
 
-    List<ConponIssueHistoryVo> conponIssueHistories;
+    List<CouponIssueHistoryVo> conponIssueHistories;
 }

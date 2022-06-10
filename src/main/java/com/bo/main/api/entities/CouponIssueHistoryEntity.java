@@ -16,7 +16,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "CONPON_ISSUE_HISTORY")
-public class ConponIssueHistoryEntity implements Serializable {
+public class CouponIssueHistoryEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -97,7 +97,7 @@ public class ConponIssueHistoryEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ConponIssueHistoryEntity that = (ConponIssueHistoryEntity) o;
+        CouponIssueHistoryEntity that = (CouponIssueHistoryEntity) o;
         return issueSeq != null && Objects.equals(issueSeq, that.issueSeq);
     }
 

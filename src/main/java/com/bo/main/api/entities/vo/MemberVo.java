@@ -53,7 +53,7 @@ public class MemberVo implements Serializable {
     /**
      * 성별
      */
-    private String SEX;
+    private String sex;
 
     /**
      * 마케팅 수신 동의
@@ -68,7 +68,7 @@ public class MemberVo implements Serializable {
     /**
      * 주소
      */
-    private String ADDR;
+    private String addr;
 
     /**
      * 회원가입일자
@@ -126,5 +126,5 @@ public class MemberVo implements Serializable {
 
     private List<RevwVo> revws;
 
-    private List<ConponIssueHistoryVo> conponIssueHistorys;
+    private List<CouponIssueHistoryVo> conponIssueHistorys;
 }
