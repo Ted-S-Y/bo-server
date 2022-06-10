@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class ConponIssueHistoryVo implements Serializable {
+public class CouponIssueHistoryVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**

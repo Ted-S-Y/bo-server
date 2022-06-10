@@ -1,6 +1,5 @@
 package com.bo.main.api.service;
 
-import com.bo.main.api.controller.vo.req.ReqClassManageVo;
 import com.bo.main.api.entities.ClassBaseEntity;
 import com.bo.main.api.entities.converts.ClassBaseMapper;
 import com.bo.main.api.entities.vo.ClassBaseVo;

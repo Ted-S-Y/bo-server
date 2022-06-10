@@ -13,7 +13,6 @@ import org.mapstruct.Mappings;
         uses = {
                 ClassVideoMapper.class,
                 LecturerClassMapper.class,
-                ClassPackageDetailMapper.class
         },
         componentModel = "spring"
 )
@@ -23,7 +22,6 @@ public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEnt
     @Mappings({
             @Mapping(target = "videos", source = "classVideoEntityList"),
             @Mapping(target = "lecturerClasses", source = "lecturerClassEntityList"),
-            @Mapping(target = "details", source = "classPackageDetailEntityList")
     })
     ClassBaseVo toVo(ClassBaseEntity classBaseEntity);
 
@@ -31,7 +29,6 @@ public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEnt
     @Mappings({
             @Mapping(target = "classVideoEntityList", source = "videos"),
             @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses"),
-            @Mapping(target = "classPackageDetailEntityList", source = "details")
     })
     ClassBaseEntity toEntity(ClassBaseVo classBaseVo);
 
@@ -43,7 +40,6 @@ public interface ClassBaseMapper extends GenericMapper<ClassBaseVo, ClassBaseEnt
     @Mappings({
             @Mapping(target = "classVideoEntityList", source = "videos"),
             @Mapping(target = "lecturerClassEntityList", source = "lecturerClasses"),
-            @Mapping(target = "classPackageDetailEntityList", source = "details")
     })
     void updateFromVo(ClassBaseVo dto, @MappingTarget ClassBaseEntity entity);
 

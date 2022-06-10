@@ -129,7 +129,7 @@ public class MemberEntity extends BaseTimeEntity implements Serializable {
     @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)
     @JsonManagedReference
     @ToString.Exclude
-    private List<ConponIssueHistoryEntity> conponIssueHistoryEntityList;
+    private List<CouponIssueHistoryEntity> couponIssueHistoryEntityList;
 
     // 주문
     @OneToMany(mappedBy = "memberEntity", fetch = FetchType.LAZY)

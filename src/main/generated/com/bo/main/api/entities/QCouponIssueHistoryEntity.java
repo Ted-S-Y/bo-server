@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QConponIssueHistoryEntity is a Querydsl query type for ConponIssueHistoryEntity
+ * QCouponIssueHistoryEntity is a Querydsl query type for CouponIssueHistoryEntity
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QConponIssueHistoryEntity extends EntityPathBase<ConponIssueHistoryEntity> {
+public class QCouponIssueHistoryEntity extends EntityPathBase<CouponIssueHistoryEntity> {
 
-    private static final long serialVersionUID = 525397667L;
+    private static final long serialVersionUID = -856094468L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QConponIssueHistoryEntity conponIssueHistoryEntity = new QConponIssueHistoryEntity("conponIssueHistoryEntity");
+    public static final QCouponIssueHistoryEntity couponIssueHistoryEntity = new QCouponIssueHistoryEntity("couponIssueHistoryEntity");
 
     public final QCouponInfoEntity couponInfoEntity;
 
@@ -36,23 +36,23 @@ public class QConponIssueHistoryEntity extends EntityPathBase<ConponIssueHistory
 
     public final DateTimePath<java.util.Date> useSppdDtm = createDateTime("useSppdDtm", java.util.Date.class);
 
-    public QConponIssueHistoryEntity(String variable) {
-        this(ConponIssueHistoryEntity.class, forVariable(variable), INITS);
+    public QCouponIssueHistoryEntity(String variable) {
+        this(CouponIssueHistoryEntity.class, forVariable(variable), INITS);
     }
 
-    public QConponIssueHistoryEntity(Path<? extends ConponIssueHistoryEntity> path) {
+    public QCouponIssueHistoryEntity(Path<? extends CouponIssueHistoryEntity> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QConponIssueHistoryEntity(PathMetadata metadata) {
+    public QCouponIssueHistoryEntity(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QConponIssueHistoryEntity(PathMetadata metadata, PathInits inits) {
-        this(ConponIssueHistoryEntity.class, metadata, inits);
+    public QCouponIssueHistoryEntity(PathMetadata metadata, PathInits inits) {
+        this(CouponIssueHistoryEntity.class, metadata, inits);
     }
 
-    public QConponIssueHistoryEntity(Class<? extends ConponIssueHistoryEntity> type, PathMetadata metadata, PathInits inits) {
+    public QCouponIssueHistoryEntity(Class<? extends CouponIssueHistoryEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.couponInfoEntity = inits.isInitialized("couponInfoEntity") ? new QCouponInfoEntity(forProperty("couponInfoEntity")) : null;
         this.memberEntity = inits.isInitialized("memberEntity") ? new QMemberEntity(forProperty("memberEntity")) : null;

@@ -22,7 +22,7 @@ public class QCouponInfoEntity extends EntityPathBase<CouponInfoEntity> {
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
-    public final ListPath<ConponIssueHistoryEntity, QConponIssueHistoryEntity> conponIssueHistoryEntityList = this.<ConponIssueHistoryEntity, QConponIssueHistoryEntity>createList("conponIssueHistoryEntityList", ConponIssueHistoryEntity.class, QConponIssueHistoryEntity.class, PathInits.DIRECT2);
+    public final ListPath<CouponIssueHistoryEntity, QCouponIssueHistoryEntity> couponIssueHistoryEntityList = this.<CouponIssueHistoryEntity, QCouponIssueHistoryEntity>createList("couponIssueHistoryEntityList", CouponIssueHistoryEntity.class, QCouponIssueHistoryEntity.class, PathInits.DIRECT2);
 
     public final StringPath cpnNm = createString("cpnNm");
 

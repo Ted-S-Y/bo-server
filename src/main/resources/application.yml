@@ -23,9 +23,9 @@ logging:
 
 
 spring:
-  main:
-    allow-circular-references: true
-  #  task:
+#  main:
+#    allow-circular-references: true
+#  task:
 #    execution:
 #      pool:
 #        core-size: 50

@@ -32,7 +32,7 @@ public class BoOrderController {
     private final OrderInfoMapper orderInfoMapper;
 
     @GetMapping("/{ordrNo}")
-    public ResultResponse<?> searchClass(
+    public ResultResponse<?> searchOrder(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @NotNull(message = "ordrNo is required") @PathVariable(name = "ordrNo") long ordrNo
     ) throws Exception {
@@ -40,8 +40,8 @@ public class BoOrderController {
         return new ResultResponse<>(orderInfoMapper.toVo(orderInfoVo));
     }
 
-    @GetMapping("/management/list")
-    public ResultResponse<?> searchClasses(
+    @GetMapping("/list")
+    public ResultResponse<?> searchOrders(
             HttpServletRequest req, HttpServletResponse resp,
             @Valid @RequestParam Map<String, String> parameterMap,
             @PageableDefault(page = 0, size = 10) Pageable pageable
@@ -52,6 +52,29 @@ public class BoOrderController {
         return new ResultResponse<>(orderInfoService.search(searchVo, pageable));
     }
 
+    @GetMapping("/cancel/list")
+    public ResultResponse<?> searchCancelOrders(
+            HttpServletRequest req, HttpServletResponse resp,
+            @Valid @RequestParam Map<String, String> parameterMap,
+            @PageableDefault(page = 0, size = 10) Pageable pageable
+    ) throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReqOrderInfoSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqOrderInfoSearchVo.class);
+        return new ResultResponse<>(orderInfoService.search(searchVo, pageable));
+    }
+
+    @GetMapping("/return/list")
+    public ResultResponse<?> searchReturnOrders(
+            HttpServletRequest req, HttpServletResponse resp,
+            @Valid @RequestParam Map<String, String> parameterMap,
+            @PageableDefault(page = 0, size = 10) Pageable pageable
+    ) throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReqOrderInfoSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqOrderInfoSearchVo.class);
+        return new ResultResponse<>(orderInfoService.search(searchVo, pageable));
+    }
 //    @PostMapping("/management")
 //    public ResultResponse<?> register(
 //            HttpServletRequest req, HttpServletResponse resp,

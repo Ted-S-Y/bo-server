@@ -3,7 +3,6 @@ package com.bo.main.api.entities.converts;
 import com.bo.main.api.controller.vo.req.ReqClassManageVo;
 import com.bo.main.api.controller.vo.res.ResClassManageVo;
 import com.bo.main.api.entities.ClassBaseEntity;
-import com.bo.main.api.entities.ClassPackageDetailEntity;
 import com.bo.main.api.entities.ClassVideoEntity;
 import com.bo.main.api.entities.LecturerClassEntity;
 import com.bo.main.api.entities.vo.ClassBaseVo;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-06-07T17:57:26+0900",
+    date = "2022-06-09T17:27:20+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.6 (Oracle Corporation)"
 )
 @Component
@@ -28,8 +27,6 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
     private ClassVideoMapper classVideoMapper;
     @Autowired
     private LecturerClassMapper lecturerClassMapper;
-    @Autowired
-    private ClassPackageDetailMapper classPackageDetailMapper;
 
     @Override
     public List<ClassBaseVo> toVos(List<ClassBaseEntity> arg0) {
@@ -69,7 +66,6 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
 
         classBaseVo.setVideos( classVideoMapper.toVos( classBaseEntity.getClassVideoEntityList() ) );
         classBaseVo.setLecturerClasses( lecturerClassMapper.toVos( classBaseEntity.getLecturerClassEntityList() ) );
-        classBaseVo.setDetails( classPackageDetailMapper.toVos( classBaseEntity.getClassPackageDetailEntityList() ) );
         classBaseVo.setClssSeq( classBaseEntity.getClssSeq() );
         classBaseVo.setClssCd( classBaseEntity.getClssCd() );
         classBaseVo.setClssNm( classBaseEntity.getClssNm() );
@@ -94,7 +90,6 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
 
         classBaseEntity.setClassVideoEntityList( classVideoMapper.toEntities( classBaseVo.getVideos() ) );
         classBaseEntity.setLecturerClassEntityList( lecturerClassMapper.toEntities( classBaseVo.getLecturerClasses() ) );
-        classBaseEntity.setClassPackageDetailEntityList( classPackageDetailMapper.toEntities( classBaseVo.getDetails() ) );
         classBaseEntity.setClssSeq( classBaseVo.getClssSeq() );
         classBaseEntity.setClssCd( classBaseVo.getClssCd() );
         classBaseEntity.setClssNm( classBaseVo.getClssNm() );
@@ -201,22 +196,6 @@ public class ClassBaseMapperImpl implements ClassBaseMapper {
             List<LecturerClassEntity> list1 = lecturerClassMapper.toEntities( dto.getLecturerClasses() );
             if ( list1 != null ) {
                 entity.setLecturerClassEntityList( list1 );
-            }
-        }
-        if ( entity.getClassPackageDetailEntityList() != null ) {
-            List<ClassPackageDetailEntity> list2 = classPackageDetailMapper.toEntities( dto.getDetails() );
-            if ( list2 != null ) {
-                entity.getClassPackageDetailEntityList().clear();
-                entity.getClassPackageDetailEntityList().addAll( list2 );
-            }
-            else {
-                entity.setClassPackageDetailEntityList( null );
-            }
-        }
-        else {
-            List<ClassPackageDetailEntity> list2 = classPackageDetailMapper.toEntities( dto.getDetails() );
-            if ( list2 != null ) {
-                entity.setClassPackageDetailEntityList( list2 );
             }
         }
         entity.setClssSeq( dto.getClssSeq() );
