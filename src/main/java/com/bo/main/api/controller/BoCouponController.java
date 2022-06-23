@@ -6,7 +6,10 @@ import com.bo.main.api.controller.vo.req.ReqCouponVo;
 import com.bo.main.api.controller.vo.res.ResCouponVo;
 import com.bo.main.api.controller.vo.res.ResCouponVo;
 import com.bo.main.api.entities.converts.CouponInfoMapper;
+import com.bo.main.api.entities.converts.CouponIssueHistoryMapper;
+import com.bo.main.api.entities.vo.CouponIssueHistoryVo;
 import com.bo.main.api.service.CouponInfoService;
+import com.bo.main.api.service.CouponIssueHistoryService;
 import com.bo.main.api.service.CouponService;
 import com.bo.main.core.wapper.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +44,11 @@ public class BoCouponController {
     private final CouponInfoService couponInfoService;
     private final CouponInfoMapper couponInfoMapper;
 
+    private final CouponIssueHistoryService couponIssueHistoryService;
+    private final CouponIssueHistoryMapper couponIssueHistoryMapper;
+
+    private final ObjectMapper objectMapper;
+
     @GetMapping("/{cpnSeq}")
     public ResultResponse<?> searchCoupon(
             HttpServletRequest req, HttpServletResponse resp,
@@ -56,7 +64,6 @@ public class BoCouponController {
             @Valid @RequestParam Map<String, String> parameterMap,
             @PageableDefault(page = 0, size = 10) Pageable pageable
     ) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
         ReqCouponSearchVo searchVo = objectMapper.convertValue(parameterMap, ReqCouponSearchVo.class);
 
         return new ResultResponse<>(couponInfoService.search(searchVo, pageable));
@@ -96,7 +103,7 @@ public class BoCouponController {
             @Valid @RequestBody ReqCouponVo reqCouponVo
     ) throws Exception {
 
-        couponInfoService.add(couponInfoMapper.toVo(reqCouponVo));
+        couponIssueHistoryService.add(couponIssueHistoryMapper.toVo(reqCouponVo));
         return new ResultResponse<>(HttpStatus.CREATED);
     }
 
@@ -106,7 +113,16 @@ public class BoCouponController {
             @Valid @RequestBody ReqCouponVo reqCouponVo
     ) throws Exception {
 
-        couponInfoService.add(couponInfoMapper.toVo(reqCouponVo));
+        couponIssueHistoryService.update(couponIssueHistoryMapper.toVo(reqCouponVo));
         return new ResultResponse<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/use/{cpnSeq}")
+    public ResultResponse<?> useDelete(
+            HttpServletRequest req, HttpServletResponse resp,
+            @Valid @RequestBody CouponIssueHistoryVo couponIssueHistoryVo
+    ) throws Exception {
+        couponIssueHistoryService.delete(couponIssueHistoryVo);
+        return new ResultResponse<>(HttpStatus.OK);
     }
 }
